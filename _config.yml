@@ -1,3 +1,20 @@
-theme: beautiful-jekyll-theme
+avatar: "/assets/img/aemy-avatar.svg"
 
-title: lab for sAfe sEcure sMart sYstems (AEMY)
+navbar-col: "#006D6D"
+navbar-text-col: "#50DDDC"
+navbar-border-col: "#50DDDC"
+navbar-var-length: true
+
+title: AEMY
+
+navbar-links:
+  Topics:
+    - RISC-V ISA Extensions: "risc-v-extensions"
+    - Open Source Chip Design: "open-source-chip-design"
+    - WebAssembly for Embedded: "wasm4iot"
+    - Formal Methods for Embedded: "formal-embedded"
+  Projects:
+    - ISOLDE: "isolde"
+  Theses: "theses"
+  Jobs: "jobs"
+  Team: "team"
