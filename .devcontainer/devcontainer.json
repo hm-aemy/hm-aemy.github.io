@@ -1,0 +1,18 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/jekyll
+{
+	"name": "Jekyll",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/jekyll:2-bullseye",
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+	"forwardPorts": [
+	 	// Jekyll server
+	 	4000,
+	 	// Live reload server
+	 	35729
+	],
+
+	"postAttachCommand": "bundle exec jekyll s --livereload"
+}
