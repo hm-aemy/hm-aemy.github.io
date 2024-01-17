@@ -1,0 +1,52 @@
+\documentclass[a4,14pt]{scrreprt}
+
+\usepackage[margin=2cm]{geometry}
+
+\usepackage{graphicx}
+\usepackage{qrcode}
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\renewcommand\familydefault{\sfdefault}
+
+\usepackage[skip=10pt plus1pt]{parskip}
+
+\begin{document}
+\par
+\raisebox{-.5\height}{\includegraphics[height=3cm]{HM_Logo_RGB}}%
+\hfill
+\raisebox{-.5\height}{\includegraphics[height=3cm]{../assets/img/aemy}}%
+\par
+
+\pagestyle{empty}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{minipage}[t]{.8\textwidth}
+  \centering
+{\Huge \textbf{$title$}}
+\end{minipage}
+\end{center}
+
+\vspace{1cm}
+
+Hochschule München is among the largest German universities of applied sciences,
+located at the heart of Munich, Germany. The working group "AEMY" focuses on
+safe, secure and smart systems. Our main working areas include RISC-V processor
+design, WebAssembly runtime development and open source chip design tools.
+
+$body$
+
+\vfill
+
+\begin{minipage}[t]{.5\textwidth}
+  If you are interested, please get in touch: stefan.wallentowitz@hm.edu
+\end{minipage}
+\hfill
+\begin{minipage}[t]{.3\textwidth}
+  \hfill
+  $if(qrcode)$ \qrcode[height=3cm]{$qrcode$} $endif$
+\end{minipage}
+
+\end{document}
