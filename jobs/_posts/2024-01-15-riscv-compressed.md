@@ -1,6 +1,7 @@
 ---
 layout: page
 title: RISC-V Compressed Instruction Set Extensions (PhD Position)
+qrcode: https://aemy.cs.hm.edu/jobs/2024/01/15/riscv-compressed.html
 ---
 
 For our research projects we are looking for a qualified and motivated new team

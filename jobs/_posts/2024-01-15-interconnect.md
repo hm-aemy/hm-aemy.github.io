@@ -1,6 +1,7 @@
 ---
 layout: page
 title: On-Chip/Off-Chip Interconnect Design (PhD Position)
+qrcode: https://aemy.cs.hm.edu/jobs/2024/01/15/interconnect.html
 ---
 
 For our research projects we are looking for a qualified and motivated new team

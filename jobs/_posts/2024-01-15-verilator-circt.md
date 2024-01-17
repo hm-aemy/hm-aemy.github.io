@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Interoperability of Open Source EDA Tools (PhD Position)
+qrcode: https://aemy.cs.hm.edu/jobs/2024/01/15/verilator-circt.html
 ---
 
 For our research projects we are looking for a qualified and motivated new team
