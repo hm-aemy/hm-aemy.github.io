@@ -7,6 +7,7 @@ navbar-var-length: true
 
 title: AEMY
 repository: hm-aemy/hm-aemy.github.io
+baseurl: https://aemy.cs.hm.edu
 
 navbar-links:
   Topics:
