@@ -2,6 +2,7 @@
 layout: page
 title: On-Chip/Off-Chip Interconnect Design (PhD Position)
 qrcode: https://aemy.cs.hm.edu/jobs/2024/01/15/interconnect.html
+tag: phd
 ---
 
 For our research projects we are looking for a qualified and motivated new team
@@ -23,5 +24,3 @@ Join us now:
 - to be in the epicenter of RISC-V and open source chip design
 - to pursue a PhD degree at a small and focused research group
 - to be actively involved with relevant industry partners in the area
-
-
