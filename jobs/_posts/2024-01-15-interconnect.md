@@ -1,8 +1,8 @@
 ---
-layout: page
+layout: job
 title: On-Chip/Off-Chip Interconnect Design (PhD Position)
-qrcode: https://aemy.cs.hm.edu/jobs/2024/01/15/interconnect.html
 tag: phd
+contact: stefan.wallentowitz@hm.edu
 ---
 
 For our research projects we are looking for a qualified and motivated new team

@@ -9,6 +9,8 @@
 
 \renewcommand\familydefault{\sfdefault}
 
+\usepackage{hyperref}
+
 \usepackage[skip=10pt plus1pt]{parskip}
 
 \begin{document}
@@ -40,13 +42,18 @@ $body$
 
 \vfill
 
-\begin{minipage}[t]{.5\textwidth}
-  If you are interested, please get in touch: stefan.wallentowitz@hm.edu
+\begin{minipage}[t]{.6\textwidth}\vspace{0pt}
+  If you are interested, please get in touch:
+  
+  $contact$
+
+  Find more on our website:
+  
+  \url{https://aemy.cs.hm.edu}
 \end{minipage}
 \hfill
-\begin{minipage}[t]{.3\textwidth}
-  \hfill
-  $if(qrcode)$ \qrcode[height=3cm]{$qrcode$} $endif$
+\begin{minipage}[t]{.25\textwidth}\vspace{0pt}
+\hfill $if(qrcode)$ \qrcode[height=3cm]{$qrcode$} $endif$
 \end{minipage}
 
 \end{document}

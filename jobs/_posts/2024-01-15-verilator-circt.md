@@ -2,6 +2,7 @@
 layout: job
 title: Interoperability of Open Source EDA Tools (PhD Position)
 tag: phd
+contact: stefan.wallentowitz@hm.edu
 ---
 
 For our research projects we are looking for a qualified and motivated new team
