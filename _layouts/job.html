@@ -4,4 +4,13 @@ layout: page
 
 {{ content }}
 
-<a href="mailto:{{ page.contact }}">Get in touch to learn more</a> <a href="{{ site.url }}{{ page.url | replace: '.html', '.pdf' }}">PDF version</a>
+<div class="container text-center">
+    <div class="row justify-content-md-center">
+        <div class="col col-lg-5">
+            <a href="mailto:{{ page.contact }}"><i class="fa fa-2x fa-send"></i> Get in touch to learn more</a>
+        </div>
+        <div class="col col-lg-5">
+            <a href="{{ site.url }}{{ page.url | replace: '.html', '.pdf' }}"><i class="fa fa-2x fa-file-pdf-o"></i> PDF version</a>
+        </div>
+    </div>
+</div>
