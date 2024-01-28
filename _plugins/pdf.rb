@@ -14,7 +14,7 @@ Jekyll::Hooks.register :posts, :post_write do |post|
         cmd = "pandoc #{post.path} --output #{pdffile} --template jobposting.tex -M qrcode='#{qrcode}'"
 
         Dir.chdir(post.site.config["plugins_dir"]){
-            %x[#{cmd}]
+            %x[#{cmd}] unless File.exists?(pdffile)
         }
     end
 end
