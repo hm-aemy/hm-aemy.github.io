@@ -11,12 +11,13 @@ url: https://aemy.cs.hm.edu
 
 navbar-links:
   Topics:
-    - RISC-V ISA Extensions: "risc-v-extensions"
-    - Open Source Chip Design: "open-source-chip-design"
-    - WebAssembly for Embedded: "wasm4iot"
-    - Formal Methods for Embedded: "formal-embedded"
+    - RISC-V ISA Extensions: "topics/risc-v-extensions"
+    - Open Source Chip Design: "topics/open-source-chip-design"
+    - WebAssembly for Embedded: "topics/wasm4iot"
+    - Formal Methods for Embedded: "topics/formal-embedded"
   Projects:
-    - ISOLDE: "isolde"
+    - ISOLDE: "projects/isolde"
+    - ISOLDE: "projects/scale4edge"
   Theses: "theses"
   Jobs: "jobs"
   Team: "team"
