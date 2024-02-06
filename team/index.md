@@ -7,7 +7,6 @@ title: Team
 
 - Prof. Stefan Wallentowitz, Team Lead
 - Prof. Felix Miller
-- Prof. Markus Friedrich
 - Prof. Martin Hobelsberger
 - Prof. Matthias Güdemann
 
