@@ -1,0 +1,117 @@
+---
+layout: page
+title: Team
+---
+
+{% assign principals = site.team | where_exp: "member", "member.group contains
+'principals'" %}
+
+<h2 class="mb-4">Principals, Senior Researchers</h2>
+
+<div class="row">
+  {% for member in principals %}
+  <div class="col-lg-3 mb-4">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+          src="{{ member.photo }}"
+          alt="Photo of {{ member.name }}"
+          class="img-fluid rounded-circle"
+        />
+      </div>
+      <div class="col-md-12 text-center">
+        <div class="pt-2">
+          <h5 class="mt-4 font-weight-medium mb-1">{{ member.name }}</h5>
+          <h6 class="subtitle">{{ member.position }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% assign phdstudents = site.team | where_exp: "member", "member.group=='phdstudents'" %}
+
+<h2 class="mb-4">Doctoral Candidates</h2>
+
+<div class="row">
+  {% for member in phdstudents %}
+  <div class="col-lg-3 mb-4">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+          src="{{ member.photo }}"
+          alt="Photo of {{ member.name }}"
+          class="img-fluid rounded-circle"
+        />
+      </div>
+      <div class="col-md-12 text-center">
+        <div class="pt-2">
+          <h5 class="mt-4 font-weight-medium mb-1">{{ member.name }}</h5>
+          <h6 class="subtitle">{{ member.position }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="col-lg-3 mb-4">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+        src="question_mark.svg"
+        alt="Question Mark"
+        class="img-fluid rounded-circle"
+        />
+      </div>
+      <div class="col-md-12 text-center">
+        <div class="pt-2">
+          <h5 class="mt-4 font-weight-medium mb-1">You?</h5>
+          <h6 class="subtitle"><a href="/jobs">We are hiring!</a></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% assign students = site.team | where_exp: "member", "member.group=='students'" %}
+
+<h2 class="mb-4">Students</h2>
+
+<div class="row">
+  {% for member in students %}
+  <div class="col-lg-3 mb-4">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+          src="{{ member.photo }}"
+          alt="Photo of {{ member.name }}"
+          class="img-fluid rounded-circle"
+        />
+      </div>
+      <div class="col-md-12 text-center">
+        <div class="pt-2">
+          <h5 class="mt-4 font-weight-medium mb-1">{{ member.name }}</h5>
+          <h6 class="subtitle">{{ member.position }}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+  <div class="col-lg-3 mb-4">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+        src="question_mark.svg"
+        alt="Question Mark"
+        class="img-fluid rounded-circle"
+        />
+      </div>
+      <div class="col-md-12 text-center">
+        <div class="pt-2">
+          <h5 class="mt-4 font-weight-medium mb-1">You?</h5>
+          <h6 class="subtitle"><a href="/jobs">We are hiring!</a></h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

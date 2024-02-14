@@ -9,6 +9,9 @@ title: AEMY
 repository: hm-aemy/hm-aemy.github.io
 url: https://aemy.cs.hm.edu
 
+collections:
+  - team
+
 navbar-links:
   Topics:
     - RISC-V ISA Extensions: "topics/risc-v-extensions"
