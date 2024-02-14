@@ -20,7 +20,7 @@ navbar-links:
     - Formal Methods for Embedded: "topics/formal-embedded"
   Projects:
     - ISOLDE: "projects/isolde"
-    - ISOLDE: "projects/scale4edge"
+    - Scale4Edge: "projects/scale4edge"
   Theses: "theses"
   Jobs: "jobs"
   Team: "team"
