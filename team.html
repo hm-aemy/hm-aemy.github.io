@@ -10,24 +10,9 @@ title: Team
 
 <div class="row">
   {% for member in principals %}
-  <div class="col-lg-3 mb-4">
-    <div class="row">
-      <div class="col-md-12">
-        <img
-          src="/team/{{ member.photo }}"
-          alt="Photo of {{ member.name }}"
-          class="img-fluid rounded-circle"
-        />
-      </div>
-      <div class="col-md-12 text-center">
-        <div class="pt-2">
-          <h5 class="mt-4 font-weight-medium mb-1">{{ member.name }}</h5>
-          <h6 class="subtitle">{{ member.position }}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
+    {% include team-member.html photo=member.photo name=member.name position=member.position %}
   {% endfor %}
+  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/jobs'>We are hiring!</a>" %}
 </div>
 
 {% assign phdstudents = site.team | where_exp: "member", "member.group=='phdstudents'" %}
@@ -36,41 +21,9 @@ title: Team
 
 <div class="row">
   {% for member in phdstudents %}
-  <div class="col-lg-3 mb-4">
-    <div class="row">
-      <div class="col-md-12">
-        <img
-          src="{{ member.photo }}"
-          alt="Photo of {{ member.name }}"
-          class="img-fluid rounded-circle"
-        />
-      </div>
-      <div class="col-md-12 text-center">
-        <div class="pt-2">
-          <h5 class="mt-4 font-weight-medium mb-1">{{ member.name }}</h5>
-          <h6 class="subtitle">{{ member.position }}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
+    {% include team-member.html photo=member.photo name=member.name position=member.position %}
   {% endfor %}
-  <div class="col-lg-3 mb-4">
-    <div class="row">
-      <div class="col-md-12">
-        <img
-        src="/team/question_mark.svg"
-        alt="Question Mark"
-        class="img-fluid rounded-circle"
-        />
-      </div>
-      <div class="col-md-12 text-center">
-        <div class="pt-2">
-          <h5 class="mt-4 font-weight-medium mb-1">You?</h5>
-          <h6 class="subtitle"><a href="/jobs">We are hiring!</a></h6>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/jobs'>We are hiring!</a>" %}
 </div>
 
 {% assign students = site.team | where_exp: "member", "member.group=='students'" %}
@@ -79,39 +32,7 @@ title: Team
 
 <div class="row">
   {% for member in students %}
-  <div class="col-lg-3 mb-4">
-    <div class="row">
-      <div class="col-md-12">
-        <img
-          src="/team/{{ member.photo }}"
-          alt="Photo of {{ member.name }}"
-          class="img-fluid rounded-circle"
-        />
-      </div>
-      <div class="col-md-12 text-center">
-        <div class="pt-2">
-          <h5 class="mt-4 font-weight-medium mb-1">{{ member.name }}</h5>
-          <h6 class="subtitle">{{ member.position }}</h6>
-        </div>
-      </div>
-    </div>
-  </div>
+    {% include team-member.html photo=member.photo name=member.name position=member.position %}
   {% endfor %}
-  <div class="col-lg-3 mb-4">
-    <div class="row">
-      <div class="col-md-12">
-        <img
-        src="/team/question_mark.svg"
-        alt="Question Mark"
-        class="img-fluid rounded-circle"
-        />
-      </div>
-      <div class="col-md-12 text-center">
-        <div class="pt-2">
-          <h5 class="mt-4 font-weight-medium mb-1">You?</h5>
-          <h6 class="subtitle"><a href="/jobs">We are hiring!</a></h6>
-        </div>
-      </div>
-    </div>
-  </div>
+  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/jobs'>We are hiring!</a>" %}
 </div>
