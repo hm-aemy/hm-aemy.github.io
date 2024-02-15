@@ -1,0 +1,62 @@
+:root {
+    --hm-logo-red: #FC5555;
+    /* Lightness variants */
+    --hm-logo-red-50: #FFF0F0;
+    --hm-logo-red-100: #FEDCDC;
+    --hm-logo-red-200: #FEB9B9;
+    --hm-logo-red-300: #FD9B9B;
+    --hm-logo-red-400: #FD7878;
+    --hm-logo-red-500: #FC5555;
+    --hm-logo-red-600: #FB1313;
+    --hm-logo-red-700: #C80404;
+    --hm-logo-red-800: #820202;
+    --hm-logo-red-900: #410101;
+    --hm-logo-red-950: #230101;
+
+    --hm-green: #4AD386;
+    /* Lightness variants */
+    --hm-green-50: #EFFBF4;
+    --hm-green-100: #DAF6E6;
+    --hm-green-200: #B5EDCD;
+    --hm-green-300: #94E5B7;
+    --hm-green-400: #6FDC9F;
+    --hm-green-500: #4AD386;
+    --hm-green-600: #2DB969;
+    --hm-green-700: #228C50;
+    --hm-green-800: #165A34;
+    --hm-green-900: #0B2D1A;
+    --hm-green-950: #06190E;
+
+    --hm-yellow: #FFFF00;
+    /* Lightness variants */
+    --hm-yellow-50: #FFFFE5;
+    --hm-yellow-100: #FFFFCC;
+    --hm-yellow-200: #FFFF99;
+    --hm-yellow-300: #FFFF66;
+    --hm-yellow-400: #FFFF33;
+    --hm-yellow-500: #FFFF00;
+    --hm-yellow-600: #CCCC00;
+    --hm-yellow-700: #999900;
+    --hm-yellow-800: #666600;
+    --hm-yellow-900: #333300;
+    --hm-yellow-950: #191900;
+
+    --hm-blue: #3E46D9;
+    /* Lightness variants */
+    --hm-blue-50: #EAEBFB;
+    --hm-blue-100: #D9DAF7;
+    --hm-blue-200: #B2B5F0;
+    --hm-blue-300: #8C91E8;
+    --hm-blue-400: #666CE1;
+    --hm-blue-500: #3E46D9;
+    --hm-blue-600: #252CBB;
+    --hm-blue-700: #1C218D;
+    --hm-blue-800: #12165E;
+    --hm-blue-900: #090B2F;
+    --hm-blue-950: #040515;
+
+    --hm-darkgray: #6E6E6E;
+    --hm-lightgray: #C6C6C6;
+
+    --hm-lightgray-200: #E8E8E8;
+}
