@@ -2,5 +2,5 @@
 name: Matthias Güdemann
 position: Professor
 group: principals
-photo: matthis_guedemann.jpg
+photo: matthias_guedemann.jpg
 ---
