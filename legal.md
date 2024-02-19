@@ -1,3 +1,8 @@
+---
+layout: page
+title: Legal & Privacy Notices
+---
+
 ## Legal Notice
 
 Hochschule München
@@ -114,4 +119,3 @@ maintain the security and integrity of this Website and the
 Service. See the [GitHub Privacy
 Statement](https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement)
 for details.
-
