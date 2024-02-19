@@ -14,7 +14,7 @@ design, the AEMY team currently works on various topics, mostly around:
   systems and their startup code
 - New methods for formal verification of embedded floating point software
 
-## Project: Formally Verified WASM Interpreter
+## Formal Verification of Embedded Virtualization Technologies
 
 [WebAssembly](https://webassembly.org/) (WASM) is a modern high-level virtual
 machine which looks promising for implementation on embedded systems. Due to its
