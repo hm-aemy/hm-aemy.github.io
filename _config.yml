@@ -21,6 +21,8 @@ navbar-links:
   Projects:
     - ISOLDE: "projects/isolde"
     - Scale4Edge: "projects/scale4edge"
+    - DI-OSVISE: "projects/osvise"
+    - DI-OCDCpro: "projects/ocdcpro"
   Theses: "theses"
   Jobs: "jobs"
   Team: "team"
