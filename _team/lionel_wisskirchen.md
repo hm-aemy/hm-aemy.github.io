@@ -1,7 +1,7 @@
 ---
-name: Lion Wisskirchen
+name: Lionel Wisskirchen
 position: Research Master Student
 group: students
-photo: missing_avatar.svg
+photo: lionel_wisskirchen.png
 ---
 
