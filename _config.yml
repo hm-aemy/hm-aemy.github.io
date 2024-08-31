@@ -23,6 +23,7 @@ navbar-links:
     - Scale4Edge: "projects/scale4edge"
     - DI-OSVISE: "projects/osvise"
     - DI-OCDCpro: "projects/ocdcpro"
+    - BCDC: "projects/bcdc"
   Theses: "theses"
   Jobs: "jobs"
   Team: "team"
