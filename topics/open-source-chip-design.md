@@ -2,12 +2,20 @@
 layout: page
 title: Open Source Chip Design
 ---
-**Project Overview - Fault Injection**
-The project focus centers on the integration of fault injection simulation within Verilator. An open-source tool used for Verilog/SystemVerilog hardware description language (HDL) simulation. (See here: https://www.veripool.org/verilator/ )
-The objective of our project is to implement a fault injection framework within Verilator to simulate various fault scenarios and to use this functionality to enhance the validation phase in the development of hardware and software integration. By doing so, we aim to simulate and study the effects of faults on hardware models at an early stage in the development cycle, subsequently allowing for better resilience and reliability in the final products.
 
-  **Fault Injection Simulation**
-  Fault injection is a critical technique that intentionally introduces errors into a system to assess its behavior under unintended operational conditions. This simulative assessment is vital for understanding how hardware and software components respond to faults, which could arise due to external factors like radiation, electromagnetic interference, or even design and manufacturing defects.
+Open Source tools for chip design have seen an incredible boost over the last
+years, mainly due to the influx of curious software developers in chip design
+and the increased attention around sovereignty of chip design. The ease of
+access for academia, hobbyists and also industry is a key cornerstone of
+attracting more talent and driving innovative chip design in mature technology
+nodes.
 
-  **Conclusion**
-  With this innovative project, the University of Applied Sciences in Munich is setting a new standard in electronic system validation and codesign. By integrating fault injection simulation within Verilator, we are equipping designers and researchers with a powerful tool to create more resilient and reliable hardware/software ecosystems. Stay connected with us as we continue to refine this exciting technology and contribute to the advancement of the electronics and computer engineering fields.
+Our main focus areas include:
+
+- Collaboration in the open source simulator tool
+  [Verilator](https://verilator.org), including instrumentation support for
+  fault injection techniques.
+- Tool interoperability of major open source tools like
+  [CIRCT](https://circt.llvm.org), [Yosys](https://yosys.org) and
+  [Verilator](https://verilator.org)
+- Improved support for modern verification methodologies

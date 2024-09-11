@@ -14,5 +14,7 @@
 	 	35729
 	],
 
+	"postCreateCommand": "bundle install",
+
 	"postAttachCommand": "bundle exec jekyll s --livereload"
 }

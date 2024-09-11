@@ -1,7 +1,7 @@
 ---
-name: Konrad Moron
+name: Mathis Salmen
 position: Student Assistant
 group: students
-photo: konrad_moron.jpg
+photo: missing_avatar.svg
 ---
 
