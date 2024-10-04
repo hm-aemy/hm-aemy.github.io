@@ -16,8 +16,5 @@ SoC integration using open-source frameworks like Chipyard and Rocketchip
 Whether you're at the stage of writing your **Bachelor’s or Master’s thesis**, we encourage you to apply and become part of our team. This is a fantastic opportunity to work on real-world challenges and build a strong foundation in VLSI and SoC design.  
  
 If this sounds exciting, please feel free to reach out with your CV and a brief statement of interest.
-
-Best regards,
-Himal  
-----------------------
-Email: himal.subedi@hm.edu 
+ 
+**Contact**: Email: himal.subedi@hm.edu 
