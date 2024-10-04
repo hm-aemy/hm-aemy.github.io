@@ -1,5 +1,11 @@
-**Subject:** Exciting Research Opportunities in SoC and NoC Design – Join Our Team as a student
+---
+layout: StudentJob
+title: Exciting Research Opportunities in SoC and NoC Design – Join Our Team as a student (Bachelor’s or Master’s thesis)
+tag: Student work
+contact: himal.subedi@hm.edu
+---
 
+ 
 Dear Students,
 
 We are currently looking for motivated students to join our research team. If you are interested in working on cutting-edge topics and want to gain hands-on experience, this is an exciting opportunity. 
@@ -19,4 +25,4 @@ Whether you're at the stage of writing your **Bachelor’s or Master’s thesis*
  
 If this sounds exciting, please feel free to reach out with your CV and a brief statement of interest.
  
-**Contact**: Email: himal.subedi@hm.edu 
+ 
