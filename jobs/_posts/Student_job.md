@@ -1,7 +1,7 @@
 ---
-layout: StudentJob
+layout: Student Job
 title: Exciting Research Opportunities in SoC and NoC Design – Join Our Team as a student (Bachelor’s or Master’s thesis)
-tag: Student work
+tag: Student Work
 contact: himal.subedi@hm.edu
 ---
 
