@@ -1,3 +1,6 @@
+plugins:
+  - jekyll-redirect-from
+
 avatar: "/assets/img/aemy-avatar.svg"
 
 navbar-col: "#006D6D"
