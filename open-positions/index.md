@@ -1,10 +1,10 @@
 ---
 layout: page
-title: Jobs
+title: Open Positions
 ---
 
-{% assign postdoc = site.categories.jobs | where_exp: "post", "post.tags contains 'postdoc'" %}
-{% assign phd = site.categories.jobs | where_exp: "post", "post.tags contains 'phd'" %}
+{% assign postdoc = site.categories.open-positions | where_exp: "post", "post.tags contains 'postdoc'" %}
+{% assign phd = site.categories.open-positions | where_exp: "post", "post.tags contains 'phd'" %}
 
 {% if postdoc.size != 0 %}
 ### Postdoc Positions

@@ -24,6 +24,5 @@ navbar-links:
     - DI-OSVISE: "projects/osvise"
     - DI-OCDCpro: "projects/ocdcpro"
     - BCDC: "projects/bcdc"
-  Theses: "theses"
-  Jobs: "jobs"
+  Open Positions: "open-positions"
   Team: "team"

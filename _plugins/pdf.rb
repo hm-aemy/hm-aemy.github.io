@@ -5,7 +5,7 @@ Jekyll::Hooks.register :posts, :pre_render do |post|
     # code to call after Jekyll renders a page
        
     if post.data["layout"] == "job"
-        post.data["pdf"] = "/jobs/" + post.basename_without_ext + ".pdf"
+        post.data["pdf"] = "/open-positions/" + post.basename_without_ext + ".pdf"
     end
 end
 
