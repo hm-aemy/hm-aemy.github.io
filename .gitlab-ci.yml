@@ -1,5 +1,4 @@
-# The Docker image that will be used to build your app
-image: ruby:2.7
+runs-on: ubuntu-latest
 
 pages:
   script:
