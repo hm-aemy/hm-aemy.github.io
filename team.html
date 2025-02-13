@@ -12,7 +12,7 @@ title: Team
   {% for member in principals %}
     {% include team-member.html photo=member.photo name=member.name position=member.position %}
   {% endfor %}
-  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/jobs'>We are hiring!</a>" %}
+  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/open-positions/'>We are hiring!</a>" %}
 </div>
 
 {% assign phdstudents = site.team | where_exp: "member", "member.group=='phdstudents'" %}
@@ -23,7 +23,7 @@ title: Team
   {% for member in phdstudents %}
     {% include team-member.html photo=member.photo name=member.name position=member.position %}
   {% endfor %}
-  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/jobs'>We are hiring!</a>" %}
+  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/open-positions/'>We are hiring!</a>" %}
 </div>
 
 {% assign students = site.team | where_exp: "member", "member.group=='students'" %}
@@ -34,5 +34,5 @@ title: Team
   {% for member in students %}
     {% include team-member.html photo=member.photo name=member.name position=member.position %}
   {% endfor %}
-  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/jobs'>We are hiring!</a>" %}
+  {% include team-member.html photo="question_mark.svg" name="You?" position="<a href='/open-positions/'>We are hiring!</a>" %}
 </div>

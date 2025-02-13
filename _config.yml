@@ -1,3 +1,6 @@
+plugins:
+  - jekyll-redirect-from
+
 avatar: "/assets/img/aemy-avatar.svg"
 
 navbar-col: "#006D6D"
@@ -24,6 +27,5 @@ navbar-links:
     - DI-OSVISE: "projects/osvise"
     - DI-OCDCpro: "projects/ocdcpro"
     - BCDC: "projects/bcdc"
-  Theses: "theses"
-  Jobs: "jobs"
+  Open Positions: "open-positions"
   Team: "team"
