@@ -1,7 +1,7 @@
 ---
-name: Jonathan Schröder
+name: Jonathan Schröter
 position: Doctoral Candidate
 group: phdstudents
-photo: missing_avatar.svg
+photo: jonathan_schroeter.jpg
 ---
 
