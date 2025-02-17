@@ -2,6 +2,6 @@
 name: Andreas Hager-Clukas
 position: Doctoral Candidate
 group: phdstudents
-photo: missing_avatar.svg
+photo: andreas_hager-clukas.jpg
 ---
 
