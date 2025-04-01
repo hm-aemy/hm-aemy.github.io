@@ -31,14 +31,15 @@ representation, executable binary code, and runtime instruction execution—the
 framework leverages advanced techniques such as data flow graph analysis, static 
 binary analysis, and dynamic execution analysis.
 
-The results, demonstrated using the Embench benchmark suite, highlight SIZALIZER's 
-ability to uncover opportunities for reducing both static and dynamic code sizes, 
-achieving an impressive improvement of approximately 30%. Its unique architecture 
-enables developers to distill actionable insights from complex software structures, 
-making it an indispensable tool for size-optimizing ISA enhancements. This 
-groundbreaking work is supported by the Scale4Edge project, emphasizing the 
-collaborative effort to push the boundaries of efficiency and performance in 
-embedded systems.
+The results, as demonstrated using the Embench benchmark suite, showcase SIZALIZER's 
+remarkable ability to identify optimization opportunities for reducing static and 
+dynamic code sizes. This achievement stems from its innovative approach to 
+calculating code size improvements for newly designed RISC-V instructions. By 
+leveraging its unique multi-layer architecture, SIZALIZER empowers developers to 
+extract actionable insights from intricate software structures, making it an 
+essential framework for advancing size-optimized ISA enhancements. This 
+work is supported by the Scale4Edge project, emphasizing the collaborative effort 
+to push the boundaries of efficiency and performance in embedded systems.
 
 ![SIZALIZER Architektur](/assets/img/ArchitekturMatrix.drawio.pdf)
 
