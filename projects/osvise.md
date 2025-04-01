@@ -10,7 +10,7 @@ Education in their [open source EDA software program](https://www.elektronikfors
 Three work areas are covered by OSVISE:
 
 - Efficient evaluation and verification of instruction set extensions
-- Evaluation of non-functional properties of such extenions
+- Evaluation of non-functional properties of such extensions
 - Improving support of linear temporal logic across multiple open source EDA
   tools
 
