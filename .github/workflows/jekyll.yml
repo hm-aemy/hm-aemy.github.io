@@ -43,7 +43,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
       - name: Install pandoc
-        run: sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-pictures
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-pictures
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
