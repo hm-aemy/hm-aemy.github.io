@@ -18,7 +18,7 @@ In this project the AEMY team focuses on methodologies and tools to guide the de
 [Scale4Edge Website](https://www.edacentrum.de/scale4edge/)
 
 
-# SIZALIZER: A Multi-layer Analysis Framework for ISA Optimization
+## SIZALIZER: A Multi-layer Analysis Framework for ISA Optimization
 
 
 SIZALIZER is an innovative multi-layer analysis framework designed to address 
