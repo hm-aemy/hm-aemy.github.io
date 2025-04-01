@@ -16,3 +16,33 @@ product portfolio after the end of the project.
 In this project the AEMY team focuses on methodologies and tools to guide the design of instruction set extensions for RISC-V based computing platforms utilizing variable length instruction codings.
 
 [Scale4Edge Website](https://www.edacentrum.de/scale4edge/)
+
+
+# SIZALIZER: A Multi-layer Analysis Framework for ISA Optimization
+
+
+SIZALIZER is an innovative multi-layer analysis framework designed to address 
+the growing need for optimizing the instruction set architectures (ISAs) in 
+embedded systems. As resource constraints and environmental considerations 
+continue to shape the evolution of embedded systems, SIZALIZER provides a 
+cutting-edge solution for co-designing embedded C/C++ applications and RISC-V 
+ISA extensions. By automating analysis at three critical layers—LLVM intermediate 
+representation, executable binary code, and runtime instruction execution—the 
+framework leverages advanced techniques such as data flow graph analysis, static 
+binary analysis, and dynamic execution analysis.
+
+The results, demonstrated using the Embench benchmark suite, highlight SIZALIZER's 
+ability to uncover opportunities for reducing both static and dynamic code sizes, 
+achieving an impressive improvement of approximately 30%. Its unique architecture 
+enables developers to distill actionable insights from complex software structures, 
+making it an indispensable tool for size-optimizing ISA enhancements. This 
+groundbreaking work is supported by the Scale4Edge project, emphasizing the 
+collaborative effort to push the boundaries of efficiency and performance in 
+embedded systems.
+
+![SIZALIZER Architektur](/assets/img/ArchitekturMatrix.drawio.pdf)
+
+
+[SIZALIZER Repository](https://github.com/AndHager/Sizalizer)
+
+
