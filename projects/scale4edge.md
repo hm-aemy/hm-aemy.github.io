@@ -21,7 +21,7 @@ In this project the AEMY team focuses on methodologies and tools to guide the de
 ## SIZALIZER: A Multi-layer Analysis Framework for ISA Optimization
 
 
-SIZALIZER is an innovative multi-layer analysis framework designed to address 
+[SIZALIZER](https://github.com/AndHager/Sizalizer) is an innovative multi-layer analysis framework designed to address 
 the growing need for optimizing the instruction set architectures (ISAs) in 
 embedded systems. As resource constraints and environmental considerations 
 continue to shape the evolution of embedded systems, SIZALIZER provides a 
@@ -41,9 +41,9 @@ essential framework for advancing size-optimized ISA enhancements. This
 work is supported by the Scale4Edge project, emphasizing the collaborative effort 
 to push the boundaries of efficiency and performance in embedded systems.
 
-![SIZALIZER Architektur](/assets/img/ArchitekturMatrix.drawio.pdf)
+![SIZALIZER Architektur](/assets/img/ArchitekturMatrix.drawio.png)
 
 
-[SIZALIZER Repository](https://github.com/AndHager/Sizalizer)
+
 
 
