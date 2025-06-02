@@ -70,4 +70,4 @@ build commercial solutions around.
 ### Want to Get Involved?
 
 Please get in touch if you want to work with our group, are interested to
-collaborate or look for a job!
+collaborate or look for a job! stefan.wallentowitz@hm.edu
