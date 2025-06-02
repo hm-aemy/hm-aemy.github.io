@@ -1,6 +1,6 @@
 ---
-name: Martin Hobelsberger
-position: Professor
+name: Andreas Stadler
+position: PostDoc
 group: principals
 photo: missing_avatar.svg
 ---
