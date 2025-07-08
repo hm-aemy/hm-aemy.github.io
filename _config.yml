@@ -1,5 +1,15 @@
 plugins:
   - jekyll-redirect-from
+  - jekyll-scholar
+
+scholar:
+  bibliography_template: bib
+  bibliography_list_tag: nil
+  bibliography_item_tag: nil
+  style: _plugins/aemy.csl
+  bibtex_filters:
+    - markdown
+
 
 avatar: "/assets/img/aemy-avatar.svg"
 
@@ -27,5 +37,6 @@ navbar-links:
     - DI-OSVISE: "projects/osvise"
     - DI-OCDCpro: "projects/ocdcpro"
     - BCDC: "projects/bcdc"
+  Publications: "publications"
   Open Positions: "open-positions"
   Team: "team"
