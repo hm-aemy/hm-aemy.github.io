@@ -5,9 +5,9 @@ tag: master
 contact: tobias.woelfel@hm.edu
 ---
 
-For our research project [DI-OSVISE](/projects/osvise) we are looking for a
-motivated student to research the possibility of a Reduced Hardware Description
-Language for [CIRCT](https://circt.llvm.org/).
+For our research project [DI-OSVISE](https://aemy.cs.hm.edu/projects/osvise) we
+are looking for a motivated student to research the possibility of a Reduced
+Hardware Description Language for [CIRCT](https://circt.llvm.org/).
 
 Circuit IR Compilers and Tools (CIRCT) is a Multi-Level Intermediate
 Representation (MLIR) Framework based hardware compiler.
