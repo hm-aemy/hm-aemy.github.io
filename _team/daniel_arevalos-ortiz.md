@@ -2,6 +2,6 @@
 name: Daniel Arevalos-Ortiz
 position: Doctoral Candidate
 group: phdstudents
-photo: missing_avatar.svg
+photo: daniel_arevalos.jpg
 ---
 
