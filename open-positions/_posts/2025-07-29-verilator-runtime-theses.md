@@ -1,6 +1,6 @@
 ---
 layout: job
-title: Design, Impelementation and Evaluation of signal hierarchy checking during runtime
+title: Design, Implementation and Evaluation of signal hierarchy checking during runtime
 tag: master
 contact: jonathan.schroeter@hm.edu
 ---
