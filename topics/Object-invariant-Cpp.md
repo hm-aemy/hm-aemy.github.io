@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Retrieving C++ Object State Using Deep Learning Methods
-tag: master / bachelor
+tag: master 
 contact: mario.qosja@hm.edu 
 ---
 

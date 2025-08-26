@@ -1,7 +1,7 @@
 ---
 layout: page
 title: R3 Gcc Frontend for C++
-tag: master / bachelor
+tag: master 
 contact: mario.qosja@hm.edu
 ---
 

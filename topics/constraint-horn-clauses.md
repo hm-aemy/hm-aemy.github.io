@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Constraint Horn Clauses for Verification of C++ Object-Oriented Programs
-tag: master / bachelor
+tag: master 
 contact: mario.qosja@hm.edu
 ---
 
@@ -12,6 +12,4 @@ Potential areas of focus include:
 -	Handling inheritance and polymorphism in the CHC framework
 -	Checking safety properties (e.g., memory safety, invariants, assertions)
 This project offers an opportunity to gain hands-on experience in static analysis tools and CHCs.
-For further information or to express your interest, please contact:
--	matthias.guedemann@hm.edu
--	mario.qosja@hm.edu
+For further information or to express your interest feel free to reach out.
