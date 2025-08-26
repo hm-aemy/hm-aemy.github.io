@@ -1,6 +1,6 @@
 ---
-name: Tobias Wölfel
+name: Arefeh Mahdavi
 position: Doctoral Candidate
 group: phdstudents
-photo: tobias_woelfel.jpg
+photo: arefeh_mahdavi.jpg
 ---
