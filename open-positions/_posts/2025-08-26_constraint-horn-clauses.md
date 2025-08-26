@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: job
 title: Constraint Horn Clauses for Verification of C++ Object-Oriented Programs
-tag: master 
+tag: master
 contact: mario.qosja@hm.edu
 ---
 

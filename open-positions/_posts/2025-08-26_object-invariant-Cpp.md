@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: job
 title: Retrieving C++ Object State Using Deep Learning Methods
-tag: master 
+tag: master
 contact: mario.qosja@hm.edu 
 ---
 
