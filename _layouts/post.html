@@ -1,0 +1,22 @@
+---
+layout: page
+---
+
+<article class="blog-post">
+  <header class="intro-header">
+    <div class="post-meta">
+      {% if page.author %}
+      <span>By <strong>{{ page.author | strip_html }}</strong></span><br>
+      {% endif %}
+      {% if page.date %}
+        {% assign date_format = site.date_format | default: "%Y-%m-%-d" %}
+        Posted on {{ page.date | date: date_format }}
+      {% endif %}
+    </div>
+    <hr>
+  </header>
+
+  <div class="post-entry">
+    {{ content }}
+  </div>
+</article>
