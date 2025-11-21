@@ -38,5 +38,6 @@ navbar-links:
     - DI-OCDCpro: "projects/ocdcpro"
     - BCDC: "projects/bcdc"
   Publications: "publications"
+  Posts: "posts"
   Open Positions: "open-positions"
   Team: "team"
