@@ -10,10 +10,10 @@ Below is a concise overview of the changes introduced and how to use the extensi
 If you’re looking for background on the motivation behind this feature, please refer to "Fault-injection support with the Verilator simulation tool" in the [Isolde project overview](https://aemy.cs.hm.edu/projects/isolde).
 
 # What's new
-> Note: Throughout this post we use the terms: _instrumentation_ and _fault injection_.  
-    - **Instrumentation**: adding the SystemVerilog Direct Programming Interface (DPI) call points to a design (here _instrumentation points_). These _instrumentation points_ form an interface that external code can use to observe or modify signals.  
+> Note: Throughout this post we use the terms: _hook-insertion_ and _fault injection_.  
+    - **Hook-insertion**: adding the SystemVerilog Direct Programming Interface (DPI) call points to a design (from now on _hooks_). These _hooks_ form an interface that external code can use to observe or modify signals.  
     - **Fault injection**: the act of injecting faults or tampering with signal values during simulation.  
-In short, _instrumentation points_ are the interface; fault injection is the action performed through that interface.
+In short, _hooks_ are the interface; fault injection is the action performed through that interface.
 
   
 
@@ -21,7 +21,7 @@ In short, _instrumentation points_ are the interface; fault injection is the act
 The Direct Programming Interface (DPI) is a SystemVerilog feature that allows the design to call functions defined in another language (typically written in C or C++). This then in turn also allows to integrate other languages, for example, Python.
 
 **Why DPI instead of adding fault injection directly into Verilator?**  
-There are two main reasons for us to choose the _instrumentation_ with DPI over the direct addition to Verilator:
+There are two main reasons for us to choose the _hook-insertion_ with DPI over the direct addition to Verilator:
 - DPI evaluation happens as the last step of a Verilog simulation; therefore, there should be no issue with masked faults or values being overwritten during the simulation process.
 - DPI is general-purpose: it enables multiple uses beyond fault injection and keeps the implementation modular.
 
@@ -29,24 +29,24 @@ There are two main reasons for us to choose the _instrumentation_ with DPI over 
 Not really. DPI is defined for SystemVerilog, but Verilator treats Verilog sources as SystemVerilog for this purpose, so the mechanism also works for Verilog models.
 
 **How does the extension work?**  
-Without automation, a user would manually add DPI calls and the surrounding logic. That quickly becomes tedious when many signals are _instrumented_ and increasingly complex with the complexity of the model. Our extension modifies Verilator to insert the needed statements automatically.
+Without automation, a user would manually add DPI calls and the surrounding logic. That quickly becomes tedious when many signals are _hook-inserted_ and increasingly complex with the complexity of the model. Our extension modifies Verilator to insert the needed statements automatically.
 
-We implement this by manipulating the Abstract Syntax Tree (AST) that Verilator builds when compiling the (System)Verilog design into C++. The AST changes include duplicating the original module (so the tool can select between the original and the _instrumented_ version), adding variables and functions, creating additional assigns, and inserting an _instrumentation_ trigger that forces the DPI call even when the original model has not changed. Because this trigger relies on timing-related behavior, the `--timing` flag must be used when running Verilator.
+We implement this by manipulating the Abstract Syntax Tree (AST) that Verilator builds when compiling the (System)Verilog design into C++. The AST changes include duplicating the original module (so the tool can select between the original and the _hook-inserted_ version), adding variables and functions, creating additional assigns, and inserting an _hook_ trigger that forces the DPI call even when the original model has not changed. Because this trigger relies on timing-related behavior, the `--timing` flag must be used when running Verilator.
 
-With these AST transformations, Verilator will generate _instrumented_ code. To perform fault injection the user has to provide a `.cpp` file that implements the fault model. Verilator will use this file and compile it into the simulator. The user also has to enable the _instrumentation_ with the new `--instrument` flag.
+With these AST transformations, Verilator will generate _hook-inserted_ code. To perform fault injection the user has to provide a `.cpp` file that implements the fault model. Verilator will use this file and compile it into the simulator. The user also has to enable the _hook-insertion_ with the new `--insert-hook` flag.
 
 Once the Verilator-generated simulator with the fault-model `.cpp` is built, run the simulator as usual to observe the injected faults.
 
-**How do you configure instrumentation for fault injection?**  
-_Instrumentation_ is configured via Verilator configuration files (typically ending with `.vlt`). We extended the configuration syntax to describe _instrumentation_ entries. Each _instrumentation_ entry specifies:
+**How do you configure the hook-insertion for fault injection?**  
+_Hook-Insertion_ is configured via Verilator configuration files (typically ending with `.vlt`). We extended the configuration syntax to describe _hook-insertion_ entries. Each _hook-insertion_ entry specifies:
 - The target signal path
 - The C/C++ callback function name
 - An ID used to select different fault behaviors inside the callback
 
-An expected configuration line for the _instrumentation_ looks like:  
-`instrument -callback "<c-function name>" -id <fault type/id> -target "<topmodule.instance.instance.instance.var>"`
+An expected configuration line for the _hook-insertion_ looks like:  
+`insert_hook -callback "<c-function name>" -id <fault type/id> -target "<topmodule.instance.instance.instance.var>"`
 
-The flags `instrument` and `-callback` are the easier flags to provide, with `instrument` representing the keyword to enable the _instrumentation_ and the `-callback` flag defining the name of the callback c-function defined in the `.cpp` file.  
+The flags `insert_hook` and `-callback` are the easier flags to provide, with `insert_hook` representing the keyword to enable the _hook-insertion_ and the `-callback` flag defining the name of the callback c-function defined in the `.cpp` file.  
 The `-id` flag selects a specific fault cases, if different fault cases are defined on the C side of the DPI (for example, via a `switch`).  
 Last but not least there is the `-target` flag. This flag is more complex and represents the path to the target signal.  
 The path to the targeted signal should start with the top module followed by the instances calling the module containing the targeted signal.  
@@ -125,7 +125,7 @@ All these steps should result in the following configuration file, which we name
 ```
 `verilator_config
 
-instrument -callback "faultInjection" -id 1 -target "tb_counter.uut1.cut.counter_reg"
+hook_insert -callback "faultInjection" -id 1 -target "tb_counter.uut1.cut.counter_reg"
 ```
 With the configuration and the (System)Verilog files ready for Verilator, we can now define the fault model for the signal in our `.cpp` file (here `fault_models.cpp`). This file will contain our callback function called `faultInjection()`.
 
@@ -159,9 +159,9 @@ extern "C" int faultInjection(int id, svBit trigger, const int verilogInput) {
 
 The `verilated.h` header is included to access simulation time (`VL_TIME_Q()`), which is needed to enable time-dependent faults.
 
-Run Verilator with the `--timing` and `--instrument` flags to enable the _instrumentation_ and timing trigger. Exemplary build and run commands coud look like this:
+Run Verilator with the `--timing` and `--insert-hook` flags to enable the _hook-insertion_ and _hook_ trigger (mentioned earlier). Exemplary build and run commands coud look like this:
 ```sh
-verilator --exe --build --trace -cc --timing --instrument \
+verilator --exe --build --trace -cc --timing --insert-hook \
 --top-module tb_counter \
 tb_counter.v counter.v \
 verilator.vlt \
@@ -174,13 +174,13 @@ We also added the `--trace` flag to enable waveform tracing.
 Executing the above mentioned build an run commands will lead in our example to the following waveform output:
 ![Waveform](assets/faulty-output-counter.png)
 Here we can see the that all counters are counting on the positive edge of the clock and remain at their initial value while the reset is active.
-The only counter which is behaving differently is `counter1`, which is the counter represented by instance uut1 and the one we targeted with the _instrumentation_.
+The only counter which is behaving differently is `counter1`, which is the counter represented by instance uut1 and the one we targeted with the _hook-insertion_.
 As expected the fault propagets to the counter output during the time points _10_ and _50_ with the value at _1_.
 
 ### Current Limitations
 Even though this example shows the functionality of the extension, it is important to note that currently there are limitations of the extension.  
-The first limitation we want to address that currently there is no way to _instrument_ the top module of a design.  
-Also the signals targeted for the _instrumentation_ need to fulfill two conditions. With the conditions being:
+The first limitation we want to address that currently there is no way to _insert-hooks_ to the top module of a design.  
+Also the signals targeted for the _hook-insertion_ need to fulfill two conditions. With the conditions being:
 - the signal must be of the type implicit or literal
 - the singal must not have a range greater than 64 bits
 
