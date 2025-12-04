@@ -1,4 +1,4 @@
-\documentclass[a4,14pt]{scrreprt}
+\documentclass[a4paper,11pt]{scrreprt}
 
 \usepackage[margin=2cm]{geometry}
 
@@ -39,6 +39,20 @@ safe, secure and smart systems. Our main working areas include RISC-V processor
 design, WebAssembly runtime development and open source chip design tools.
 
 $body$
+
+\vfill
+
+$if(apply)$
+\begin{center}
+\begin{minipage}[t]{.9\textwidth}
+  \centering
+  \textbf{Apply now!}
+
+  \vspace{0.5cm}
+  \href{$apply$}{\texttt{$apply$}}
+\end{minipage}
+\end{center}
+$endif$
 
 \vfill
 

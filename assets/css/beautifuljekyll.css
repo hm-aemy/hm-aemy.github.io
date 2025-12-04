@@ -562,9 +562,18 @@ footer .footer-custom-content {
 }
 
 @media (min-width: 768px) {
-  .post-preview .post-title {
+  .post-preview .post-title .cross-post-title {
     font-size: 2.25rem;
   }
+}
+
+/* --- Cross post --- */
+
+.post-preview .cross-post-title {
+  font-size: 1.875rem;
+  font-style: italic;
+  margin-top: 0;
+  color: color-mix(in srgb, currentColor 80%, transparent);
 }
 
 /* --- Tags --- */

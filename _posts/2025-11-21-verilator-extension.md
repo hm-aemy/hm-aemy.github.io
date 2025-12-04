@@ -198,7 +198,7 @@ The extension is functional but currently has a few limitations:
 
 We plan to address these limitations in future work. Despite them, the approach provides a flexible fault injection capability without adding Verilator features tied to one specific use case.
 
-A draft pull request for adding this extension to Verilator exists at: https://github.com/verilator/verilator/pull/6518
+A draft pull request for adding this extension to Verilator can be found [here](https://github.com/verilator/verilator/pull/6518).
 
 ### Outlook
 With this foundation, our focus will shift more towards a framework that will use this feature to enable large-scale fault injection campaigns and analysis of the effects of the injected faults. 
