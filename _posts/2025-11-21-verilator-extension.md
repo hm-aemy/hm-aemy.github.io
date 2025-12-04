@@ -6,11 +6,11 @@ date: 2025-11-24
 ---
 As part of our ongoing efforts to improve tooling for hardware verification and software–hardware co-design, we extended Verilator with support for native fault-injection mechanisms.
 
-Verilator in its current upstream version does not provide built-in fault-injection capabilities, which are essential for verifying hardware behavior under unexpected error conditions.
+Verilator in its current upstream version does not provide built-in fault-injection capabilities, which are essential for investigating hardware behavior under unexpected error conditions.
 Existing solutions either require manual HDL modifications or rely on external tools that reduce performance and need continuous maintenance to ensure compatibility with current simulator versions.
 There are some ideas for adding native fault-injection support to Verilator by adding custom fault objects or assignment operator overloading.
-The Aemy team also aims to integrate a native fault-injection mechanism directly into Verilator to preserve its speed and ensure long-term support.
-In contrast to the current ideas, we follow the concept of hooking into interesting parts of the design in order to inject faults.
+The AEMY team aims to integrate a native fault-injection mechanism directly into Verilator to preserve its speed and ensure long-term support.
+In contrast to the existing ideas, we follow the concept of hooking into interesting parts of the design in order to inject faults.
 As a first step towards this, we are extending verilator to add DPI-hooks, which we reference as _hook-insertion_.
 This term does not reference the actual fault injection, but instead references adding DPI-hooks to provide an interface external code can use to observe or modify signals.
 The _fault-injection_ can then be done through these DPI-hooks during the simulation.
@@ -83,7 +83,7 @@ With the design in place, the next step is to decide which signals to target for
 The feature supports inserting hooks on multiple signals by adding multiple configuration lines.
 
 Since we've reached the configuration step, let's show how to configure hook insertion for a specific signal.  
-The feature extends Verilator's configuration format (file typically `.vlt`) with entries that describe hook insertion. Each entry specifies:
+The feature extends Verilator's configuration format file (typically `.vlt`) with entries that describe hook insertion. Each entry specifies:
 - the target signal path
 - the C/C++ callback function name
 - an ID used to select different fault behaviors inside the callback
@@ -94,7 +94,7 @@ Let's go through this configuration line and elaborate what each flag needs as i
 
 Starting with the `insert_hook` flag, this flag represents the keyword to enable the _hook-insertion_ and therefore does not need an input.
 
-Continuing with the `-target` flag, which is probably the more complicated flag in this configuration. Let's define the amount and which signals we want to _hook-insert_ as stated earlier. For this example we want to _hook-insert_ one signal, which will be the `counter_reg` signal. Since the `-target` flag needs the path to the variable as input, this "target"-path should start with the top module followed by the instances calling the module containing the targeted signal.  
+Continuing with the `-target` flag, which is probably the more complicated flag in this configuration. It defines the amount and which signal we want to _hook-insert_ as stated earlier. For this example we want to _hook-insert_ one signal, which will be the `counter_reg` signal. Since the `-target` flag needs the path to the variable as input, this "target"-path should start with the top module followed by the instances calling the module containing the targeted signal.  
 It does not matter if the instance calls the module directly or indirectly; as soon as it is in the path it must be part of the target string. Let's look for the signal's position in the model.  
 The signal can be found in the counter module, which in turn is called by the controller module via the `cut` instance. Additionally it is indirectly called from the `top` module via a variety of instances. Since we have different instances in the `top` we also need to define which specific instance, containing the target signal, should be targeted. In this scenario this will be the instance `uut1`.  
 To now form the correct `-target` string from this signal path, we need to omit all intermediate module names except the top module and apply the format shown above.
@@ -116,9 +116,7 @@ All these steps should result in the following configuration file, which we name
 insert_hook -callback "faultInjection" -id 1 -target "top.uut1.cut.counter_reg"
 ```
 
-With the configuration and the (System)Verilog files ready for Verilator, we can now define our `C` side of the DPI interface. In this example we want to provide fault-injection, therefore we define a fault model for the signal in our `.cpp` file (here `fault_models.cpp`). This file will contain our callback function called `faultInjection()`.
-With the Verilog/SystemVerilog sources and the `.vlt` configuration ready, provide the C/C++ side of the DPI interface. The callback implements the fault model; for example, put it in `fault_models.cpp`.
-
+With the Verilog/SystemVerilog sources and the `.vlt` configuration ready, we now provide the C/C++ side of the DPI interface. In this example we want to provide fault-injection, therefore we define a fault model for the signal in our `.cpp` file (here `fault_models.cpp`). This file will contain our callback function called `faultInjection()`.
 
 An illustrative callback implementation might look like this:
 
@@ -171,7 +169,7 @@ This example demonstrates the feature's capabilities. Next, we briefly explain h
 
 ## How the extension works
 
-The extension inserts DPI call hooks into the generated model automatically. Without automation, manually adding DPI calls and the surrounding logic becomes tedious when many signals are involved. Our extension modifies Verilator to insert the required statements automatically.
+The extension inserts DPI call hooks into the generated model automatically. Without automation, manually adding DPI calls and the surrounding logic becomes tedious when many signals are involved. Our extension modifies Verilator to insert the required statements for us.
 
 We implement this by transforming Verilator's Abstract Syntax Tree (AST) during compilation to C++. Transformations include duplicating modules when needed (so the tool can select between original and hook‑inserted versions), adding variables and helper functions, creating additional assignments, and inserting a hook trigger that forces the DPI call even when the original model output has not changed. Because the trigger relies on timing behavior, the `--timing` flag must be used when running Verilator.
 The hook insertion can be enabled by the user with the `--insert-hook` flag when building.
@@ -192,7 +190,7 @@ Although DPI is defined for SystemVerilog, Verilator treats Verilog sources as S
 
 ### Current limitations
 
-The extension is functional but has a few current limitations:
+The extension is functional but currently has a few limitations:
 
 - You cannot yet insert hooks directly into the top module of a design.
 - Targeted signals must be either implicit or literal types.
