@@ -10,7 +10,6 @@ scholar:
   bibtex_filters:
     - markdown
 
-
 avatar: "/assets/img/aemy-avatar.svg"
 
 navbar-col: "#006D6D"
@@ -37,6 +36,7 @@ navbar-links:
     - DI-OSVISE: "projects/osvise"
     - DI-OCDCpro: "projects/ocdcpro"
     - BCDC: "projects/bcdc"
+    - TIZIO: "projects/tizio"
   Publications: "publications"
   Posts: "posts"
   Open Positions: "open-positions"
