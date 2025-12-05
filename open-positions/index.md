@@ -3,26 +3,16 @@ layout: page
 title: Open Positions
 ---
 
-{% assign postdoc = site.categories.open-positions | where_exp: "post", "post.tags contains 'postdoc'" %}
-{% assign phd = site.categories.open-positions | where_exp: "post", "post.tags contains 'phd'" %}
+{% assign staff = site.categories.open-positions | where_exp: "post", "post.tags contains 'staff'" %}
 {% assign theses_ma = site.categories.open-positions | where_exp: "post", "post.tags contains 'master'" %}
 {% assign theses_ba = site.categories.open-positions | where_exp: "post", "post.tags contains 'bachelor'" %}
 {% assign student_assistant = site.categories.open-positions | where_exp: "post", "post.tags contains 'student-assistant'" %}
 
-{% if postdoc.size != 0 or phd.size != 0 %}
-## Jobs
-{% endif %}
-
-{% if postdoc.size != 0 %}
-### Postdoc Positions
-{% for post in postdoc %}
-- [{{ post.title }}]({{ post.url }}){% endfor %}
-{% endif %}
-
-{% if phd.size != 0 %}
-### PhD Positions
-{% for post in phd %}
-- [{{ post.title }}]({{ post.url }}){% endfor %}
+{% if staff.size != 0 %}
+## Research Staff Positions
+{% for post in staff %}
+- [{{ post.title }}]({{ post.url }})
+{% endfor %}
 {% endif %}
 
 {% if theses_ba.size != 0 or theses_ma.size != 0 %}

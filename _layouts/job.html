@@ -6,10 +6,15 @@ layout: page
 
 <div class="container text-center">
     <div class="row justify-content-md-center">
-        <div class="col col-lg-5">
+        <div class="col col-lg-4">
             <a href="mailto:{{ page.contact }}"><i class="fa fa-2x fa-send"></i> Get in touch to learn more</a>
         </div>
-        <div class="col col-lg-5">
+        {% if page.apply %}
+        <div class="col col-lg-4">
+            <a href="{{ page.apply }}"><i class="fa fa-2x fa-user"></i> Apply Now</a>
+        </div>
+        {% endif %}
+        <div class="col col-lg-4">
             <a href="{{ site.url }}{{ page.pdf }}"><i class="fa fa-2x fa-file-pdf-o"></i> PDF version</a>
         </div>
     </div>
