@@ -32,7 +32,7 @@ title: Posts
         <span>By <strong>{{ post.author | strip_html }}</strong></span>
       {% endif %}
       <p class="post-meta">
-        {% assign date_format = site.date_format | default: "%Y-%m-%-d" %}
+        {% assign date_format = site.date_format | default: "%Y-%m-%d" %}
         Posted on {{ post.date | date: date_format }}
       </p>
 
