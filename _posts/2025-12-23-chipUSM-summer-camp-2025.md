@@ -19,7 +19,7 @@ From an AEMY perspective, this activity illustrates how research-driven open-sou
 
 The Digital Track was designed as a guided exploration of the complete RTL-to-GDS design flow, using the [CROC SoC](https://github.com/pulp-platform/croc), an open-source RISC-V–based system developed within the [PULP Platform](https://pulp-platform.org/). By working with an existing, production-quality design, students were able to focus on understanding each stage of the flow rather than spending time building infrastructure from scratch.
 
-This approach allowed students to experience a realistic ASIC design workflow, closely resembling those used in academic research projects and industrial environments, while remaining fully reproducible using open-source tools.
+This approach allowed students to experience a realistic Application-Specific Integrated Circuits (ASIC) design workflow, closely resembling those used in academic research projects and industrial environments, while remaining fully reproducible using open-source tools.
 
 ### General objective
 
