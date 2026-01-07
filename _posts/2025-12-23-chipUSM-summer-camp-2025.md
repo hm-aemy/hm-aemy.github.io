@@ -15,15 +15,11 @@ From an AEMY perspective, this activity illustrates how research-driven open-sou
 
 ![studentgroup](/assets/img/chipusm-ChipUSM-summer-camp.jpg)
 
-## Course overview and objectives
+## Course overview
 
 The Digital Track was designed as a guided exploration of the complete RTL-to-GDS design flow, using the [CROC SoC](https://github.com/pulp-platform/croc), an open-source RISC-V–based system developed within the [PULP Platform](https://pulp-platform.org/). By working with an existing, production-quality design, students were able to focus on understanding each stage of the flow rather than spending time building infrastructure from scratch.
 
-This approach allowed students to experience a realistic Application-Specific Integrated Circuits (ASIC) design workflow, closely resembling those used in academic research projects and industrial environments, while remaining fully reproducible using open-source tools.
-
-### General objective
-
-To introduce participants to the complete open-source digital design flow using a real and industry-relevant SoC, emphasizing conceptual understanding, practical tool usage, and design reproducibility.
+This approach gave participants a clear view of a realistic Application-Specific Integrated Circuits (ASIC) design workflow, closely resembling those used in academic research projects and industrial environments, while remaining fully reproducible using open-source tools.
 
 ### Course structure and content
 
@@ -35,7 +31,7 @@ This structure enabled participants to first gain confidence with the tools and 
 
 #### Module 1: Introduction and Tools Installation
 
-This module introduced the overall context of open-source digital IC design and the structure of modern SoC projects. Participants set up the required open-source Electronic Design Automation (EDA) environment and toolchain, ensuring a reproducible workflow. The CROC SoC was presented at a high level, highlighting its main architectural components and its role as the reference design throughout the camp.
+This module introduced the overall context of open-source digital IC design and the structure of modern SoC projects. Participants set up the required open-source Electronic Design Automation (EDA) environment and toolchain. The CROC SoC was presented at a high level, highlighting its main architectural components and its role as the reference design throughout the camp.
 
 #### Module 2: RTL Structure and Simulation
 
