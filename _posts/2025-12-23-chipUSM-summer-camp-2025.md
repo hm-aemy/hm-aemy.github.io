@@ -47,7 +47,7 @@ This module covered the main stages of physical implementation, including floorp
 
 #### Module 5: Digital Design Flow with Librelane
 
-The final module consolidated the previous steps by running an integrated digital design flow using LibreLane. Students gained an overview of how modern automated flows orchestrate multiple tools, manage intermediate artifacts, and generate final design outputs. This module emphasized reproducibility, automation, and best practices for managing complex SoC design flows.
+This module consolidated the previous steps by running an integrated digital design flow using LibreLane. Students gained an overview of how modern automated flows orchestrate multiple tools, manage intermediate artifacts, and generate final design outputs. This module emphasized reproducibility, automation, and best practices for managing complex SoC design flows.
 
 #### Module 6: Final Projects
 
