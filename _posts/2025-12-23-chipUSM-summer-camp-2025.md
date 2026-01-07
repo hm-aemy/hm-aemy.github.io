@@ -15,17 +15,17 @@ From an AEMY perspective, this activity illustrates how research-driven open-sou
 
 ![studentgroup](/assets/img/ChipUSM-summer-camp.jpg)
 
-# Course overview and objectives
+## Course overview and objectives
 
 The Digital Track was designed as a guided exploration of the complete RTL-to-GDS design flow, using the [CROC SoC](https://github.com/pulp-platform/croc), an open-source RISC-V–based system developed within the [PULP Platform](https://pulp-platform.org/). By working with an existing, production-quality design, students were able to focus on understanding each stage of the flow rather than spending time building infrastructure from scratch.
 
 This approach allowed students to experience a realistic ASIC design workflow, closely resembling those used in academic research projects and industrial environments, while remaining fully reproducible using open-source tools.
 
-## General objective
+### General objective
 
 To introduce participants to the complete open-source digital design flow using a real and industry-relevant SoC, emphasizing conceptual understanding, practical tool usage, and design reproducibility.
 
-## Course structure and content
+### Course structure and content
 
 The camp followed a Project-Based Learning (PBL) methodology. Each module combined short theoretical introductions with extensive guided practical sessions, where students interacted directly with the design, tools, and intermediate results. To support the learning process, the course adopted a progressive approach, starting from simpler digital systems and gradually advancing toward the complete SoC design.
 
@@ -33,27 +33,27 @@ At the beginning of each major stage of the flow, demonstrations and problem-sol
 
 This structure enabled participants to first gain confidence with the tools and methodology, and then apply the acquired knowledge to a realistic, large-scale design, closely resembling professional ASIC development workflows.
 
-### 1. Module 1: Introduction and Tools Installation
+#### 1. Module 1: Introduction and Tools Installation
 
 This module introduced the overall context of open-source digital IC design and the structure of modern SoC projects. Participants set up the required open-source EDA environment and toolchain, ensuring a reproducible workflow. The CROC SoC was presented at a high level, highlighting its main architectural components and its role as the reference design throughout the camp.
 
-### 2. Module 2: RTL Structure and Simulation
+#### 2. Module 2: RTL Structure and Simulation
 
 Participants explored the RTL hierarchy of the digital systems, identifying key modules, interfaces, and design abstractions. Functional simulation was performed using Verilator, allowing students to validate behavior, inspect waveforms, and understand how functionality is verified at the RTL level.
 
-### 3. Module 3: Logic Synthesis
+#### 3. Module 3: Logic Synthesis
 
 In this module, selected RTL components were synthesized using Yosys, learning how to interpret synthesis reports. The focus was not on optimization per se, but on understanding how RTL translate into gate-level implementations and how it is related to the Open-PDK.
 
-### 4. Module 4: Physical Design Flow
+#### 4. Module 4: Physical Design Flow
 
 This module covered the main stages of physical implementation, including floorplanning, placement, and routing, using OpenROAD and LibreLane. Participants analyzed congestion, area utilization, and design quality metrics, and learned how physical constraints impact the final layout. The resulting layouts were inspected using KLayout and OpenROAD, reinforcing the connection between abstract RTL descriptions and physical silicon.
 
-### 5. Module 5: Digital Design Flow with Librelane
+#### 5. Module 5: Digital Design Flow with Librelane
 
 The final module consolidated the previous steps by running an integrated digital design flow using LibreLane. Students gained an overview of how modern automated flows orchestrate multiple tools, manage intermediate artifacts, and generate final design outputs. This module emphasized reproducibility, automation, and best practices for managing complex SoC design flows.
 
-### 6. Module 6: Final Projects
+#### 6. Module 6: Final Projects
 
 The final module consisted of a hands-on project, carried out either individually or in small groups. Participants were free to choose between two main project directions:
 
@@ -77,7 +77,7 @@ The final module consisted of a hands-on project, carried out either individuall
 </p>
 
 
-## Tools used
+### Tools used
 
 The Digital Track was based entirely on open-source EDA tools, enabling a complete and reproducible RTL-to-GDS design flow. Each tool was introduced in the context of a specific design stage, allowing participants to understand its role within the overall workflow.
 
@@ -115,7 +115,7 @@ Together, these activities complemented the technical content of the course, rei
   <img alt="student-chip" src="/assets/img/ldo-chip.jpg" width="22%">
 </p>
 
-# Conclusions and Outlook
+## Conclusions and Outlook
 
 The Digital Track of the ChipUSM Summer Camp showed that advanced SoC design can be taught effectively using only open-source tools, without losing realism or technical value. For many participants, this was their first experience with a full ASIC design flow, going beyond FPGA-based or purely theoretical courses.
 
