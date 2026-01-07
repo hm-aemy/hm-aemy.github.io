@@ -39,7 +39,7 @@ Participants explored the RTL hierarchy of the digital systems, identifying key 
 
 #### Module 3: Logic Synthesis
 
-In this module, selected RTL components were synthesized using Yosys, learning how to interpret synthesis reports. The focus was not on optimization per se, but on understanding how RTL translate into gate-level implementations and how it is related to the Open-PDK.
+In this module, participants synthesized selected RTL components using Yosys to learn how to interpret synthesis reports. The focus was not on optimization per se, but on understanding how RTL translate into gate-level implementations and how it is related to the Open-PDK.
 
 #### Module 4: Physical Design Flow
 
