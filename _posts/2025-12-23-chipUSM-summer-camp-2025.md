@@ -81,12 +81,12 @@ The final module consisted of a hands-on project, carried out either individuall
 
 The Digital Track was based entirely on open-source EDA tools, enabling a complete and reproducible RTL-to-GDS design flow. Each tool was introduced in the context of a specific design stage, allowing participants to understand its role within the overall workflow.
 
-- Verilator – Fast functional simulation and waveform analysis.
-- Surfer – Waveform visualization and interactive signal inspection during simulation/debug.
-- riscv-gnu-toolchain – Compilation of software programs executed and simulated on the RISC-V SoC.
-- Yosys – Logic synthesis and generation of gate-level netlists.
-- OpenROAD/Librelane – Floorplanning, placement, routing, and physical implementation flow orchestration.
-- Klayout – Layout visualization and inspection.
+- [Verilator](https://www.veripool.org/verilator/) – Fast functional simulation and waveform analysis.
+- [Surfer](https://surfer-project.org/) – Waveform visualization and interactive signal inspection during simulation/debug.
+- [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) – Compilation of software programs executed and simulated on the RISC-V SoC.
+- [Yosys](https://yosyshq.net/yosys/) – Logic synthesis and generation of gate-level netlists.
+- [OpenROAD](https://theopenroadproject.org/)/[Librelane](https://librelane.readthedocs.io/en/latest/) – Floorplanning, placement, routing, and physical implementation flow orchestration.
+- [Klayout](https://www.klayout.de/) – Layout visualization and inspection.
 
 ### Aditional Course Activities
 
