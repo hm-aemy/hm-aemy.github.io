@@ -5,11 +5,11 @@ author: Daniel Arévalos
 date: 2026-01-07
 ---
 
-The ChipUSM Summer Camp 2025 – Digital Track represents one of the educational outcomes of the ongoing efforts of the AEMY research group to promote open-source integrated circuit design education at universities in Germany and worldwide. The course builds on AEMY's first open-source System-on-Chip (SoC) silicon tape-out, completed in September 2025, thereby establishing a strong link between research, real silicon, and education.
+The ChipUSM Summer Camp 2025 – Digital Track represents one of the educational outcomes of the ongoing efforts of the [AEMY research group](https://aemy.cs.hm.edu/) to promote open-source integrated circuit design education at universities in Germany and worldwide. The course builds on AEMY's first open-source System-on-Chip (SoC) silicon tape-out, completed in September 2025, thereby establishing a strong link between research, real silicon, and education.
 
-The Summer Camp was held over five intensive days, from December 9th to December 13th, in Valparaíso, Chile, and was organized by the [ChipUSM student initiative](https://www.linkedin.com/company/chipusm/) at the [Technical University Federico Santa María](https://usm.cl/) (UTFSM). It brought together undergraduate and graduate students interested in gaining hands-on experience with modern digital IC design methodologies using     professional-grade open-source tools.
+The Summer Camp was held over five intensive days, from December 9th to December 13th, in Valparaíso, Chile, and was organized by the [ChipUSM student initiative](https://www.linkedin.com/company/chipusm/) at the [Technical University Federico Santa María](https://usm.cl/) (UTFSM). It brought together undergraduate and graduate students interested in gaining hands-on experience with modern digital IC design methodologies using professional-grade open-source tools.
 
-The course was conceived as an in-person program following a Problem-Based Learning (PBL) approach. Short theoretical introductions were combined with extensive guided practical sessions, where students were presented with concrete design challenges and encouraged to explore, experiment, and iterate on solutions. Through this methodology, participants worked collaboratively on a realistic SoC design, engaging directly with the structure and complexity of contemporary digital systems while experiencing a complete open-source RTL-to-GDS design flow.
+The course was conceived as an in-person program following a [Problem-Based Learning (PBL)](https://mediapool.hm.edu/mediapool/media/dachmarke/dm_lokal/bologna/hd_mint/veroeffentlichungen_3/Wolf_et_al_HDMINT_2013.pdf) approach. Short theoretical introductions were combined with extensive guided practical sessions, where students were presented with concrete design challenges and encouraged to explore, experiment, and iterate on solutions. Through this methodology, participants worked collaboratively on a realistic SoC design, engaging directly with the structure and complexity of contemporary digital systems while experiencing a complete open-source RTL-to-GDS design flow.
 
 From an AEMY perspective, this activity illustrates how research-driven open-source design efforts can be effectively transferred into educational settings, fostering reproducible workflows, lowering entry barriers, and enabling students to work with the same design artifacts and methodologies used in cutting-edge academic and industrial projects.
 
@@ -35,7 +35,7 @@ This structure enabled participants to first gain confidence with the tools and 
 
 #### Module 1: Introduction and Tools Installation
 
-This module introduced the overall context of open-source digital IC design and the structure of modern SoC projects. Participants set up the required open-source EDA environment and toolchain, ensuring a reproducible workflow. The CROC SoC was presented at a high level, highlighting its main architectural components and its role as the reference design throughout the camp.
+This module introduced the overall context of open-source digital IC design and the structure of modern SoC projects. Participants set up the required open-source Electronic Design Automation (EDA) environment and toolchain, ensuring a reproducible workflow. The CROC SoC was presented at a high level, highlighting its main architectural components and its role as the reference design throughout the camp.
 
 #### Module 2: RTL Structure and Simulation
 
@@ -96,7 +96,7 @@ One highlight was a guest talk by members of the PULP Platform, who shared insig
 
 The program also included a research-oriented talk delivered by the course instructor, presenting an overview of current microelectronics research in Germany, with a particular focus on academic pathways, international collaboration, and opportunities for students interested in pursuing graduate studies or research careers in the field.
 
-As part of the on-site activities, participants visited the AC3E research center, where they were introduced to ongoing work in microelectronics and integrated systems. During the visit, students learned about the testing and characterization of chips previously designed by students, as well as current efforts toward the design and development of new integrated circuits.
+As part of the on-site activities, participants visited the [Advance Center for Electrical and Electronic Engeneering](https://ac3e.usm.cl/language/en/) (AC3E) research center, where they were introduced to ongoing work in microelectronics and integrated systems. During the visit, students learned about the testing and characterization of chips previously designed by students, as well as current efforts toward the design and development of new integrated circuits.
 
 At the end of the camp, participants took part in project design reviews presented in the format of lightning talks. These short, focused presentations allowed students to summarize their work, reflect on the challenges they encountered, and discuss results with peers and instructors in a structured but informal setting.
 
