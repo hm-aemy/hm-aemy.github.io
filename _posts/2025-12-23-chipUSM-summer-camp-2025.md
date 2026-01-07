@@ -33,27 +33,27 @@ At the beginning of each major stage of the flow, demonstrations and problem-sol
 
 This structure enabled participants to first gain confidence with the tools and methodology, and then apply the acquired knowledge to a realistic, large-scale design, closely resembling professional ASIC development workflows.
 
-#### 1. Module 1: Introduction and Tools Installation
+#### Module 1: Introduction and Tools Installation
 
 This module introduced the overall context of open-source digital IC design and the structure of modern SoC projects. Participants set up the required open-source EDA environment and toolchain, ensuring a reproducible workflow. The CROC SoC was presented at a high level, highlighting its main architectural components and its role as the reference design throughout the camp.
 
-#### 2. Module 2: RTL Structure and Simulation
+#### Module 2: RTL Structure and Simulation
 
 Participants explored the RTL hierarchy of the digital systems, identifying key modules, interfaces, and design abstractions. Functional simulation was performed using Verilator, allowing students to validate behavior, inspect waveforms, and understand how functionality is verified at the RTL level.
 
-#### 3. Module 3: Logic Synthesis
+#### Module 3: Logic Synthesis
 
 In this module, selected RTL components were synthesized using Yosys, learning how to interpret synthesis reports. The focus was not on optimization per se, but on understanding how RTL translate into gate-level implementations and how it is related to the Open-PDK.
 
-#### 4. Module 4: Physical Design Flow
+#### Module 4: Physical Design Flow
 
 This module covered the main stages of physical implementation, including floorplanning, placement, and routing, using OpenROAD and LibreLane. Participants analyzed congestion, area utilization, and design quality metrics, and learned how physical constraints impact the final layout. The resulting layouts were inspected using KLayout and OpenROAD, reinforcing the connection between abstract RTL descriptions and physical silicon.
 
-#### 5. Module 5: Digital Design Flow with Librelane
+#### Module 5: Digital Design Flow with Librelane
 
 The final module consolidated the previous steps by running an integrated digital design flow using LibreLane. Students gained an overview of how modern automated flows orchestrate multiple tools, manage intermediate artifacts, and generate final design outputs. This module emphasized reproducibility, automation, and best practices for managing complex SoC design flows.
 
-#### 6. Module 6: Final Projects
+#### Module 6: Final Projects
 
 The final module consisted of a hands-on project, carried out either individually or in small groups. Participants were free to choose between two main project directions:
 
