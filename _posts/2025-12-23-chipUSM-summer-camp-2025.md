@@ -35,7 +35,7 @@ This module introduced the overall context of open-source digital IC design and 
 
 #### Module 2: RTL Structure and Simulation
 
-Participants explored the RTL hierarchy of the digital systems, identifying key modules, interfaces, and design abstractions. Functional simulation was performed using Verilator, allowing students to validate behavior, inspect waveforms, and understand how functionality is verified at the RTL level.
+Participants explored the RTL hierarchy of the digital systems, identifying key modules, interfaces, and design abstractions. They also ran simulation using Verilator, allowing them to validate behavior, inspect waveforms, and understand how functionality is verified at the RTL level.
 
 #### Module 3: Logic Synthesis
 
