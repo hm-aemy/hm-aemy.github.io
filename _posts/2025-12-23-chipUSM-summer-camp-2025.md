@@ -13,7 +13,7 @@ The course was conceived as an in-person program following a [Problem-Based Lear
 
 From an AEMY perspective, this activity illustrates how research-driven open-source design efforts can be effectively transferred into educational settings, fostering reproducible workflows, lowering entry barriers, and enabling students to work with the same design artifacts and methodologies used in cutting-edge academic and industrial projects.
 
-![studentgroup](/assets/img/ChipUSM-summer-camp.jpg)
+![studentgroup](/assets/img/chipusm-ChipUSM-summer-camp.jpg)
 
 ## Course overview and objectives
 
@@ -61,19 +61,19 @@ The final module consisted of a hands-on project, carried out either individuall
 2. Integration of an additional peripheral, extending the SoC functionality and exploring hardware integration challenges.
 
 <p align="center">
-  <img alt="student-picture-1" src="/assets/img/pic-mod-4.jpg" width="49%">
-  <img alt="student-picture-2" src="/assets/img/pic-mod-5.jpg" width="49%">
+  <img alt="student-picture-1" src="/assets/img/chipusm-pic-mod-4.jpg" width="49%">
+  <img alt="student-picture-2" src="/assets/img/chipusm-pic-mod-5.jpg" width="49%">
 </p>
 
 <p align="center">
-  <img alt="student-picture-3" src="/assets/img/pic-mod-1.jpg" width="33%">
-  <img alt="student-picture-4" src="/assets/img/pic-mod-2.jpg" width="33%">
-  <img alt="student-picture-5" src="/assets/img/pic-mod-3.jpg" width="33%">
+  <img alt="student-picture-3" src="/assets/img/chipusm-pic-mod-1.jpg" width="33%">
+  <img alt="student-picture-4" src="/assets/img/chipusm-pic-mod-2.jpg" width="33%">
+  <img alt="student-picture-5" src="/assets/img/chipusm-pic-mod-3.jpg" width="33%">
 </p>
 
 <p align="center">
-  <img alt="lecturing" src="/assets/img/pic-mod-6.jpg" width="49%">
-  <img alt="lecturing" src="/assets/img/pic-mod-7.jpg" width="49%">
+  <img alt="lecturing" src="/assets/img/chipusm-pic-mod-6.jpg" width="49%">
+  <img alt="lecturing" src="/assets/img/chipusm-pic-mod-7.jpg" width="49%">
 </p>
 
 
@@ -105,14 +105,14 @@ The course concluded with a social closing activity, including a shared pizza se
 Together, these activities complemented the technical content of the course, reinforcing both the collaborative nature of open-source hardware development and the importance of communication and peer exchange in engineering practice.
 
 <p align="center">
-  <img alt="Pulp-talk" src="/assets/img/pulp-talk.jpg" width="42%">
-  <img alt="Daniel-talk" src="/assets/img/daniel-talk.jpg" width="56%">
+  <img alt="Pulp-talk" src="/assets/img/chipusm-chipusm-pulp-talk.jpg" width="42%">
+  <img alt="Daniel-talk" src="/assets/img/chipusm-daniel-talk.jpg" width="56%">
 </p>
 
 <p align="center">
-  <img alt="student-project" src="/assets/img/project1.jpg" width="52%">
-  <img alt="pizza-time" src="/assets/img/pizza.jpg" width="22%">
-  <img alt="student-chip" src="/assets/img/ldo-chip.jpg" width="22%">
+  <img alt="student-project" src="/assets/img/chipusm-project1.jpg" width="52%">
+  <img alt="pizza-time" src="/assets/img/chipusm-pizza.jpg" width="22%">
+  <img alt="student-chip" src="/assets/img/chipusm-ldo-chip.jpg" width="22%">
 </p>
 
 ## Conclusions and Outlook
@@ -126,6 +126,6 @@ Beyond the learning outcomes, the camp also produced reproducible workflows, cle
 Building on this experience, a two-week block course on open-source chip design will take place at Hochschule München (HM) in February 2026. This upcoming camp is exclusively for HM students and offers a hands-on introduction to chip design, following a similar practical and project-based approach. Interested students are warmly encouraged to take part and explore the world of open-source microelectronics.
 
 <p align="center">
-  <img alt="poster1" src="/assets/img/poster-1.jpg" width="49%">
-  <img alt="poster2" src="/assets/img/poster-2.jpg" width="49%">
+  <img alt="poster1" src="/assets/img/chipusm-poster-1.jpg" width="49%">
+  <img alt="poster2" src="/assets/img/chipusm-poster-2.jpg" width="49%">
 </p>
