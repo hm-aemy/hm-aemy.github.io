@@ -3,7 +3,7 @@ layout: job
 title: Research Associate in Open-Source Design Tools for Digital Circuits
 tag: staff
 contact: stefan.wallentowitz@hm.edu
-apply: https://stellen.hm.edu/jobposting/d3c4a9786bf13ba8c8d1c148b760aadcdae1e21e0
+apply: https://stellen.hm.edu/jobposting/c5c6ba6069a9fea401ed9a844cd20a3ad556a0aa0
 ---
 
 We offer positions in our team for current and upcoming projects in the area of open source chip design tools.
