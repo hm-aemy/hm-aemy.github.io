@@ -57,8 +57,8 @@ The final module consisted of a hands-on project, carried out either individuall
 2. Integration of an additional peripheral, extending the SoC functionality and exploring hardware integration challenges.
 
 <p align="center">
-  <img alt="student-picture-1" src="/assets/img/chipusm-pic-mod-4.png" width="49%">
-  <img alt="student-picture-2" src="/assets/img/chipusm-pic-mod-5.png" width="49%">
+  <img alt="student-picture-1" src="/assets/img/chipusm-pic-mod-4.png" width="48%">
+  <img alt="student-picture-2" src="/assets/img/chipusm-pic-mod-5.png" width="48%">
 </p>
 
 <p align="center">
@@ -68,8 +68,8 @@ The final module consisted of a hands-on project, carried out either individuall
 </p>
 
 <p align="center">
-  <img alt="lecturing" src="/assets/img/chipusm-pic-mod-6.png" width="49%">
-  <img alt="lecturing" src="/assets/img/chipusm-pic-mod-7.png" width="49%">
+  <img alt="lecturing" src="/assets/img/chipusm-pic-mod-6.png" width="48%">
+  <img alt="lecturing" src="/assets/img/chipusm-pic-mod-7.png" width="48%">
 </p>
 
 
@@ -101,8 +101,8 @@ The course concluded with a social closing activity, including a shared pizza se
 Together, these activities complemented the technical content of the course, reinforcing both the collaborative nature of open-source hardware development and the importance of communication and peer exchange in engineering practice.
 
 <p align="center">
-  <img alt="Pulp-talk" src="/assets/img/chipusm-pulp-talk.png" width="42%">
-  <img alt="Daniel-talk" src="/assets/img/chipusm-daniel-talk.png" width="56%">
+  <img alt="Pulp-talk" src="/assets/img/chipusm-pulp-talk.png" width="41%">
+  <img alt="Daniel-talk" src="/assets/img/chipusm-daniel-talk.png" width="55%">
 </p>
 
 <p align="center">
@@ -122,6 +122,6 @@ Beyond the learning outcomes, the camp also produced reproducible workflows, cle
 Building on this experience, a two-week block course on open-source chip design will take place at Hochschule München (HM) in February 2026. This upcoming camp is exclusively for HM students and offers a hands-on introduction to chip design, following a similar practical and project-based approach. Interested students are warmly encouraged to take part and explore the world of open-source microelectronics.
 
 <p align="center">
-  <img alt="poster1" src="/assets/img/chipusm-poster-1.jpg" width="49%">
-  <img alt="poster2" src="/assets/img/chipusm-poster-2.jpg" width="49%">
+  <img alt="poster1" src="/assets/img/chipusm-poster-1.jpg" width="48%">
+  <img alt="poster2" src="/assets/img/chipusm-poster-2.jpg" width="48%">
 </p>
