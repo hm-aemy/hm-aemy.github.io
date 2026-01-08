@@ -6,7 +6,7 @@ date: 2025-12-08
 ---
 
 On December 1, 2025, the new "Transfer- und Innovationszentrum im Oberland" (TIZIO) opened its doors in Bad Tölz. Our research group is part of this research center, operating in one of the four high-tech labs, the IoT-Prototyping Lab. This means we will work alongside our neighboring labs, which focus on additive manufacturing, automation and robotics, and tourism, sustainability and quality of life. The opening ceremony was attended by various political representatives. Among them were:
-- Dr. Markus Söder, Minister-President of Bavaria  
+- Dr. Markus Söder, Minister-President of Bavaria
 - Markus Blume, State Minister for Science and Arts
 - Prof. Dr. Martin Leitner, President of Munich University of Applied Sciences
 - Prof. Dr. Thomas Stumpp, Vice President of Munich University of Applied Sciences
@@ -21,7 +21,7 @@ We are looking forward to future exchanges and exciting projects with local part
   <figure style="margin: 0;">
     <img src="/assets/img/tizio_opening_iot.jpeg" width="500" />
     <figcaption style="text-align: center; margin-top: 8px; font-style: italic;">
-      Prof. Wallentowitz presenting modern IoT Thopics to<br>representatives of local companies.
+      Prof. Wallentowitz presenting modern IoT topics to<br>representatives of local companies.
     </figcaption>
   </figure>
 
