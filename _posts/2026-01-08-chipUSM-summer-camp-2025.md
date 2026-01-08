@@ -2,7 +2,7 @@
 layout: post
 title: ChipUSM Summer-Camp Chile 2025 
 author: Daniel Arévalos
-date: 2026-01-07
+date: 2026-01-08
 ---
 
 The ChipUSM Summer Camp 2025 – Digital Track represents one of the educational outcomes of the ongoing efforts of the [AEMY research group](https://aemy.cs.hm.edu/) to promote open-source integrated circuit design education at universities in Germany and worldwide. The course builds on AEMY's first open-source System-on-Chip (SoC) silicon tape-out, completed in September 2025, thereby establishing a strong link between research, real silicon, and education.
