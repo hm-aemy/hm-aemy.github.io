@@ -62,9 +62,9 @@ The final module consisted of a hands-on project, carried out either individuall
 </p>
 
 <p align="center">
-  <img alt="student-picture-3" src="/assets/img/chipusm-pic-mod-1.png" width="33%">
-  <img alt="student-picture-4" src="/assets/img/chipusm-pic-mod-2.png" width="33%">
-  <img alt="student-picture-5" src="/assets/img/chipusm-pic-mod-3.png" width="33%">
+  <img alt="student-picture-3" src="/assets/img/chipusm-pic-mod-1.png" width="32%">
+  <img alt="student-picture-4" src="/assets/img/chipusm-pic-mod-2.png" width="32%">
+  <img alt="student-picture-5" src="/assets/img/chipusm-pic-mod-3.png" width="32%">
 </p>
 
 <p align="center">
