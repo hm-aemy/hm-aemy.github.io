@@ -101,7 +101,7 @@ The course concluded with a social closing activity, including a shared pizza se
 Together, these activities complemented the technical content of the course, reinforcing both the collaborative nature of open-source hardware development and the importance of communication and peer exchange in engineering practice.
 
 <p align="center">
-  <img alt="Pulp-talk" src="/assets/img/chipusm-chipusm-pulp-talk.png" width="42%">
+  <img alt="Pulp-talk" src="/assets/img/chipusm-pulp-talk.png" width="42%">
   <img alt="Daniel-talk" src="/assets/img/chipusm-daniel-talk.png" width="56%">
 </p>
 
