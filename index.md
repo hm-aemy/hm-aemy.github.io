@@ -9,6 +9,53 @@ Hochschule München University of Applied Sciences. We are actively involved in
 research projects and education around the most important and innovative topics
 from deeply embedded systems to large scale computer systems.
 
+{% assign all_posts = site.posts | where_exp: "post", "post.layout == 'post' or post.layout == 'cross-post' or post.layout == 'job'" | sort: 'date' | reverse | slice: 0, 3 %}
+
+<div class="news-box">
+  <strong>Latest Updates:</strong>
+  <ul class="news-list">
+    {% for post in all_posts %}
+    <li class="news-item" data-date="{{ post.date | date: '%Y-%m-%d' }}">
+      <span class="news-tag">
+        {% if post.layout == 'job' %}[Job]{% elsif post.layout == 'cross-post' %}[Cross-Post]{% else %}[Post]{% endif %}
+      </span>
+      <a href="{% if post.layout == 'job' %}{{ post.url | absolute_url }}{% elsif post.layout == 'cross-post' %}{{ post.external_url }}{% else %}{{ post.url | absolute_url }}{% endif %}">
+        {{ post.title | strip_html | truncatewords: 8, "..." }}
+      </a>
+      <span class="news-date">
+        {% assign date_format = site.date_format | default: "%Y-%m-%d" %}
+        ({{ post.date | date: date_format }})
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const newsItems = document.querySelectorAll('.news-item');
+  const oneMonthAgo = new Date();
+  oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
+
+  let visibleCount = 0;
+
+  newsItems.forEach(item => {
+    const dateText = item.getAttribute('data-date');
+    const itemDate = new Date(dateText);
+    if (itemDate < oneMonthAgo) {
+      item.style.display = 'none';
+    } else {
+      visibleCount++;
+    }
+  });
+
+  if (visibleCount === 0) {
+    const newsList = document.querySelector('.news-list');
+    newsList.innerHTML = '<li style="color: #808080; font-style: italic;">No updates in the last 30 days</li>';
+  }
+});
+</script>
+
 ### Research Topics
 
 Our current research focus covers the following areas.
