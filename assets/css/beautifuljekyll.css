@@ -1099,3 +1099,33 @@ pre {
     display: inline-block;
   }
 }
+
+/* --- News Box --- */
+
+.news-box {
+  background-color: #f8f8f8;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+}
+
+.news-list {
+  list-style: none;
+  margin: 0.5rem 0 0 0;
+  padding-left: 0;
+}
+
+.news-item {
+  margin: 0.25rem 0;
+}
+
+.news-tag {
+  color: #808080;
+  font-size: 0.85rem;
+}
+
+.news-date {
+  color: #808080;
+  font-size: 0.85rem;
+}
