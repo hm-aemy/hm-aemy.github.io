@@ -11,8 +11,7 @@ title: Open Positions
 {% if staff.size != 0 %}
 ## Research Staff Positions
 {% for post in staff %}
-- [{{ post.title }}]({{ post.url }})
-{% endfor %}
+- [{{ post.title }}]({{ post.url }}){% endfor %}
 {% endif %}
 
 {% if theses_ba.size != 0 or theses_ma.size != 0 %}
