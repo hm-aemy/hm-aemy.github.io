@@ -2,7 +2,7 @@
 layout: post
 title: POEMS Spring School 2026 
 author: Stefan Wallentowitz
-date: 2026-04-09
+date: 2026-04-08
 ---
 
 Stefan Wallentowitz is holding a lecture and tutorial at this years edition of the POEMS spring school in Aveiro, Portugal. The slides will be available here.
