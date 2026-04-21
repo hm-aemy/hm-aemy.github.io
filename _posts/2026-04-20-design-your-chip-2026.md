@@ -5,6 +5,10 @@ author: Daniel Arevalos
 date: 2026-04-20
 ---
 
+<p align="center">
+  <img alt="student-picture-1" src="../assets/img/dyc26-chips.png" width="70%">
+</p>
+
 Design your Chip was an intensive, hands-on course focused on the design and implementation of digital integrated circuits using a fully open-source toolchain. Over the course, students went through the complete RTL-to-GDS flow, gaining practical experience in modern chip design methodologies that are typically only accessible in industry environments.
 
 The course was organized by the [AEMY research group](https://aemy.cs.hm.edu/) and represents an important step in its ongoing effort to promote open-source IC design education. Previous initiatives include the [ChipUSM Summer Camp](https://aemy.cs.hm.edu/2026/01/08/chipUSM-summer-camp-2025.html) in Chile at the end of 2025 and the recent [POEMS Spring School](https://aemy.cs.hm.edu/2026/04/08/poems-spring-school.html) 2026 in Portugal. This time, however, we were hosting the course locally, which allowed us to take it a step further: offering it as an official credited course and providing students with a real opportunity to reach tapeout using an open-source technology.
@@ -64,6 +68,3 @@ A particularly notable outcome was that five of the projects were submitted for 
   <img alt="student-picture-5" src="/assets/img/dyc26-final6.jpeg" width="32%">
 </p>
 
-<p align="center">
-  <img alt="student-picture-1" src="/assets/img/dyc26-chips.png" width="100%">
-</p>
