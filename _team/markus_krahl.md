@@ -2,6 +2,6 @@
 name: Markus Krahl
 position: Doctoral Candidate
 group: phdstudents
-photo: missing_avatar.svg
+photo: markus_krahl.jpg
 ---
 
