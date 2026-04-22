@@ -6,7 +6,7 @@ date: 2026-04-20
 ---
 
 <p align="center">
-  <img alt="student-picture-1" src="../assets/img/dyc26-chips.png" width="70%">
+  <img alt="student-picture-1" src="/assets/img/dyc26-chips.png" width="70%">
 </p>
 
 Access to modern integrated circuit design education is often limited by the availability of proprietary tools and the complexity of industrial design flows. As a result, students rarely have the opportunity to experience the full process from RTL to a fabrication-ready design within an academic setting. In recent years, open-source EDA tools have started to change this landscape, enabling more accessible and reproducible design workflows.
@@ -44,7 +44,7 @@ From the third day onwards, students worked in dedicated rooms in their teams, w
 
 ## Metodology
 
-The course followed a hands-on, project-driven approach, where students were encouraged to learn by actively engaging with the design process rather than through isolated theoretical exercises. By working through the complete RTL-to-GDS flow, participants were able to develop an understanding of how different design stages interact and influence each other.
+The course was designed around an active, project-driven learning approach, where students were encouraged to take ownership of their work from an early stage. Rather than following step-by-step instructions, participants were guided to make their own design decisions, explore trade-offs, and iterate on their solutions throughout the process.
 
 A key aspect of the methodology was the use of team-based projects with clearly defined milestones. This structure allowed students to progressively validate their designs, from functional verification and FPGA-based testing to physical implementation. The emphasis was placed on autonomy and iterative development, with tutors providing guidance while allowing teams to take ownership of their projects.
 
