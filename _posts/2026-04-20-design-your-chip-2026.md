@@ -50,11 +50,13 @@ A key aspect of the methodology was the use of team-based projects with clearly 
 
 ## Results and conclusions
 
-The results of the course highlight the effectiveness of a hands-on, end-to-end approach to teaching digital IC design. Within a relatively short period of time, most teams were able to progress from initial concepts to fabrication-ready designs, demonstrating a strong understanding of the complete design flow.
+The results of the course highlight the effectiveness of a hands-on, end-to-end approach to teaching digital IC design. Within just two weeks, most teams were able to progress from initial concepts to fabrication-ready designs, demonstrating how quickly students can engage with the complete design flow when provided with the right tools and structure.
 
-Beyond reaching a GDS, several groups were able to validate their designs through FPGA-based testing, reinforcing the importance of functional verification before physical implementation. This progression allowed students to experience not only the design process itself, but also the iterative nature of hardware development.
+Beyond reaching a GDS, all groups validated their designs through FPGA-based testing, reinforcing the importance of functional verification before physical implementation. This progression allowed students to experience not only the design process itself, but also the iterative nature of hardware development.
 
-A particularly notable outcome was that five of the projects were submitted for tapeout using the IHP SG13G2 technology. This represents a significant achievement in an academic context, as it brings student-developed designs into a real fabrication process.
+A key factor behind these results was the decision to let students define their own projects. This approach encouraged creativity, allowed participants to build on their own interests or previous experience, and naturally led to the formation of teams around shared goals. As a result, students were more engaged and able to take stronger ownership of their work throughout the course.
+
+Building on these results, five projects went even further and were submitted for tapeout using the IHP SG13G2 technology. Achieving this within such a short timeframe represents a significant milestone in an academic context, bringing student-developed designs into a real fabrication process.
 
 <p align="center">
   <img alt="student-picture-3" src="/assets/img/dyc26-final1.jpeg" width="32%">
