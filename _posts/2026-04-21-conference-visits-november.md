@@ -14,8 +14,10 @@ The first stop was Toledo, Spain, for the **International Workshop on Reconfigur
 Toledo itself was a fascinating backdrop to the workshop. The city sits on a rocky hill and has preserved an extraordinary layering of history within its medieval walls.
 The narrow, winding streets of the old town are worth every wrong turn.
 
-![toledo1](/assets/img/reacts_1.jpg)
-![toledo2](/assets/img/reacts_2.jpg)
+<p align="center">
+  <img alt="reacts-picture-1" src="/assets/img/reacts_1.png" width="48%">
+  <img alt="reacts-picture-2" src="/assets/img/reacts_2.png" width="48%">
+</p>
 
 ## ASYDE 2025 — Seoul, South Korea
 
@@ -24,7 +26,9 @@ A few weeks later, the second conference took me considerably further: Seoul, So
 Seoul is a very impressive city. Compared to any German city, the scale, energy, and density of the place is almost overwhelming. And since we are talking about Korea, the food simply cannot go unmentioned — every meal felt like it deserved its own conference talk.
 
 
-![seoul1](/assets/img/asyde_1.jpg)
-![seoul2](/assets/img/asyde_2.jpg)
+<p align="center">
+  <img alt="asyde-picture-1" src="/assets/img/asyde_1.png" width="48%">
+  <img alt="asyde-picture-2" src="/assets/img/asyde_2.png" width="48%">
+</p>
 
 Both trips were excellent opportunities not only to visit new places but also to exchange ideas with the broader research community, and it is always motivating to see the work in one's research field presented and discussed in person.
