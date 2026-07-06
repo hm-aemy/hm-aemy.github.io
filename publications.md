@@ -2,6 +2,9 @@
 layout: page
 title: Publications
 ---
+## 2026
+
+{% bibliography -f publications  --query @*[year=2026] %}
 
 ## 2025 
 
