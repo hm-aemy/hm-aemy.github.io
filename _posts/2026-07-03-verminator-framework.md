@@ -4,12 +4,12 @@ title: "Verminator: Automating Fault-Injection Campaigns with Verilator"
 author: Jonathan Schröter
 date: 2026-07-03
 ---
-In our previous post [Update on Fault-Injection with Verilator]({% post_url 2025-11-21-verilator-extension %}) we introduced our extension to Verilator that adds native _hook-insertion_: DPI-hooks that let external C/C++ code observe and modify signals during a simulation, which in turn enables fault-injection without manual HDL modifications.
+In this post we present the first instance of our Verminator fault-injection framework which uses the Verilator DPI-hook extension. This extension was introduced thorugh a previous post [Update on Fault-Injection with Verilator]({% post_url 2025-11-21-verilator-extension %}). In this post we describe our first instance of the extension of Verilator that adds native _DPI-hook-insertion_: The inserted DPI-hooks that let external C/C++ code observe and modify signals during a simulation, which in turn enables fault-injection without manual HDL modifications.
 
-This initial post an concept was updated during further development and analysis. The implemented updates are explained in our followup post (Fault-Injection with Verilator: Update on the DPI-Hook Extension)[% post_url 2026-07-03-verilator-extension-update %].
+This initial post containing our first concept was updated during further development and analysis. The implemented updates are explained in our followup post (Fault-Injection with Verilator: Update on the DPI-Hook Extension)[% post_url 2026-07-03-verilator-extension-update %].
 
 The developed extension answers the question of _how_ a single fault reaches a single signal.
-It does not, by itself, answer the questions that come up the moment you want to study a design seriously: which signals do I fault, with which fault models, over which time windows, and how do I run hundreds of such experiments without hand-editing configuration files and rebuilding the simulator for every one of them?
+It does not, by itself, answer the questions that comes up the moment you want to study a design seriously: to which signals do I inject a fault, with which fault models, over which time windows, and how do I run hundreds of such experiments without hand-editing configuration files and rebuilding the simulator for every one of them?
 
 This is the gap the _Verminator_ framework fills.
 Where the extension is the mechanism, Verminator is the orchestration around it.
@@ -135,9 +135,11 @@ Verminator runs a fixed four-step pipeline. Each step produces artefacts the nex
 
 The heart of Verminator is a deliberate separation between _what a fault is_ and _when it is applied_.
 
-A **fault effect** is a unique `(signal path, fault_type, time_windows)` triple. Each effect becomes exactly one `switch`-case in the generated `faultModel.cpp` and receives a globally unique id. Crucially, effects are **deduplicated**: if the same signal is faulted the same way both as a standalone target and as part of a combination, it maps to the same case id and the same generated code. The fault _behaviour_ is defined once.
+A **fault effect** is a unique `(signal path, fault_type, time_windows)` triple. Each effect becomes exactly one `switch`-case in the generated `faultModel.cpp` and receives a globally unique id. Effects are **deduplicated**: if the same signal is faulted the same way both as a standalone target and as part of a combination, both reuse the same case id and the same generated code — the code that _computes a single signal's faulted value_ is written once.
 
 A **fault run** is one simulation. It carries a list of **hooks**, where each hook binds a signal path to an effect's id. A single-signal target becomes a run with one hook; a combination becomes a run with several hooks that fire simultaneously. The run is _where_ and _how many_ signals get faulted together; the effect is _what_ each fault does.
+
+Deduplication happens at the level of this generated code, **not** at the level of runs. A standalone target and a combination that share a signal are still two separate runs, each with its own process, waveform, and results. So a fault that is harmless in isolation but harmful when combined with another is fully captured: the combination is its own run in which both signals are faulted _simultaneously_, and any interaction between them emerges there at simulation time. Deduplication only avoids generating the same per-signal fault code twice; it never merges experiments.
 
 This split is what lets a campaign grow cheaply. Adding a combination that reuses signals you already fault elsewhere adds a run, but no new fault-model code. The generated C++ stays small, so compile time stays flat, while the number of runs — which are just cheap parallel process launches — can grow freely.
 
