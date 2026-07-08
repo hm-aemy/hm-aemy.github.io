@@ -5,13 +5,15 @@ author: Jonathan Schröter
 date: 2026-07-03
 ---
 This post updates our earlier writeup on extending Verilator with native
-fault-injection support (see *"[Update on Fault-Injection with Verilator](https://aemy.cs.hm.edu/2025/11/24/verilator-extension.html)"*, Nov 2025).
+fault-injection support, in which we presented the initial version of a fault injection extension in Verilator. This extension is part of our ongoing efforts to improve tooling for hardware verification and software–hardware co-design.
+For further background on the initial structure of the extension and motivation, see “[Update on Fault-Injection with Verilator](https://aemy.cs.hm.edu/2025/11/24/verilator-extension.html)".
+
 Since then the extension matured considerably: the configuration syntax changed,
 the compile-time approach was replaced by a **runtime-selectable** hook mechanism,
 bit-level targeting was added, and a companion framework (*Verminator*) now drives
 full fault-injection campaigns on top of the feature.
 
-If you only read one thing: we no longer bake a specific fault case and a specific
+The biggest change since the last post: we no longer bake a specific fault case and a specific
 target instance into the generated model. Instead we build the model **once** and
 select *which instance* and *which fault case* to inject **at simulation runtime**
 through two dedicated input ports. This is what makes large-scale campaigns
@@ -26,13 +28,60 @@ Verilator simulation tool"* in the [Isolde project overview](https://aemy.cs.hm.
 A draft pull request for adding this extension to Verilator is
 [here](https://github.com/verilator/verilator/pull/6518).
 
-## What changed since the first post
+## Motivation: large-scale fault-injection campaigns
 
-| Topic | Old (Nov 2025) | New |
+The reason the extension changed shape is **Verminator**, our fault-injection
+framework that runs campaigns on top of this feature: the same design instrumented
+on many different signals, each with many fault behaviors and time windows.
+
+**The key design decision is that target selection and fault behavior are runtime
+inputs, not compile-time configuration.** Because *which* instance to hit
+(`DPIHOOK_PATH`) and *which* fault case to run (`DPIHOOK_CASE_ID`) are ordinary model
+inputs, the instrumented model is **built once and reused for the entire campaign**.
+Adding a target or a fault type then adds simulation *runs*, not rebuilds — and for a
+non-trivial design the one-time Verilator/C++ build dominates the wall-clock cost, so
+this is the difference between a campaign that recompiles per fault and one that does
+not.
+
+Verminator automates the whole loop. From a single `verminatorConfig.toml`
+describing the design, the targets, the fault types and their time windows, it:
+
+1. generates the `.vlt` (the `insert_dpihook` lines) and a `sim_main.cpp` driver
+   containing the per-run table of `(case_id, instance path)` combinations,
+2. builds the hook-inserted model **once**,
+3. runs the golden reference plus every fault run by re-setting `DPIHOOK_PATH` /
+   `DPIHOOK_CASE_ID`, and
+4. collects per-run waveforms (FST) and performance data into a staged output
+   pipeline (config → generate → hooked build → simulation) plus a machine-readable
+   report.
+
+An excerpt of a campaign config:
+
+```toml
+[[simulation.fault_injection.targets]]
+name        = "count_reg_uut"
+path        = "tb_counter.uut.cut.count_reg"
+sv_type     = "logic"
+width       = 64
+fault_types = ["stuck_at_0", "stuck_at_1", "bit_flip"]
+
+  [[simulation.fault_injection.targets.time_windows]]
+  begin = 100
+  end   = 250
+```
+
+The rest of this post explains the mechanics that make this possible: the
+configuration syntax, the DPI callbacks, and the runtime interface. For a deeper dive into Verminator itself, see *"[Verminator: Automating Fault-Injection Campaigns with Verilator](https://aemy.cs.hm.edu/2026/07/03/verminator-framework.html)"*. Here the presented toml is also put into an example context and further information is provided.
+
+## What changed since the first post
+If you used the extension with the previous blog post as reference these are changes you need to make to your setup:
+
+**Changes to the configuration:**
+| Topic | Previous version (Nov 2025) | Current version |
 | --- | --- | --- |
 | Config keyword | `insert_hook` | `insert_dpihook` |
 | Target flag | `-target "..."` | `-var "..."` |
-| Fault-case id | `-id <n>` (compile-time) | removed — selected at runtime via `DPIHOOK_CASE_ID` |
+| Fault-case id | `-id <n>` (compile-time) | removed — selected at runtime via `DPIHOOK_CASE_ID[i]` |
 | Bit selection | whole signal only | `-bit-pos <n>` (single bit) or `-bit-range "<l>:<r>"` (bit range) |
 | Enabling the feature | `--insert-hook` CLI flag | automatic — enabled when the `.vlt` contains `insert_dpihook` entries |
 | Target selection | one hooked instance baked into the build | up to `DPIHOOK_MAX_TARGETS` (currently 4) targets, each selected at runtime via `DPIHOOK_PATH` |
@@ -41,6 +90,19 @@ A draft pull request for adding this extension to Verilator is
 
 `--timing` is still required (the hook trigger relies on timing behavior), and the
 DPI interface is still enabled automatically for hook-inserted builds.
+
+**Changes to the simulation wrapper:**
+This is the core change. The hook-inserted model exposes two extra inputs on the DUT,
+both indexed by target *slot* (`0 .. DPIHOOK_MAX_TARGETS-1`):
+
+- **`DPIHOOK_PATH[i][j]`** — a string array that names the instance path each of the
+  (up to `DPIHOOK_MAX_TARGETS`) hooks should target for this run. Slot `i` selects
+  the target, `j` indexes the hierarchical path parts.
+- **`DPIHOOK_CASE_ID[i]`** — one 32-bit fault case per slot, passed to the callback
+  as `id`. The id in slot `i` travels with the path in slot `i`, so every target
+  carries its own case even when several targets share one callback.
+
+A fault will only be applied if these two inputs get the data corresponding to the previously defined configuration.
 
 ## Use-case example
 
@@ -64,7 +126,7 @@ module counter (
 endmodule
 ```
 
-A testbench top instantiates several controllers, each wrapping one counter, so we
+A testbench top instantiates several instances called controller, each wrapping one counter, so we
 can demonstrate instance hierarchies and per-instance targeting:
 
 ```verilog
@@ -199,19 +261,13 @@ verilator --cc --exe --build --timing --trace-fst \
 ```
 
 ### Running: selecting target and fault case at runtime
-
-This is the core change. The hook-inserted model exposes two extra inputs on the DUT:
-
-- **`DPIHOOK_PATH[i][j]`** — a string array that names the instance path each of the
-  (up to `DPIHOOK_MAX_TARGETS`) hooks should target for this run.
-- **`DPIHOOK_CASE_ID`** — a 32-bit input selecting the fault case passed to the
-  callback as `id`.
+As mentioned above this is the core change, which added two extra inputs available in the simulation wrapper.
 
 A simulation driver sets them before stepping the model. A single run that injects a
-stuck-at-1 into `uut.cut.count_reg` (case id `1`) reduces to:
+stuck-at-1 into `uut.cut.count_reg` (case id `1`) uses slot `0` for both inputs:
 
 ```cpp
-dut->DPIHOOK_CASE_ID = 1;                 // fault case
+dut->DPIHOOK_CASE_ID[0] = 1;              // fault case for slot 0
 dut->DPIHOOK_PATH[0][0] = "uut";          // instance path parts of target 0
 dut->DPIHOOK_PATH[0][1] = "cut";
 dut->DPIHOOK_PATH[0][2] = "count_reg";
@@ -220,13 +276,13 @@ dut->DPIHOOK_PATH[0][2] = "count_reg";
 
 Because target and case are runtime inputs, one build can run a whole campaign
 (a golden run plus N fault runs) just by re-instantiating the model and re-setting
-these values — no recompilation per fault. This is exactly what the campaign
-framework below automates.
+these values — no recompilation per fault. This is exactly what Verminator automates
+(see the Motivation section).
 
 ## How the extension works
 
 The extension inserts DPI call hooks into the generated model automatically. It does
-this by transforming Verilator's AST during compilation to C++. The transformations
+this by transforming Verilator's AST, which is then used for the compilation to C++. The transformations
 include duplicating modules when needed (so the tool can switch between the original
 and the hook-inserted version), adding variables and helper logic, creating the extra
 assignments that route a signal through the callback, and inserting a hook *trigger*
@@ -250,45 +306,6 @@ The reasoning is unchanged from the first post:
   overwritten values.
 - DPI is general-purpose and reusable beyond fault injection.
 
-Although DPI is defined for SystemVerilog, Verilator treats Verilog sources as
-SystemVerilog for DPI purposes, so the mechanism also works for Verilog models.
-
-## Verminator: driving campaigns on top of the feature
-
-The framework we hinted at in the previous *Outlook* now exists. *Verminator* is a
-TOML-driven tool that uses the hook-insertion feature to run large-scale
-fault-injection campaigns. From a single `verminatorConfig.toml` describing the
-design, the targets, the fault types and their time windows, it:
-
-1. generates the `.vlt` (the `insert_dpihook` lines) and a `sim_main.cpp` driver
-   containing the per-run table of `(case_id, instance path)` combinations,
-2. builds the hook-inserted model **once**,
-3. runs the golden reference plus every fault run by re-setting `DPIHOOK_PATH` /
-   `DPIHOOK_CASE_ID`, and
-4. collects per-run waveforms (FST) and performance data into a staged output
-   pipeline (config → generate → hooked build → simulation) plus a machine-readable
-   report.
-
-An excerpt of a campaign config:
-
-```toml
-[[simulation.fault_injection.targets]]
-name        = "count_reg_uut"
-path        = "tb_counter.uut.cut.count_reg"
-sv_type     = "logic"
-width       = 64
-fault_types = ["stuck_at_0", "stuck_at_1", "bit_flip"]
-
-  [[simulation.fault_injection.targets.time_windows]]
-  begin = 100
-  end   = 250
-```
-
-This is where the runtime-selection design pays off: expanding the target list or the
-fault-type list grows the number of *runs*, not the number of *builds*.
-
-For more information please refere to: [Verminator: Automating Fault-Injection Campaigns with Verilator](https://aemy.cs.hm.edu/2026/07/03/verminator-framework.html)
-
 ## Current limitations
 
 The extension is functional and considerably more capable than at the first post, but
@@ -296,8 +313,12 @@ some limitations remain:
 
 - Hooks still cannot be inserted directly into the top module of a design; the
   top-module checker now reports this cleanly instead of failing silently.
-- Targeted signals must be either implicit or literal types.
-- Targeted signals must be no wider than 64 bits.
+- The target must resolve to a *basic* scalar/packed signal: either an
+  implicitly-typed net/variable (a `wire`/`reg`/`logic` declared without an explicit
+  data type) or one of Verilator's built-in packed *literal* types (`bit`, `logic`,
+  `byte`, `int`, `integer`, `shortint`, `longint`), and no wider than 64 bits.
+  Compound types — packed/unpacked arrays, structs, unions, `string`, `event` — are
+  rejected with a clear error.
 - The number of simultaneous targets is currently bounded by `DPIHOOK_MAX_TARGETS`
   (4 at the time of writing).
 
