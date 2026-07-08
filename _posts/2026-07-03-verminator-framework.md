@@ -4,7 +4,7 @@ title: "Verminator: Automating Fault-Injection Campaigns with Verilator"
 author: Jonathan Schröter
 date: 2026-07-03
 ---
-In this post we present the first instance of our Verminator fault-injection framework which uses the Verilator DPI-hook extension. This extension was introduced thorugh a previous post [Update on Fault-Injection with Verilator]({% post_url 2025-11-21-verilator-extension %}). In this post we describe our first instance of the extension of Verilator that adds native _DPI-hook-insertion_: The inserted DPI-hooks that let external C/C++ code observe and modify signals during a simulation, which in turn enables fault-injection without manual HDL modifications.
+In this post we present the first instance of our Verminator fault-injection framework which uses the Verilator DPI-hook extension. The DPI-hook extension was introduced thorugh a previous post [Update on Fault-Injection with Verilator]({% post_url 2025-11-21-verilator-extension %}). In this post we describe our first instance of the extension of Verilator that adds native _DPI-hook-insertion_: The inserted DPI-hooks that let external C/C++ code observe and modify signals during a simulation, which in turn enables fault-injection without manual HDL modifications.
 
 This initial post containing our first concept was updated during further development and analysis. The implemented updates are explained in our followup post (Fault-Injection with Verilator: Update on the DPI-Hook Extension)[% post_url 2026-07-03-verilator-extension-update %].
 
@@ -20,6 +20,7 @@ It is important to keep the division of labour in mind throughout this post:
 > Verminator orchestrates the campaign. The actual fault injection at runtime is still performed by the Verilator DPI extension. Verminator generates the extension's configuration and the C++ fault model, builds the binary, and drives the runs.
 
 Below we walk through the framework the same way we did for the extension: first a concrete use-case example, then an explanation of how it works, followed by the core design ideas and the current limitations.
+The project can be found (here)[https://github.com/joschroeter/verminator]
 
 ## Use-case example
 
