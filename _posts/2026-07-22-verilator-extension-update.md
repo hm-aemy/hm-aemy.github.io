@@ -71,7 +71,7 @@ fault_types = ["stuck_at_0", "stuck_at_1", "bit_flip"]
 ```
 
 The rest of this post explains the mechanics that make this possible: the
-configuration syntax, the DPI callbacks, and the runtime interface. For a deeper dive into Verminator itself, see *"[Verminator: Automating Fault-Injection Campaigns with Verilator](https://aemy.cs.hm.edu/2026/07/03/verminator-framework.html)"*. Here the presented toml is also put into an example context and further information is provided.
+configuration syntax, the DPI callbacks, and the runtime interface. For a deeper dive into Verminator itself, see *"[Verminator: Automating Fault-Injection Campaigns with Verilator]({% post_url 2026-07-22-verminator-framework %})"*. Here the presented toml is also put into an example context and further information is provided.
 
 ## What changed since the first post
 If you used the extension with the previous blog post as reference these are changes you need to make to your setup:
