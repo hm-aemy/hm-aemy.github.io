@@ -20,7 +20,7 @@ It is important to keep the division of labour in mind throughout this post:
 > Verminator orchestrates the campaign. The actual fault injection at runtime is still performed by the Verilator DPI extension. Verminator generates the extension's configuration and the C++ fault model, builds the binary, and drives the runs.
 
 Below we walk through the framework the same way we did for the extension: first a concrete use-case example, then an explanation of how it works, followed by the core design ideas and the current limitations.
-The project can be found (here)[https://github.com/joschroeter/verminator]
+The project can be found [here](https://github.com/joschroeter/verminator)
 
 ## Use-case example
 
