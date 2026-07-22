@@ -2,7 +2,7 @@
 layout: post
 title: "Fault-Injection with Verilator: Update on the DPI-Hook Extension"
 author: Jonathan Schröter
-date: 2026-07-03
+date: 2026-07-22
 ---
 This post updates our earlier writeup on extending Verilator with native
 fault-injection support, in which we presented the initial version of a fault injection extension in Verilator. This extension is part of our ongoing efforts to improve tooling for hardware verification and software–hardware co-design.
@@ -25,7 +25,7 @@ with Verilator's existing configuration options, its speed, and long-term
 maintainability. The actual *fault-injection* happens in the user-provided DPI
 callbacks. For background and motivation, see *"Fault-injection support with the
 Verilator simulation tool"* in the [Isolde project overview](https://aemy.cs.hm.edu/projects/isolde).
-A draft pull request for adding this extension to Verilator is
+The initial draft pull request for adding this extension to Verilator is
 [here](https://github.com/verilator/verilator/pull/6518).
 
 ## Motivation: large-scale fault-injection campaigns
