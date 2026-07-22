@@ -2,11 +2,11 @@
 layout: post
 title: "Verminator: Automating Fault-Injection Campaigns with Verilator"
 author: Jonathan Schröter
-date: 2026-07-03
+date: 2026-07-22
 ---
 In this post we present the first instance of our Verminator fault-injection framework which uses the Verilator DPI-hook extension. The DPI-hook extension was introduced thorugh a previous post [Update on Fault-Injection with Verilator]({% post_url 2025-11-21-verilator-extension %}). In this post we describe our first instance of the extension of Verilator that adds native _DPI-hook-insertion_: The inserted DPI-hooks that let external C/C++ code observe and modify signals during a simulation, which in turn enables fault-injection without manual HDL modifications.
 
-This initial post containing our first concept was updated during further development and analysis. The implemented updates are explained in our followup post (Fault-Injection with Verilator: Update on the DPI-Hook Extension)[% post_url 2026-07-03-verilator-extension-update %].
+This initial post containing our first concept was updated during further development and analysis. The implemented updates are explained in our followup post [Fault-Injection with Verilator: Update on the DPI-Hook Extension]({% post_url 2026-07-22-verilator-extension-update %}).
 
 The developed extension answers the question of _how_ a single fault reaches a single signal.
 It does not, by itself, answer the questions that comes up the moment you want to study a design seriously: to which signals do I inject a fault, with which fault models, over which time windows, and how do I run hundreds of such experiments without hand-editing configuration files and rebuilding the simulator for every one of them?
