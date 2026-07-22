@@ -77,6 +77,7 @@ configuration syntax, the DPI callbacks, and the runtime interface. For a deeper
 If you used the extension with the previous blog post as reference these are changes you need to make to your setup:
 
 **Changes to the configuration:**
+
 | Topic | Previous version (Nov 2025) | Current version |
 | --- | --- | --- |
 | Config keyword | `insert_hook` | `insert_dpihook` |
