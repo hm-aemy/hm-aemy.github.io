@@ -1,6 +1,6 @@
 ---
 name: Mario Qosja
-position: Senior Staff
+position: PostDoc
 group: principals
 photo: mario_qosja.jpg
 ---
