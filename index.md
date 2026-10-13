@@ -9,13 +9,24 @@ Hochschule München University of Applied Sciences. We are actively involved in
 research projects and education around the most important and innovative topics
 from deeply embedded systems to large scale computer systems.
 
-{% assign all_posts = site.posts | where_exp: "post", "post.layout == 'post' or post.layout == 'cross-post' or post.layout == 'job'" | sort: 'date' | reverse | slice: 0, 3 %}
+{% assign news_posts = site.posts | where_exp: "post", "post.layout == 'post' or post.layout == 'cross-post' or post.layout == 'job'" %}
+{% comment %} Sort by `updated` if set, otherwise by `date`: build "<timestamp>|<index>" keys and sort those {% endcomment %}
+{% assign news_keys = "" | split: "" %}
+{% for post in news_posts %}
+  {% assign news_date = post.updated | default: post.date %}
+  {% capture news_key %}{{ news_date | date: '%Y%m%d%H%M%S' }}|{{ forloop.index0 }}{% endcapture %}
+  {% assign news_keys = news_keys | push: news_key %}
+{% endfor %}
+{% assign news_keys = news_keys | sort | reverse | slice: 0, 3 %}
 
 <div class="news-box">
   <strong>Latest Updates:</strong>
   <ul class="news-list">
-    {% for post in all_posts %}
-    <li class="news-item" data-date="{{ post.date | date: '%Y-%m-%d' }}">
+    {% for news_key in news_keys %}
+    {% assign news_index = news_key | split: "|" | last | plus: 0 %}
+    {% assign post = news_posts[news_index] %}
+    {% assign news_date = post.updated | default: post.date %}
+    <li class="news-item" data-date="{{ news_date | date: '%Y-%m-%d' }}">
       <span class="news-tag">
         {% if post.layout == 'job' %}[Job]{% elsif post.layout == 'cross-post' %}[Cross-Post]{% else %}[Post]{% endif %}
       </span>
@@ -24,7 +35,7 @@ from deeply embedded systems to large scale computer systems.
       </a>
       <span class="news-date">
         {% assign date_format = site.date_format | default: "%Y-%m-%d" %}
-        ({{ post.date | date: date_format }})
+        ({% if post.updated %}Updated {% endif %}{{ news_date | date: date_format }})
       </span>
     </li>
     {% endfor %}
