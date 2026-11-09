@@ -22,6 +22,15 @@ The work consists of the following tasks:
 3. Chip bring-up and electrical testing.
 4. Verification of all functionalities, including the accelerator and the TRNG.
 
-For this tasks to be achieved we expect a student with minimum experience manipulating tools like oscilloscopes, logic analyzer and knoledge of C code. 
+Requirements for this position
+- Hands-on experience working with tools like oscilloscopes and logic analyzers.
+- Experience programming microcontrollers in C.
+- Interest in digital design and embedded systems.
+
+Nice to have
+- First experience with PCB design.
+- Ability to read and write HDL code (SystemVerilog).
+- Experience with interfaces like UART, SPI and JTAG.
+- Basic knowledge of SoC components and how they interact.
 
 If this sounds interesting to you and you	Tightly Coupled want to learn more on the world of chip design and testing, please reach out !
