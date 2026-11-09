@@ -17,4 +17,4 @@ In this lab, we work on solutions related to:
 We also investigate concepts such as WebAssembly for embedded systems. As part of this, we are 
 developing TWEED,  an efficient in-place interpreter that executes WebAssembly bytecode directly, 
 without first converting it into an intermediate representation. The current state can be found in 
-[TWEED](https://github.com/lionelwisskirchen/tweed)
+[TWEED](https://github.com/lionelwisskirchen/tweed).
