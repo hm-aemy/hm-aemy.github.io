@@ -9,11 +9,11 @@ In our research group, we design and test custom integrated circuits. The first 
 
 Hatch 1.0 and 2.0 are the very first chip designs of our chip development platform, with more iterations to follow. The first two iterations consist of
 
-- A 4-stage RISCV CPU.
-- A tightly coupled WASM accelerator.
-- A true random number generator (TRNG).
-- 16 kB of RAM memory.
-- And some general peripherals: UART, GPIO and JTAG.
+- a 4-stage RISC-V CPU,
+- a tightly coupled WASM accelerator,
+- a true random number generator (TRNG),
+- 16 kB of internal SRAM,
+- and some general-purpose peripherals: UART, GPIO and JTAG.
 
 The work consist in achiving the following tasks:
 
