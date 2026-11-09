@@ -7,7 +7,7 @@ contact: daniel.arevalos@hm.edu
 
 In our research group, we design and test custom integrated circuits. The first two iterations of our custom RISC-V System-On-Chip (SoC) are back from fabrication and ready to be tested. We are looking for a motivated student to help out in setting up a test platform and executing bring-up tests for our chips. 
 
-Hatch-1.0 and -2.0 are the very first chips design and ...
+Hatch 1.0 and 2.0 are the very first chip designs of our chip development platform, with more iterations to follow. The first two iterations consist of
 
 - A 4-stage RISCV CPU.
 - A tightly coupled WASM accelerator.
