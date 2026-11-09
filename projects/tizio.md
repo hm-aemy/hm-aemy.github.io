@@ -14,4 +14,7 @@ In this lab, we work on solutions related to:
 - IT security & zero-trust environment
 - Embedded systems 
 
-We also investigate concepts such as WebAssembly for Embedded Systems. Here, an efficient in-line interpreter for WASM programms is developed that can execute the bytecode without having to convert it into an intermediate representation.
+We also investigate concepts such as WebAssembly for embedded systems. As part of this, we are 
+developing TWEED,  an efficient in-place interpreter that executes WebAssembly bytecode directly, 
+without first converting it into an intermediate representation. The current state can be found in 
+[TWEED](https://github.com/lionelwisskirchen/tweed)
