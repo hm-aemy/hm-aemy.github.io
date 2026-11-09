@@ -33,4 +33,4 @@ Nice to have
 - Experience with interfaces like UART, SPI and JTAG.
 - Basic knowledge of SoC components and how they interact.
 
-If this sounds interesting to you and you	Tightly Coupled want to learn more on the world of chip design and testing, please reach out !
+If this position sounds interesting to you and you want to learn more about the world of chip design and testing, feel free to reach out to us!
