@@ -15,11 +15,12 @@ Hatch 1.0 and 2.0 are the very first chip designs of our chip development platfo
 - 16 kB of internal SRAM,
 - and some general-purpose peripherals: UART, GPIO and JTAG.
 
-The work consist in achiving the following tasks:
+The work consists of the following tasks:
 
-1. Chip bring-up and initial testing on a breadboard.
-2. Verification of all functionalities, including the accelerator and the TRNG.
-3. Development of a dedicated PCB testing platform.
+1. PCB design for a chip-on-board (COB) platform.
+2. Collaboration with our bonding lab to bond the bare die onto the COB board.
+3. Chip bring-up and electrical testing.
+4. Verification of all functionalities, including the accelerator and the TRNG.
 
 For this tasks to be achieved we expect a student with minimum experience manipulating tools like oscilloscopes, logic analyzer and knoledge of C code. 
 
