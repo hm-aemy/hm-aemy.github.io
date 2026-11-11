@@ -1,6 +1,7 @@
 ---
 layout: page
 title: ISOLDE
+status: archived
 ---
 
 ISOLDE Project will have high performance RISC-V processing systems and
