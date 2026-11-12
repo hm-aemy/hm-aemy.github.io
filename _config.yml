@@ -31,8 +31,6 @@ navbar-links:
     - WebAssembly for Embedded: "topics/wasm4iot"
     - Formal Methods for Embedded: "topics/formal-embedded"
   Projects:
-    - ISOLDE: "projects/isolde"
-    - Scale4Edge: "projects/scale4edge"
     - DI-OSVISE: "projects/osvise"
     - DI-OCDCpro: "projects/ocdcpro"
     - DI-FITS: "projects/fits"
@@ -40,6 +38,7 @@ navbar-links:
     - ODE4EC: "projects/ode4ec"
     - BCDC: "projects/bcdc"
     - TIZIO: "projects/tizio"
+    - Archived Projects: "projects/archived"
   Publications: "publications"
   Posts: "posts"
   Open Positions: "open-positions"

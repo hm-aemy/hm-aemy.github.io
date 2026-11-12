@@ -2,6 +2,7 @@
 layout: page
 title: Scale4Edge
 status: archived
+ended: 2025-12-31
 ---
 
 Scale4Edge is a joint project funded by the BMBF (Federal Ministry of Education

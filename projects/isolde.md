@@ -2,6 +2,7 @@
 layout: page
 title: ISOLDE
 status: archived
+ended: 2026-10-30
 ---
 
 ISOLDE Project will have high performance RISC-V processing systems and
