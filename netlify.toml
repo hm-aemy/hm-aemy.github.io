@@ -1,0 +1,15 @@
+# Netlify is only used for pull request previews.
+# The live site is still deployed to GitHub Pages by .github/workflows/jekyll.yml.
+
+[build]
+  publish = "_site"
+  # Point site.url at the preview address, so absolute links stay in the preview
+  command = "echo \"url: $DEPLOY_PRIME_URL\" > _config_preview.yml && bundle exec jekyll build --config _config.yml,_config_preview.yml"
+
+[build.environment]
+  RUBY_VERSION = "3.2"
+  JEKYLL_ENV = "production"
+
+# Never build main on Netlify: GitHub Pages serves the live site
+[context.production]
+  ignore = "exit 0"
