@@ -2,3 +2,4 @@
 vendor/
 _site/
 .bundle
+_config_preview.yml
