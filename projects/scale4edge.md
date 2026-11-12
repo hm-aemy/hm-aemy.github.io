@@ -1,6 +1,8 @@
 ---
 layout: page
 title: Scale4Edge
+status: archived
+ended: 2025-12-31
 ---
 
 Scale4Edge is a joint project funded by the BMBF (Federal Ministry of Education
@@ -15,7 +17,7 @@ product portfolio after the end of the project.
 
 In this project the AEMY team focuses on methodologies and tools to guide the design of instruction set extensions for RISC-V based computing platforms utilizing variable length instruction codings.
 
-[Scale4Edge Website](https://www.edacentrum.de/scale4edge/)
+[Scale4Edge Website](https://project.edacentrum.de/scale4edge/en)
 
 
 ## SIZALIZER: A Multi-layer Analysis Framework for ISA Optimization
