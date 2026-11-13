@@ -3,48 +3,45 @@ layout: post
 title: "Fault-Injection with Verilator: Update on the DPI-Hook Extension"
 author: Jonathan Schröter
 date: 2026-07-22
+updated: 2026-11-12
 ---
+*Update (November 2026): This post has been revised to match the version of the extension we submitted as a PR for upstream. Main changes since July include: rework of bit selection, callback signatures, reading of the runtime binding, hooked signal behavior, signal support.*
+
 This post updates our earlier writeup on extending Verilator with native
-fault-injection support, in which we presented the initial version of a fault injection extension in Verilator. This extension is part of our ongoing efforts to improve tooling for hardware verification and software–hardware co-design.
-For further background on the initial structure of the extension and motivation, see “[Update on Fault-Injection with Verilator](https://aemy.cs.hm.edu/2025/11/24/verilator-extension.html)".
+fault-injection support, in which we presented the initial version of a fault-injection extension in Verilator. This extension is part of our ongoing efforts to improve tooling for hardware verification and software–hardware co-design.
+For further background on the extension's initial structure and motivation, see *"[Update on Fault-Injection with Verilator](https://aemy.cs.hm.edu/2025/11/24/verilator-extension.html)"*.
+For the project context, see *"Fault-injection support with the Verilator simulation tool"* in the [Isolde project overview](https://aemy.cs.hm.edu/projects/isolde).
 
-Since then the extension matured considerably: the configuration syntax changed,
-the compile-time approach was replaced by a **runtime-selectable** hook mechanism,
-bit-level targeting was added, and a companion framework (*Verminator*) now drives
-full fault-injection campaigns on top of the feature.
+Since then, the extension has matured considerably, and we want to introduce you to the changes.
 
-The biggest change since the last post: we no longer bake a specific fault case and a specific
-target instance into the generated model. Instead we build the model **once** and
-select *which instance* and *which fault case* to inject **at simulation runtime**
-through two dedicated input ports. This is what makes large-scale campaigns
-practical.
+Our biggest change since the first post is that the target and the fault case are now selected at runtime instead of at compile time.
+We no longer bake a specific fault case and target instance into the generated model.
+Instead, we build the model **once** and select *which instance* and *which fault case* to inject **at simulation runtime** through two dedicated input ports.
+Apart from this, the configuration syntax changed, the supported targets grew to cover most RTL signal kinds, and a companion framework (*Verminator*) is now available to drive full fault-injection campaigns using this extension.
 
-As before, the goal is to add DPI *hook-insertion* to Verilator — an interface that
-external C/C++ code can use to observe or modify signals — and to keep it aligned
-with Verilator's existing configuration options, its speed, and long-term
-maintainability. The actual *fault-injection* happens in the user-provided DPI
-callbacks. For background and motivation, see *"Fault-injection support with the
-Verilator simulation tool"* in the [Isolde project overview](https://aemy.cs.hm.edu/projects/isolde).
+As before, the goal is to add DPI *hook-insertion* to Verilator and to keep it aligned with Verilator's existing configuration options, its speed, and long-term
+maintainability.
+The actual *fault-injection* happens in the user-provided DPI callbacks.
+So the extension does the insertion of the *fault-site*, while the DPI does the *fault-injection*.
+This also means the extension is not tied to one specific use case, even though we primarily use the term *fault*.
 The initial draft pull request for adding this extension to Verilator is
 [here](https://github.com/verilator/verilator/pull/6518).
+The version described in this post is submitted in a new [pull request](https://github.com/verilator/verilator/pull/...). <!--TODO-->
+
 
 ## Motivation: large-scale fault-injection campaigns
 
 The reason the extension changed shape is **Verminator**, our fault-injection
-framework that runs campaigns on top of this feature: the same design instrumented
-on many different signals, each with many fault behaviors and time windows.
+framework that runs campaigns on top of this feature.
+It automates the creation of the configuration file, the C++ simulation wrapper and the fault model to enable large-scale fault campaigns with many different signals and fault behaviors on the same design.
 
-**The key design decision is that target selection and fault behavior are runtime
-inputs, not compile-time configuration.** Because *which* instance to hit
-(`DPIHOOK_PATH`) and *which* fault case to run (`DPIHOOK_CASE_ID`) are ordinary model
-inputs, the instrumented model is **built once and reused for the entire campaign**.
-Adding a target or a fault type then adds simulation *runs*, not rebuilds — and for a
-non-trivial design the one-time Verilator/C++ build dominates the wall-clock cost, so
-this is the difference between a campaign that recompiles per fault and one that does
-not.
+**The key design decision for this framework is that target selection and fault behavior are runtime inputs, not compile-time configuration.**
+Since *which* instance to hit (`DPIHOOK_PATH`) and *which* fault case to run (`DPIHOOK_CASE_ID`) are ordinary model inputs, the instrumented model is **built once and reused for the entire campaign**.
+Every additional combination of target and fault case then adds a simulation *run*, not a rebuild.
+For short runs, rebuilding a non-trivial design for every fault would cost more than the runs themselves.
 
-Verminator automates the whole loop. From a single `verminatorConfig.toml`
-describing the design, the targets, the fault types and their time windows, it:
+From a single `verminatorConfig.toml` describing the design, the targets, the fault
+types and their time windows, Verminator:
 
 1. generates the `.vlt` (the `insert_dpihook` lines) and a `sim_main.cpp` driver
    containing the per-run table of `(case_id, instance path)` combinations,
@@ -52,58 +49,49 @@ describing the design, the targets, the fault types and their time windows, it:
 3. runs the golden reference plus every fault run by re-setting `DPIHOOK_PATH` /
    `DPIHOOK_CASE_ID`, and
 4. collects per-run waveforms (FST) and performance data into a staged output
-   pipeline (config → generate → hooked build → simulation) plus a machine-readable
+   pipeline (verilate golden → generate → hooked build → simulation) plus a machine-readable
    report.
 
-An excerpt of a campaign config:
-
-```toml
-[[simulation.fault_injection.targets]]
-name        = "count_reg_uut"
-path        = "tb_counter.uut.cut.count_reg"
-sv_type     = "logic"
-width       = 64
-fault_types = ["stuck_at_0", "stuck_at_1", "bit_flip"]
-
-  [[simulation.fault_injection.targets.time_windows]]
-  begin = 100
-  end   = 250
-```
-
-The rest of this post explains the mechanics that make this possible: the
-configuration syntax, the DPI callbacks, and the runtime interface. For a deeper dive into Verminator itself, see *"[Verminator: Automating Fault-Injection Campaigns with Verilator]({% post_url 2026-07-22-verminator-framework %})"*. Here the presented toml is also put into an example context and further information is provided.
+For a deeper dive into Verminator itself, including an example campaign configuration, see *"[Verminator: Automating Fault-Injection Campaigns with Verilator]({% post_url 2026-07-22-verminator-framework %})"*.
+The rest of this post explains the current mechanics of the Verilator extension.
 
 ## What changed since the first post
-If you used the extension with the previous blog post as reference these are changes you need to make to your setup:
-
-**Changes to the configuration:**
+If you used the extension with the first post as reference, these are the changes you need to make to your setup:
 
 | Topic | Previous version (Nov 2025) | Current version |
 | --- | --- | --- |
 | Config keyword | `insert_hook` | `insert_dpihook` |
 | Target flag | `-target "..."` | `-var "..."` |
 | Fault-case id | `-id <n>` (compile-time) | removed — selected at runtime via `DPIHOOK_CASE_ID[i]` |
-| Bit selection | whole signal only | `-bit-pos <n>` (single bit) or `-bit-range "<l>:<r>"` (bit range) |
 | Enabling the feature | `--insert-hook` CLI flag | automatic — enabled when the `.vlt` contains `insert_dpihook` entries |
-| Target selection | one hooked instance baked into the build | up to `DPIHOOK_MAX_TARGETS` (currently 4) targets, each selected at runtime via `DPIHOOK_PATH` |
-| Callback signature | single generic `faultInjection(int id, svBit, int)` | type- and selection-specific signatures (see below) |
+| Target selection | one hooked instance baked into the build | one slot per `insert_dpihook` directive, each selected at runtime via `DPIHOOK_PATH` |
+| Callback signature | single generic `cb(int id, svBit, int)` | `<ret> cb(int id, svBit trigger, <value>)`, typed like a DPI import of the signal (see below) |
+| Evaluation trigger rate | not configurable | `--dpihook-trigger-step <n>` (default 1 = every time step) |
 | Campaign tooling | none (future work) | *Verminator*: TOML-driven campaign framework |
 
-`--timing` is still required (the hook trigger relies on timing behavior), and the
-DPI interface is still enabled automatically for hook-inserted builds.
+The example further below shows these in use, including how the simulation wrapper sets the two runtime inputs.
 
-**Changes to the simulation wrapper:**
-This is the core change. The hook-inserted model exposes two extra inputs on the DUT,
-both indexed by target *slot* (`0 .. DPIHOOK_MAX_TARGETS-1`):
+## How the extension works
 
-- **`DPIHOOK_PATH[i][j]`** — a string array that names the instance path each of the
-  (up to `DPIHOOK_MAX_TARGETS`) hooks should target for this run. Slot `i` selects
-  the target, `j` indexes the hierarchical path parts.
-- **`DPIHOOK_CASE_ID[i]`** — one 32-bit fault case per slot, passed to the callback
-  as `id`. The id in slot `i` travels with the path in slot `i`, so every target
-  carries its own case even when several targets share one callback.
+The extension inserts DPI call hooks into the generated model automatically.
+It does this by transforming Verilator's AST, which is then used for the compilation to C++.
+The transformations extend the module that declares a target in place, add variables and helper logic, redirect the reads of the target to the result of the callback, and insert a hook *trigger* that forces the DPI call even when the original model output has not changed.
+Because the trigger relies on timing behavior, `--timing` must be used.
 
-A fault will only be applied if these two inputs get the data corresponding to the previously defined configuration.
+For the runtime selection, the pass adds the `DPIHOOK_PATH` and `DPIHOOK_CASE_ID` input ports and inserts path-filter logic along the instance hierarchy.
+The testbench fills one *slot* per `insert_dpihook` directive with a path and a case id.
+The hooks compare their own hierarchical position against `DPIHOOK_PATH` and only fire on the selected instance, while `DPIHOOK_CASE_ID` selects the behavior inside the callback.
+A signal hook that is inserted but not bound skips the DPI call.
+The actual usage of these ports is explained further down in the *Running* section.
+
+When a signal is successfully hooked, it behaves like a **faulted net**. This means that every read of it in its module, through hierarchical references and, for interface signals, in every module accessing it sees the modified value.
+Therefore, the effect propagates outwards through ports.
+If the targeted signal is an output port, the drivers write an internal pre-hook variable and the port carries the hook result. This way, a register keeps its own state while every reader, including its own next-state logic, sees the fault.
+
+The fault effect can be followed in the traces.
+Note that the necessary helper variables are kept out of the traces, so the signals in the traces represent the original design.
+Since the modified value is provided directly to the signals reading the target, the fault shows up on their traces, not on the trace of the targeted signal itself.
+The exceptions here are output ports: they carry the hook result, so their own trace shows the fault.
 
 ## Use-case example
 
@@ -127,7 +115,7 @@ module counter (
 endmodule
 ```
 
-A testbench top instantiates several instances called controller, each wrapping one counter, so we
+A testbench top instantiates five instances of a `controller` module, each wrapping one counter, so we
 can demonstrate instance hierarchies and per-instance targeting:
 
 ```verilog
@@ -152,99 +140,109 @@ endmodule
 
 ### Configuration
 
-The feature still extends Verilator's configuration file (typically `.vlt`), but the
-syntax changed. A hook-insertion entry now uses the `insert_dpihook` keyword and the
-`-var` flag for the target path, and optionally selects a single bit or a bit range:
+The feature extends Verilator's configuration file (typically `.vlt`) with a hook-insertion directive. This directive looks like this:
 
 ```
 insert_dpihook -callback "<c-function name>" -var "<top.instance.….var>"
-insert_dpihook -callback "<c-function name>" -var "<top.instance.….var>" -bit-pos <n>
-insert_dpihook -callback "<c-function name>" -var "<top.instance.….var>" -bit-range "<left>:<right>"
 ```
 
 - **`-callback`** — name of the C/C++ callback that implements the fault model.
-- **`-var`** — the target signal path. As before, it starts with the top module,
+- **`-var`** — the target signal path. It starts with the top module,
   followed by the *instance* names on the path (intermediate module names are
   omitted), ending with the variable. For `count_reg` inside `cut`, reached through
   `uut1` in `tb_counter`, this is `tb_counter.uut1.cut.count_reg`.
-- **`-bit-pos` / `-bit-range`** — optional. Restrict the hook to a single bit or a
-  contiguous bit range of the target. Omit both to hook the whole signal.
 
-Note there is **no `-id` flag anymore**. The fault-case selector that used to be
-fixed at compile time is now a runtime input (`DPIHOOK_CASE_ID`, see below), so a
-single build can exercise every case.
+The configuration holds neither a bit selection nor a fault-case id. The hook always
+hands the whole signal to the callback, which decides which bits a fault touches, and
+the fault-case id is a runtime input (`DPIHOOK_CASE_ID`, see below) selecting the fault model in the callback.
 
-Multiple targets are configured by adding multiple lines. A `.vlt` exercising four
-different targets and callbacks at once:
+Multiple targets are configured by adding multiple lines. A `.vlt` hooking three different signals of the counter, each with its own callback, would look like this:
 
 ```
 `verilator_config
 
-insert_dpihook -callback "reg_injection_bitPos"        -var "tb_counter.uut1.cut.count_reg" -bit-pos 0
-insert_dpihook -callback "logicwidth_count_reg_timing" -var "tb_counter.uut2.cut.count"
-insert_dpihook -callback "logic_clk_timing"            -var "tb_counter.uut3.cut.reset"
-insert_dpihook -callback "reg_injection_bitRange"      -var "tb_counter.uut4.cut.count_reg" -bit-range "3:0"
+insert_dpihook -callback "fault_count_reg" -var "tb_counter.uut1.cut.count_reg"
+insert_dpihook -callback "fault_count"     -var "tb_counter.uut2.cut.count"
+insert_dpihook -callback "fault_en"        -var "tb_counter.uut3.cut.en"
+insert_dpihook -callback "fault_count_reg" -var "tb_counter.uut4.cut.count_reg"
 ```
+
+The hook is inserted into the module that declares the signal, so **every instance** of
+`counter` carries all three hooks, and the path in the `.vlt` only has to name one of
+them. Which instance is actually faulted is decided at runtime (see below). The fourth
+line names `count_reg` again, through `uut4`: the hook already exists, but every directive
+adds one slot, so both instances can be faulted in the same run. Naming the same signal
+again is fine as long as the callback is the same. A second callback for one signal is
+rejected.
+
+The July version of this example also hooked the counter's `reset`. Clocks and
+asynchronous resets are now rejected as targets, since a fault on them would only re-time the
+design instead of modeling a realistic timing glitch, which a cycle-based simulator like Verilator cannot
+reproduce.
 
 ### The C/C++ callbacks
 
-The callback is still a plain `extern "C"` function, and its first two parameters are
-always the fault-case id and the DPI trigger. What changed is that the remaining
-parameters now depend on the **type** of the target and on the **bit selection**, so
-the value is passed back and forth without loss. The relevant shapes are:
+The callback is still a plain `extern "C"` function. Its first two parameters are
+always the fault-case id and the DPI trigger, followed by the value of the signal, and
+it returns the value every read of the signal sees. The types are exactly those of a DPI
+import of the signal, so they follow its width and kind:
+
+| Signal | Return type | Value parameter |
+| --- | --- | --- |
+| 1-bit `logic` | `svBit` | `svLogic` |
+| `logic` vector, 2–64 bits | `char` / `short` / `int` / `long long` (the smallest that fits) | `const svLogicVecVal*` |
+| `bit` vector, 2–64 bits | as above | `const svBitVecVal*` |
+| `byte` / `shortint` / `int` / `longint` | the same C type | passed by value |
+| wider than 64 bits | `void`; the result goes to a leading `svLogicVecVal*` / `svBitVecVal*` argument | `const svLogicVecVal*` / `const svBitVecVal*` |
+
+Packed structs, unions, packed arrays and enums count as a vector of their width (an
+enum as its base type). Signals that share a callback must therefore have the same width
+and kind. The safest way to get the types right is to include the generated
+`V<top>__Dpi.h` in the callback file, since a definition that does not match then fails to
+compile instead of silently misreading its arguments. The callbacks for the three hooks
+above would therefore look like this:
 
 ```cpp
-#include <svdpi.h>
+#include "Vtb_counter__Dpi.h"  // generated prototypes: a signature mismatch fails to compile
 #include <verilated.h>
+#include <cstdint>
 
-// Whole multi-bit signal (<= 64 bits)
-extern "C" uint64_t logicwidth_count_reg_timing(int id, svBit trigger, const uint64_t* x) {
+// A 4-state vector arrives as 32-bit svLogicVecVal words; aval holds the value bits.
+static uint64_t value64(const svLogicVecVal* x) {
+    return static_cast<uint64_t>(static_cast<uint32_t>(x[0].aval))
+           | static_cast<uint64_t>(static_cast<uint32_t>(x[1].aval)) << 32;
+}
+
+// count_reg (logic [63:0]), present in every counter instance; the case id picks the effect.
+extern "C" long long fault_count_reg(int id, svBit trigger, const svLogicVecVal* x) {
+    (void)trigger;
+    const uint64_t v = value64(x);
+    const bool window = VL_TIME_Q() >= 150 && VL_TIME_Q() < 200;
     switch (id) {
-    case 1:  // stuck-at-1 within a time window
-        if (VL_TIME_Q() >= 10 && VL_TIME_Q() <= 50) return 1;
-        return *x;
-    default:
-        return *x;
+    case 1: return window ? v ^ 0x1ULL : v;  // bit 0 flipped
+    case 2: return window ? v | 0xFULL : v;  // bits 3:0 stuck at 1
+    default: return v;
     }
 }
 
-// Single bit (-bit-pos)
-extern "C" uint64_t reg_injection_bitPos(uint8_t id, svBit trigger,
-                                         int bitIndex, const svBitVecVal* x) {
-    switch (id) {
-    case 0: return 0;                              // stuck-at-0
-    case 1: return *x | (1ULL << bitIndex);        // stuck-at-1 on the selected bit
-    case 2: return ~(*x);                          // bit flip
-    default: return *x;
-    }
+// count (output port, logic [63:0]): stuck at 0 from t = 120 on.
+extern "C" long long fault_count(int id, svBit trigger, const svLogicVecVal* x) {
+    (void)trigger;
+    return (id == 1 && VL_TIME_Q() >= 120) ? 0 : value64(x);
 }
 
-// Bit range (-bit-range "l:r")
-extern "C" uint64_t reg_injection_bitRange(uint8_t id, svBit trigger,
-                                          int left, int right, const svBitVecVal* x) {
-    switch (id) {
-    case 0: return 0;
-    case 1: {
-        uint64_t mask = ((1ULL << (left - right + 1)) - 1) << right;
-        return *x | mask;
-    }
-    default: return *x;
-    }
-}
-
-// 1-bit logic (e.g. a reset or clock line)
-extern "C" int logic_clk_timing(int id, svBit trigger, svBit x) {
-    switch (id) {
-    case 1: return (VL_TIME_Q() >= 50 && VL_TIME_Q() <= 70) ? 1 : x;
-    default: return x;
-    }
+// en (input port, 1-bit logic): stuck at 0 inside the window.
+extern "C" svBit fault_en(int id, svBit trigger, svLogic x) {
+    (void)trigger;
+    return (id == 1 && VL_TIME_Q() >= 150 && VL_TIME_Q() < 200) ? 0 : x;
 }
 ```
 
 The `id` argument is fed from the runtime `DPIHOOK_CASE_ID` input, so the `switch`
-still selects the behavior — but which case runs is now decided per simulation run
+still selects the behavior, but which case runs is now decided per simulation run
 rather than at build time. `VL_TIME_Q()` from `verilated.h` remains available for
-time-dependent faults.
+time-dependent faults, and a bit selection can be implemented by a plain mask in the callback (`^` flips
+bits, `|` forces them to 1, `& ~` forces them to 0).
 
 ### Building
 
@@ -262,75 +260,122 @@ verilator --cc --exe --build --timing --trace-fst \
 ```
 
 ### Running: selecting target and fault case at runtime
-As mentioned above this is the core change, which added two extra inputs available in the simulation wrapper.
 
-A simulation driver sets them before stepping the model. A single run that injects a
-stuck-at-1 into `uut.cut.count_reg` (case id `1`) uses slot `0` for both inputs:
+As mentioned above, the hook-inserted C++ model now exposes two extra inputs on the DUT, both indexed by target *slot*, one per `insert_dpihook` directive:
+
+- **`DPIHOOK_PATH[i][j]`** — a string array that names the instance path each of the hooks should target for this run. Slot `i` selects the target, `j` indexes the hierarchical path parts.
+- **`DPIHOOK_CASE_ID[i]`** — one 32-bit fault case per slot, passed to the callback as `id`. The id in slot `i` travels with the path in slot `i`, so every target carries its own case even when several targets share one callback.
+
+We decided to read the binding only once, at time zero, because this improves the performance of the hooked model.
+Therefore, both inputs must be written **before the first `eval()`**.
+If a user writes the binding only later, no target is hooked, and the model reports this mistake with a warning at the end of the simulation.
+Additionally, the model warns if a slot's path matches no hooked signal.
+Not every slot has to be used: four directives provide four slots, but a run may bind fewer.
+In short, a fault is only applied when a slot's path matches a hooked signal and its case id selects a fault in the callback.
+
+Our example run binds all four slots, one per directive:
 
 ```cpp
-dut->DPIHOOK_CASE_ID[0] = 1;              // fault case for slot 0
-dut->DPIHOOK_PATH[0][0] = "uut";          // instance path parts of target 0
-dut->DPIHOOK_PATH[0][1] = "cut";
-dut->DPIHOOK_PATH[0][2] = "count_reg";
-// ... then drive clock/reset/enable and eval() as usual
+// Bind before the first eval(): one slot per target, path parts plus a case id.
+const std::vector<std::pair<int, std::vector<std::string>>> slots = {
+    {1, {"uut1", "cut", "count_reg"}},  // flip bit 0 of count_reg in uut1
+    {1, {"uut2", "cut", "count"}},      // count of uut2 stuck at 0
+    {1, {"uut3", "cut", "en"}},         // enable of uut3 stuck at 0
+    {2, {"uut4", "cut", "count_reg"}},  // bits 3:0 of count_reg in uut4 stuck at 1
+};
+for (size_t i = 0; i < slots.size(); ++i) {
+    dut->DPIHOOK_CASE_ID[i] = slots[i].first;
+    for (size_t j = 0; j < slots[i].second.size(); ++j)
+        dut->DPIHOOK_PATH[i][j] = slots[i].second[j];
+}
+
+dut->clk = 0;
+while (ctx->time() < 300 && !ctx->gotFinish()) {
+    dut->clk = !dut->clk;
+    dut->reset = ctx->time() < 50;
+    dut->enable = ctx->time() >= 100;
+    dut->eval();
+    if (!dut->eventsPending()) break;
+    ctx->time(dut->nextTimeSlot());  // the hook trigger schedules a slot every time step
+}
 ```
 
-Because target and case are runtime inputs, one build can run a whole campaign
-(a golden run plus N fault runs) just by re-instantiating the model and re-setting
-these values — no recompilation per fault. This is exactly what Verminator automates
-(see the Motivation section).
+The evaluation trigger schedules an event in every time step, so the driver steps from
+one scheduled time slot to the next with `ctx->time(dut->nextTimeSlot())`. Jumping over a
+slot aborts the simulation with "Missed a time slot?".
 
-## How the extension works
+Printing the five counter outputs at the end, once without any binding and once with the
+binding above, gives:
 
-The extension inserts DPI call hooks into the generated model automatically. It does
-this by transforming Verilator's AST, which is then used for the compilation to C++. The transformations
-include duplicating modules when needed (so the tool can switch between the original
-and the hook-inserted version), adding variables and helper logic, creating the extra
-assignments that route a signal through the callback, and inserting a hook *trigger*
-that forces the DPI call even when the original model output has not changed. Because
-the trigger relies on timing behavior, `--timing` must be used.
+```
+golden : 100 100 100 100 100
+faulted: 100 75 0 75 466
+```
 
-What is new compared to the first post is the **runtime selection layer**. Instead of
-committing to one instance and one fault case at build time, the pass adds the
-`DPIHOOK_PATH` and `DPIHOOK_CASE_ID` input ports and threads path-filter logic down
-the instance hierarchy. At runtime the hooks compare their own hierarchical position
-against `DPIHOOK_PATH` and only fire on the selected instance, while `DPIHOOK_CASE_ID`
-selects the behavior inside the callback. This keeps a single compiled model reusable
-across an entire campaign.
+- `counter1` (`uut`) is unchanged: its counter carries the same hooks, but nothing is
+  bound to it, so it is not faulted.
+- `counter2` (`uut1`): when the window opens, `count_reg` holds 25. The hook flips bit 0,
+  so every read, including the register's own `count_reg + 1`, sees 24, and the register
+  stays at 25 for the whole window.
+- `counter3` (`uut2`): the output port `count` is stuck at 0 from t = 120 on.
+- `counter4` (`uut3`): the enable is held at 0 for 25 clock cycles.
+- `counter5` (`uut4`): every read sees bits 3:0 set, so the register jumps ahead during
+  the window.
 
-### Why use the DPI?
+With the runtime approach, a whole campaign (a golden run plus N fault runs) only re-instantiates the model and sets a new binding for each run, without recompiling.
 
-The reasoning is unchanged from the first post:
+## Supported targets
 
-- DPI keeps Verilator's optimizations intact, preserving fast simulation.
-- DPI calls occur late in the evaluation order, reducing the risk of masked or
-  overwritten values.
-- DPI is general-purpose and reusable beyond fault injection.
+The set of signals a hook can target covers what an RTL design contains:
+
+- packed types, including signals wider than 64 bits
+- unpacked aggregates (whole arrays and structs) and their leaves addressed by path
+- single elements of unpacked arrays (`mem[2]`)
+- signals in generate scopes and in instances inside generate blocks
+- interface signals, including multiply-instantiated and arrayed interfaces
+- output ports, independent of how they are driven
+- signals of the top module
+
+All of them are covered by regression tests that come with the pull request.
+
+## What carrying hooks costs
+
+To see what the hook-insertion itself costs, we measured hooks that are inserted but never bound on four RISC-V cores, as median simulation throughput relative to each core's unhooked build.
+The 10 and 100 hooks are the first signals Verminator discovers in each core; the single hook is a 1-bit input:
+
+| Core | 1 hook | 10 hooks | 100 hooks |
+| --- | --- | --- | --- |
+| PicoRV32 | 0.95x | 0.92x | 0.86x |
+| SERV | 0.27x | 0.25x | 0.11x |
+| Ibex | 0.34x | 0.25x | 0.12x |
+| CV32E40X | 0.52x | 0.38x | 0.16x |
+
+Every measured build runs the cores' self-checking crc32 and AES programs with the same output and cycle count as the uninstrumented one.
+The cost depends far more on the design and on whether the hooked signals sit in its hot paths than on the number of hooks.
 
 ## Current limitations
 
-The extension is functional and considerably more capable than at the first post, but
-some limitations remain:
+The extension is functional and considerably more capable than at the time of the first post, but some limitations remain:
 
-- Hooks still cannot be inserted directly into the top module of a design; the
-  top-module checker now reports this cleanly instead of failing silently.
-- The target must resolve to a *basic* scalar/packed signal: either an
-  implicitly-typed net/variable (a `wire`/`reg`/`logic` declared without an explicit
-  data type) or one of Verilator's built-in packed *literal* types (`bit`, `logic`,
-  `byte`, `int`, `integer`, `shortint`, `longint`), and no wider than 64 bits.
-  Compound types — packed/unpacked arrays, structs, unions, `string`, `event` — are
-  rejected with a clear error.
-- The number of simultaneous targets is currently bounded by `DPIHOOK_MAX_TARGETS`
-  (4 at the time of writing).
+- A target is always a signal. Naming a module instance to hook all of its signals is not supported.
+- Clocks and asynchronous resets are rejected, as is a signal read in an event control without an edge (`always @(a or b)`). This also applies when another module reads them through a hierarchical reference or an interface port.
+- A clock or reset that reaches a sensitivity list only through another signal, i.e. a port connection or an assignment (e.g. `top.rst` wired to the asynchronous reset of a submodule), is not detected and therefore accepted. A fault on it then behaves like a fault on that net.
+- A signal carries at most one hook configuration, and signals sharing a callback must have the same width and kind.
+- The binding is read once at time zero, so a slot cannot be rebound while the model runs.
+- Not supported as targets:
+  - arrayed module instances (arrayed interfaces work)
+  - an unpacked aggregate or a member path inside an interface
+  - a member path into a variable declared in a generate block
+  - a member of an unpacked-array element (`arr[1].b`)
+  - an element of a multi-dimensional unpacked array (`m[1][2]`)
+  - a member of a packed union or an element of a packed array
+  - non-hardware types such as associative and dynamic arrays, queues,
+  class handles, `string`, `event`, `real` and `shortreal`.
 
-We plan to address these in future work. Despite them, the approach provides a
-flexible, campaign-friendly fault-injection capability without tying Verilator to one
-specific use case.
+We plan to address these in future work.
 
 ## Outlook
 
-With the runtime-selection foundation and the Verminator framework in place, our focus
-shifts to scaling and analysis: running large fault campaigns efficiently, comparing
-faulted runs against the golden reference, and turning the collected traces and
-performance data into insight about how injected faults propagate. The aim remains to
-help hardware developers build more stable and secure systems.
+With the runtime-selection foundation and the Verminator framework in place, our primary focus will now shift to scaling and analysis.
+This includes running large fault campaigns efficiently, comparing faulted runs against the golden reference, and turning the collected traces and performance data into insight about how injected faults propagate.
+The aim remains to help hardware developers build more stable and secure systems.
