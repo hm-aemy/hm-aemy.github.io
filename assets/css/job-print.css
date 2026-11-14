@@ -1,0 +1,112 @@
+/* Job postings: print layout (replaces the former pandoc/LaTeX PDFs) */
+
+/* Print-only elements are hidden on screen */
+.job-print-header,
+.job-print-title,
+.job-print-intro,
+.job-print-footer {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4;
+    margin: 2cm;
+  }
+
+  /* Undo Bootstrap's print defaults (A3, min-width 992px) */
+  body,
+  .container,
+  .container-md {
+    min-width: 0 !important;
+    max-width: none !important;
+    width: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  main .row,
+  main .row > div {
+    margin: 0 !important;
+    padding: 0 !important;
+    max-width: none !important;
+    flex: none !important;
+  }
+
+  body {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11pt;
+    line-height: 1.4;
+    color: #000;
+  }
+
+  /* Hide the website chrome */
+  nav.navbar,
+  .navbar,
+  header.header-section,
+  footer,
+  .job-links {
+    display: none !important;
+  }
+
+  a,
+  a:not(.btn) {
+    color: #000;
+    text-decoration: none;
+  }
+
+  .job-print-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1cm;
+  }
+  .job-print-header img:first-child { height: 3cm; }
+  .job-print-header img:last-child { height: 2.5cm; }
+
+  .job-print-title {
+    display: block;
+    text-align: center;
+    font-size: 22pt;
+    font-weight: bold;
+    margin: 0 5% 1cm;
+  }
+
+  .job-print-intro {
+    display: block;
+  }
+
+  .job-content ul {
+    margin-bottom: 10pt;
+  }
+  .job-content li {
+    margin: 0;
+  }
+
+  .job-print-footer {
+    display: block;
+    break-inside: avoid;
+    margin-top: 1cm;
+  }
+  .job-print-apply {
+    text-align: center;
+    margin-bottom: 1cm;
+  }
+  .job-print-apply code {
+    color: #000;
+    font-size: 9pt;
+    word-break: break-all;
+  }
+  .job-print-contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .job-print-qr {
+    width: 3cm;
+    height: 3cm;
+  }
+  .job-print-qr svg {
+    width: 100%;
+    height: 100%;
+  }
+}
