@@ -3,8 +3,7 @@ layout: job
 title: "Research Associate: Open Source Chip Design Tools"
 tag: staff
 contact: stefan.wallentowitz@hm.edu
-# TODO: add the HM application link (stellen.hm.edu/jobposting/...) before publishing
-# apply:
+apply: https://stellen.hm.edu/jobposting/54489e444806ce88546f4ee5fbde1cf55373bcef0
 ---
 
 We offer a full-time position (E13 TV-L, fixed-term for two years, PhD possible)
