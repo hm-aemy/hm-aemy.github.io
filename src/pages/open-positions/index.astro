@@ -1,0 +1,42 @@
+---
+import Page from '../../layouts/Page.astro';
+import { getJobs, jobUrl } from '../../lib/content';
+
+const jobs = await getJobs();
+const byTag = (tag: string) => jobs.filter((j) => j.data.tag === tag);
+const staff = byTag('staff');
+const master = byTag('master');
+const bachelor = byTag('bachelor');
+const assistant = byTag('student-assistant');
+---
+<Page title="Open Positions">
+  {staff.length > 0 && (
+    <>
+      <h2 id="research-staff-positions">Research Staff Positions</h2>
+      <ul>{staff.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
+    </>
+  )}
+
+  {(master.length > 0 || bachelor.length > 0) && <h2 id="theses">Theses</h2>}
+
+  {master.length > 0 && (
+    <>
+      <h3 id="masters-theses">Master's Theses</h3>
+      <ul>{master.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
+    </>
+  )}
+
+  {bachelor.length > 0 && (
+    <>
+      <h3 id="bachelors-theses">Bachelor's Theses</h3>
+      <ul>{bachelor.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
+    </>
+  )}
+
+  {assistant.length > 0 && (
+    <>
+      <h2 id="student-assistant-jobs">Student Assistant Jobs</h2>
+      <ul>{assistant.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
+    </>
+  )}
+</Page>
