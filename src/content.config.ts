@@ -18,6 +18,8 @@ const posts = defineCollection({
     // cross-posts only
     source: z.string().optional(),
     external_url: z.string().url().optional(),
+    // Teaser image; defaults to the first image in the post
+    image: z.string().optional(),
   }),
 });
 
@@ -44,21 +46,37 @@ const team = defineCollection({
   }),
 });
 
-const pages = (base: string) =>
-  defineCollection({
-    loader: md(base),
-    schema: z.object({
-      title: z.string(),
-      subtitle: z.string().optional(),
-      status: z.enum(['active', 'archived']).optional(),
-      ended: z.coerce.date().optional(),
-    }).passthrough(),
-  });
+const projects = defineCollection({
+  loader: md('./src/content/projects'),
+  schema: z.object({
+    title: z.string(),
+    // One line for the project table
+    summary: z.string(),
+    funding: z.string().optional(),
+    role: z.string().optional(),
+    start: z.coerce.date().optional(),
+    end: z.coerce.date().optional(),
+    status: z.enum(['active', 'archived']).default('active'),
+    ended: z.coerce.date().optional(),
+  }),
+});
+
+const topics = defineCollection({
+  loader: md('./src/content/topics'),
+  schema: z.object({
+    title: z.string(),
+    // Short name for menus and the home page
+    label: z.string(),
+    summary: z.string(),
+    color: z.enum(['green', 'blue', 'red', 'yellow']),
+    order: z.number(),
+  }),
+});
 
 export const collections = {
   posts,
   jobs,
   team,
-  projects: pages('./src/content/projects'),
-  topics: pages('./src/content/topics'),
+  projects,
+  topics,
 };

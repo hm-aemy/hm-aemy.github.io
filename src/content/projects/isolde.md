@@ -1,5 +1,8 @@
 ---
 title: ISOLDE
+summary: High performance RISC-V processing systems for European applications
+funding: Chips JU
+role: Partner
 ---
 
 ISOLDE Project will have high performance RISC-V processing systems and

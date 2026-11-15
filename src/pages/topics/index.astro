@@ -1,0 +1,16 @@
+---
+import Page from '../../layouts/Page.astro';
+import { getTopics } from '../../lib/content';
+const topics = await getTopics();
+---
+<Page title="Research topics" lead="Our current research focus covers the following areas.">
+  <ol class="topics">
+    {topics.map((t, n) => (
+      <li>
+        <span class="num">0{n + 1}</span>
+        <span class={`sq c-${t.data.color}`}></span>
+        <div><h3><a href={`/topics/${t.id}`}>{t.data.label}</a></h3><p>{t.data.summary}</p></div>
+      </li>
+    ))}
+  </ol>
+</Page>

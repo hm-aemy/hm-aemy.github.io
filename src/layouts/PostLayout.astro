@@ -1,28 +1,21 @@
 ---
 import Page from './Page.astro';
-import { entryDate, formatDate, excerpt, type Post } from '../lib/content';
+import { entryDate, longDate, excerpt, type Post } from '../lib/content';
 
 interface Props { post: Post }
 const { post } = Astro.props;
 const d = post.data;
+const kind = d.layout === 'cross-post' ? (d.source ?? 'Cross-post') : 'News';
 ---
-<Page title={d.title} subtitle={d.subtitle} description={excerpt(post.body).text}
-  article={{ author: d.author, published: entryDate(post) }}>
-  <article class="blog-post">
-    <header class="intro-header">
-      <div class="post-meta">
-        {d.author && <><span>By <strong>{d.author}</strong></span><br></>}
-        Posted: {formatDate(entryDate(post), true)}
-        {d.updated && <> | Updated: {formatDate(d.updated, true)}</>}
-      </div>
-      <hr>
-    </header>
-
-    <div class="post-entry">
-      <slot />
-      {d.layout === 'cross-post' && d.external_url && (
-        <p><a href={d.external_url}>Read the full post on {d.source ?? 'the original site'}</a></p>
-      )}
-    </div>
-  </article>
+<Page title={d.title} kicker={kind} kickerHref="/posts" lead={d.subtitle} description={excerpt(post.body).text}
+  article={{ author: d.author, published: entryDate(post) }} prose>
+  <p class="meta" slot="head">
+    {d.author && <>By <b>{d.author}</b> · </>}
+    <time datetime={entryDate(post).toISOString().slice(0, 10)}>{longDate(entryDate(post))}</time>
+    {d.updated && <> · Updated {longDate(d.updated)}</>}
+  </p>
+  <slot />
+  {d.layout === 'cross-post' && d.external_url && (
+    <p><a class="button" href={d.external_url}>Read the full post on {d.source ?? 'the original site'}</a></p>
+  )}
 </Page>

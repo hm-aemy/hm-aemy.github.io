@@ -1,37 +1,22 @@
-// Site-wide settings (formerly _config.yml)
+// Site-wide settings
 export const site = {
   title: 'AEMY',
+  name: 'Safe, Secure and Smart Systems',
+  org: 'Hochschule München · FK07',
   url: 'https://aemy.cs.hm.edu',
-  avatar: '/assets/img/aemy-avatar.svg',
+  logo: '/assets/img/aemy.svg',
+  shareImage: '/assets/img/aemy-avatar.svg',
+  contact: 'stefan.wallentowitz@hm.edu',
+  address: 'Hochschule München University of Applied Sciences · Faculty of Computer Science and Mathematics · Lothstraße 64, 80335 München',
+  github: 'https://github.com/hm-aemy',
 };
 
-type NavLink = { label: string; href: string };
-type NavMenu = { label: string; children: NavLink[] };
-
-// Main navigation. Add new project pages under "Projects".
-export const navbar: (NavLink | NavMenu)[] = [
-  {
-    label: 'Topics',
-    children: [
-      { label: 'RISC-V ISA Extensions', href: '/topics/risc-v-extensions' },
-      { label: 'Open Source Chip Design', href: '/topics/open-source-chip-design' },
-      { label: 'WebAssembly for Embedded', href: '/topics/wasm4iot' },
-      { label: 'Formal Methods for Embedded', href: '/topics/formal-embedded' },
-    ],
-  },
-  {
-    label: 'Projects',
-    children: [
-      { label: 'ISOLDE', href: '/projects/isolde' },
-      { label: 'Scale4Edge', href: '/projects/scale4edge' },
-      { label: 'DI-OSVISE', href: '/projects/osvise' },
-      { label: 'DI-OCDCpro', href: '/projects/ocdcpro' },
-      { label: 'BCDC', href: '/projects/bcdc' },
-      { label: 'TIZIO', href: '/projects/tizio' },
-    ],
-  },
+// Main navigation
+export const navbar = [
+  { label: 'Topics', href: '/topics/' },
+  { label: 'Projects', href: '/projects' },
   { label: 'Publications', href: '/publications' },
-  { label: 'Posts', href: '/posts' },
-  { label: 'Open Positions', href: '/open-positions' },
+  { label: 'News', href: '/posts' },
+  { label: 'Open Positions', href: '/open-positions/' },
   { label: 'Team', href: '/team' },
 ];

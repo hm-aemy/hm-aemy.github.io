@@ -1,0 +1,19 @@
+---
+import { runtime, type Project } from '../lib/content';
+interface Props { projects: Project[] }
+const { projects } = Astro.props;
+---
+<table class="ptable">
+  <thead><tr><th>Project</th><th>Focus</th><th>Funding</th><th>Our role</th><th>Runtime</th></tr></thead>
+  <tbody>
+    {projects.map((p) => (
+      <tr>
+        <td><a href={`/projects/${p.id}`}>{p.data.title.split(' – ')[0]}</a></td>
+        <td>{p.data.summary}</td>
+        <td>{p.data.funding}</td>
+        <td>{p.data.role}</td>
+        <td>{runtime(p)}</td>
+      </tr>
+    ))}
+  </tbody>
+</table>

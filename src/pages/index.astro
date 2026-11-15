@@ -1,134 +1,97 @@
 ---
-import Page from '../layouts/Page.astro';
-import { getPosts, getJobs, entryDate, postUrl, jobUrl, formatDate } from '../lib/content';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import NewsCard from '../components/NewsCard.astro';
+import ProjectTable from '../components/ProjectTable.astro';
+import People from '../components/People.astro';
+import { getPosts, getJobs, getTopics, getProjects, entryDate, postUrl, jobUrl, postImage, longDate } from '../lib/content';
 
-// Latest updates: the three newest posts, cross-posts and jobs (by `updated`, else date)
 const posts = await getPosts();
 const jobs = await getJobs();
-const news = [
-  ...posts.map((p) => ({
-    kind: p.data.layout === 'cross-post' ? 'Cross-Post' : 'Post',
-    title: p.data.title,
-    href: p.data.layout === 'cross-post' && p.data.external_url ? p.data.external_url : postUrl(p),
-    date: p.data.updated ?? entryDate(p),
-    updated: !!p.data.updated,
-  })),
-  ...jobs.map((j) => ({
-    kind: 'Job',
-    title: j.data.title,
-    href: jobUrl(j),
-    date: j.data.updated ?? entryDate(j),
-    updated: !!j.data.updated,
-  })),
-]
-  .sort((a, b) => b.date.getTime() - a.date.getTime())
-  .slice(0, 3);
+const topics = await getTopics();
+const { active } = await getProjects();
+const principals = (await getCollection('team')).filter((m) => m.data.group === 'principals').sort((a, b) => a.id.localeCompare(b.id));
 
-const truncateWords = (s: string, n: number) => {
-  const w = s.trim().split(/\s+/);
-  return w.length > n ? w.slice(0, n).join(' ') + '...' : s.trim();
-};
+const postHref = (p: (typeof posts)[number]) =>
+  p.data.layout === 'cross-post' && p.data.external_url ? p.data.external_url : postUrl(p);
+
+// Latest updates: posts, cross-posts and jobs, by `updated` or date
+const latest = [
+  ...posts.map((p) => ({ kind: 'News', title: p.data.title, href: postHref(p), date: p.data.updated ?? entryDate(p) })),
+  ...jobs.map((j) => ({ kind: 'Job', title: j.data.title, href: jobUrl(j), date: j.data.updated ?? entryDate(j) })),
+].sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 4);
+
+const news = posts.slice(0, 4);
 ---
-<Page title="Welcome" subtitle="AEMY Lab @ Hochschule München University of Applied Sciences"
-  description="Research group for safe, secure and smart systems (AEMY) at Hochschule München University of Applied Sciences.">
-  <p>We are the research group for <em>s<strong>A</strong>fe s<strong>E</strong>cure and s<strong>M</strong>art s<strong>Y</strong>stems (<strong>AEMY</strong>)</em> at
-  Hochschule München University of Applied Sciences. We are actively involved in
-  research projects and education around the most important and innovative topics
-  from deeply embedded systems to large scale computer systems.</p>
+<Base description="AEMY is the research group for safe, secure and smart systems at Hochschule München University of Applied Sciences: RISC-V, open source chip design tools, WebAssembly and formal methods.">
+  <section class="wrap intro">
+    <h1>We build open, safe and secure computer systems.</h1>
+    <div>
+      <p>We are the research group for <strong>s<u>a</u>fe s<u>e</u>cure and s<u>m</u>art s<u>y</u>stems (AEMY)</strong>
+      at Hochschule München University of Applied Sciences. Our research ranges from deeply embedded systems to large
+      scale computer systems, and almost everything we build is open source.</p>
+      <div class="latest">
+        <h2>Latest</h2>
+        <ul>
+          {latest.map((i) => (
+            <li><time datetime={i.date.toISOString().slice(0, 10)}>{longDate(i.date)}</time><a href={i.href}>{i.title}</a></li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
 
-  <div class="news-box">
-    <strong>Latest Updates:</strong>
-    <ul class="news-list">
-      {news.map((item) => (
-        <li class="news-item" data-date={formatDate(item.date)}>
-          <span class="news-tag">[{item.kind}]</span>{' '}
-          <a href={item.href}>{truncateWords(item.title, 8)}</a>{' '}
-          <span class="news-date">({item.updated ? 'Updated ' : ''}{formatDate(item.date)})</span>
+  <section class="wrap section">
+    <h2 class="section-title">Research topics</h2>
+    <ol class="topics">
+      {topics.map((t, n) => (
+        <li>
+          <span class="num">0{n + 1}</span>
+          <span class={`sq c-${t.data.color}`}></span>
+          <div><h3><a href={`/topics/${t.id}`}>{t.data.label}</a></h3><p>{t.data.summary}</p></div>
         </li>
       ))}
-    </ul>
-  </div>
+    </ol>
+  </section>
 
-  <script is:inline>
-  document.addEventListener('DOMContentLoaded', function() {
-    const newsItems = document.querySelectorAll('.news-item');
-    const oneMonthAgo = new Date();
-    oneMonthAgo.setDate(oneMonthAgo.getDate() - 30);
-    let visibleCount = 0;
-    newsItems.forEach(item => {
-      const itemDate = new Date(item.getAttribute('data-date'));
-      if (itemDate < oneMonthAgo) {
-        item.style.display = 'none';
-      } else {
-        visibleCount++;
-      }
-    });
-    if (visibleCount === 0) {
-      document.querySelector('.news-list').innerHTML = '<li style="color: #808080; font-style: italic;">No updates in the last 30 days</li>';
-    }
-  });
-  </script>
+  <section class="band">
+    <div class="wrap section">
+      <h2 class="section-title">Projects</h2>
+      <ProjectTable projects={active} />
+      <a class="more" href="/projects">All projects, including archived →</a>
+    </div>
+  </section>
 
-  <h3 id="research-topics">Research Topics</h3>
+  <section class="wrap section">
+    <h2 class="section-title">News</h2>
+    <div class="cards">
+      {news.map((p) => (
+        <NewsCard href={postHref(p)} title={p.data.title} date={entryDate(p)}
+          kind={p.data.layout === 'cross-post' ? (p.data.source ?? 'Cross-post') : 'News'} image={postImage(p)} />
+      ))}
+    </div>
+    <a class="more" href="/posts">All news →</a>
+  </section>
 
-  <p>Our current research focus covers the following areas.</p>
+  <section class="wrap section">
+    <h2 class="section-title">Team</h2>
+    <People members={principals} />
+    <a class="more" href="/team">The whole team →</a>
+  </section>
 
-<div class="row row-cols-1 row-cols-md-2">
-  <div class="col mb-4">
-    <div class="card h-100" style="border-color: var(--hm-green)">
-      <div class="card-header" style="background-color: var(--hm-green-200)">
-        RISC-V ISA Extensions
-      </div>
-      <div class="card-body">
-        Innovative solutions for safe, secure and smart chip designs based on the open
-  RISC-V instruction set architecture and its ecosystem <a href="/topics/risc-v-extensions">(learn more)</a>
+  <section class="band">
+    <div class="wrap section">
+      <h2 class="section-title">All open source</h2>
+      <div class="closing">
+        <p class="statement">Our results and code should be available to everyone to extend and build commercial solutions around.</p>
+        <div>
+          <p>Want to work with our group, collaborate on a project or write your thesis with us? Get in touch.</p>
+          <div class="actions">
+            <a class="button" href="mailto:stefan.wallentowitz@hm.edu">Get in touch</a>
+            <a class="button secondary" href="/open-positions/">Open positions</a>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100" style="border-color: var(--hm-lightgray)">
-      <div class="card-header" style="background-color: var(--hm-lightgray-200)">
-        Open Source Chip Design Tools
-      </div>
-      <div class="card-body">
-        Open source chip design tools as an enablement for a resilient sovereign chip
-  design ecosystem and future innovative tools <a href="/topics/open-source-chip-design">(learn more)</a>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100" style="border-color: var(--hm-logo-red)">
-      <div class="card-header" style="background-color: var(--hm-logo-red-200)">
-        WebAssembly for Embedded
-      </div>
-      <div class="card-body">
-        Bytecode virtualization with WebAssembly for embedded systems as a technology
-  with excellent portability and security properties <a href="/topics/wasm4iot">(learn more)</a>
-      </div>
-    </div>
-  </div>
-  <div class="col mb-4">
-    <div class="card h-100" style="border-color: var(--hm-yellow-600)">
-      <div class="card-header" style="background-color: var(--hm-yellow-200)">
-        Formal Methods for Embedded Systems
-      </div>
-      <div class="card-body">
-        Acessible formal verification of embedded systems that enables developers
-  with the right toolset to quicker develop safe and secure embedded system
-  software <a href="/topics/formal-embedded">(learn more)</a>
-      </div>
-    </div>
-</div>
-</div>
-
-  <h3 id="all-open-source">All Open Source!</h3>
-
-  <p>Our research is mostly open source with very rare exceptions. We strongly
-  believe that our results and code should be available to everyone to extend and
-  build commercial solutions around.</p>
-
-  <h3 id="want-to-get-involved">Want to Get Involved?</h3>
-
-  <p>Please <a href="mailto:stefan.wallentowitz@hm.edu">get in touch</a> if you want to work with our group,
-  are interested to collaborate or look for a job!</p>
-</Page>
+  </section>
+</Base>

@@ -1,5 +1,9 @@
 ---
 title: RISC-V Extensions
+label: RISC-V ISA Extensions
+summary: Innovative solutions for safe, secure and smart chip designs based on the open RISC-V instruction set architecture and its ecosystem.
+color: green
+order: 1
 ---
 
 [RISC-V](https://riscv.org) is an open instruction set architecture, which is
