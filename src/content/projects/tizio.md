@@ -1,5 +1,8 @@
 ---
 title: TIZIO – Transfer- und Innovationszentrum im Oberland 
+summary: Transfer and innovation center Oberland, lab for IoT prototyping
+role: IoT lab
+end: 2029-12-31
 ---
 
 We are part of the newly founded [TIZIO (Transfer- und Innovationszentrum im Oberland)](https://hm.edu/kooperationen_transfer/tizio/index.de.html) based in Bad Tölz. There we have the [lab for IoT-Prototyping](https://hm.edu/kooperationen_transfer/tizio/labor_iot.de.html). 

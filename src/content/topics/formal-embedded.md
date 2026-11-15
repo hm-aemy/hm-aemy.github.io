@@ -1,5 +1,9 @@
 ---
 title: Formal Methods for Embedded Systems
+label: Formal Methods for Embedded Systems
+summary: Accessible formal verification of embedded systems that enables developers to develop safe and secure embedded software faster.
+color: yellow
+order: 4
 ---
 
 Formal methods can be key technology to ensure the reliable, correct and safe

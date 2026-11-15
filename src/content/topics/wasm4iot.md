@@ -1,5 +1,9 @@
 ---
 title: WebAssembly for IoT (wasm4iot)
+label: WebAssembly for Embedded
+summary: Bytecode virtualization with WebAssembly for embedded systems as a technology with excellent portability and security properties.
+color: red
+order: 3
 ---
 
 Application development for modern IoT systems is held back by many of the constraints of low-resource embedded processors.
