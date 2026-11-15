@@ -2,7 +2,7 @@
 * @towoe
 
 # Blog posts
-/_posts/ @TheZoq2
+/src/content/posts/ @TheZoq2
 
 # Job postings
-/open-positions/_posts/ @wallento
+/src/content/jobs/ @wallento
