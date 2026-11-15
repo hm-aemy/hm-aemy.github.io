@@ -12,7 +12,7 @@ const groups = [
 ---
 <Page title="Team">
   {groups.map((g) => (
-    <section class="section" style="padding-top:0">
+    <section class="section first">
       <h2 class="section-title">{g.title}</h2>
       <People members={team.filter((m) => m.data.group === g.key)} />
     </section>

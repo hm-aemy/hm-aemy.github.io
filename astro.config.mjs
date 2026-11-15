@@ -5,7 +5,7 @@ export default defineConfig({
   // Keep the Jekyll URL layout: /legal.html, /open-positions/index.html, ...
   build: { format: 'preserve' },
   markdown: {
-    shikiConfig: { theme: 'github-light' },
+    shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' } },
   },
   redirects: {
     '/jobs': '/open-positions/',

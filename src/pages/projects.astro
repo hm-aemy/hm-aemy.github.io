@@ -9,7 +9,7 @@ const { active, archived } = await getProjects();
   <ProjectTable projects={active} />
   {archived.length > 0 && (
     <>
-      <h2 class="group-title" id="archived" style="margin-top:64px">Archived projects</h2>
+      <h2 class="group-title spaced" id="archived">Archived projects</h2>
       <ProjectTable projects={archived} />
     </>
   )}
