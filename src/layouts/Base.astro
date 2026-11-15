@@ -28,7 +28,12 @@ const current = (href: string) => {
   <title>{pageTitle}</title>
   {article?.author && <meta name="author" content={article.author}>}
   <meta name="description" content={description}>
-  <meta name="theme-color" content="#ffffff">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <script is:inline>
+    // Apply a saved theme choice before the first paint (no flash)
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <meta property="og:site_name" content={site.title}>
   <meta property="og:title" content={title ?? site.title}>
   <meta property="og:description" content={description}>
@@ -54,10 +59,16 @@ const current = (href: string) => {
         <img src={site.logo} alt="AEMY" width="69" height="44">
         <span>{site.name}<small>{site.org}</small></span>
       </a>
-      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
       <nav class="site-nav" id="site-nav" aria-label="Main">
         {navbar.map((l) => <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}
       </nav>
+      <div class="header-tools">
+        <button class="theme-toggle" type="button" title="Switch light/dark mode">
+          <span class="t-light" aria-hidden="true">☾</span><span class="t-dark" aria-hidden="true">☀</span>
+          <span class="label"><span class="t-light">Dark</span><span class="t-dark">Light</span></span>
+        </button>
+        <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
+      </div>
     </div>
   </header>
 
@@ -78,6 +89,19 @@ const current = (href: string) => {
 
   <script is:inline>
     (function () {
+      var root = document.documentElement, mq = window.matchMedia('(prefers-color-scheme: dark)');
+      var tt = document.querySelector('.theme-toggle');
+      function isDark() { return root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches; }
+      function label() { tt.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode'); }
+      tt.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        // Back to "follow the system" when the choice matches the system setting
+        if ((next === 'dark') === mq.matches) { delete root.dataset.theme; try { localStorage.removeItem('theme'); } catch (e) {} }
+        else { root.dataset.theme = next; try { localStorage.setItem('theme', next); } catch (e) {} }
+        label();
+      });
+      mq.addEventListener('change', label);
+      label();
       var b = document.querySelector('.nav-toggle'), n = document.getElementById('site-nav');
       b.addEventListener('click', function () {
         var open = n.classList.toggle('open');
