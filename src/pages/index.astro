@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import NewsCard from '../components/NewsCard.astro';
 import ProjectTable from '../components/ProjectTable.astro';
 import People from '../components/People.astro';
+import PartnerCarousel from '../components/PartnerCarousel.astro';
 import { getPosts, getJobs, getTopics, getProjects, entryDate, postUrl, jobUrl, postImage, longDate } from '../lib/content';
 
 const posts = await getPosts();
@@ -25,7 +26,7 @@ const news = posts.slice(0, 4);
 ---
 <Base description="AEMY is the computer architecture group at Hochschule München University of Applied Sciences. We build open source chip design tools, from RISC-V extensions to simulation and formal verification, and train the people who use them.">
   <section class="wrap intro">
-    <h1>Open source chip design tools that people actually use.</h1>
+    <h1>We build open, safe and secure computer systems.</h1>
     <div>
       <p>We are <strong>s<u>A</u>fe s<u>E</u>cure and s<u>M</u>art s<u>Y</u>stems (AEMY)</strong>, the computer architecture
       group at Hochschule München University of Applied Sciences. We develop open source tools for chip design, from RISC-V
@@ -91,6 +92,7 @@ const news = posts.slice(0, 4);
         <li><h3>Industry and SMEs</h3><p>Access to open chip design and RISC-V know-how, and graduates trained on these tools.</p><a href="mailto:stefan.wallentowitz@hm.edu">Get in touch →</a></li>
         <li><h3>HM students</h3><p>Courses, theses and tape-outs: build your own chip during your studies.</p><a href="/theses">Thesis topics →</a></li>
       </ul>
+      <PartnerCarousel />
     </div>
   </section>
 </Base>

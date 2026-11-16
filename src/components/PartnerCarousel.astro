@@ -1,0 +1,21 @@
+---
+import { partners } from '../config';
+// The list is rendered twice so the scrolling track can loop seamlessly;
+// the copy is hidden from assistive technology and keyboard focus.
+---
+<div class="partners">
+  <h3 class="partners-title">Key partners</h3>
+  <div class="partners-viewport">
+    <ul class="partners-track">
+      {[0, 1].map((copy) =>
+        partners.map((p) => (
+          <li aria-hidden={copy === 1 ? 'true' : undefined}>
+            <a href={p.url} tabindex={copy === 1 ? -1 : undefined} title={p.name}>
+              <img src={p.logo} alt={copy === 1 ? '' : p.name}>
+            </a>
+          </li>
+        ))
+      )}
+    </ul>
+  </div>
+</div>
