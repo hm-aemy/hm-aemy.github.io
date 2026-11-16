@@ -4,6 +4,7 @@ summary: Scalable RISC-V edge computing platform ecosystem
 funding: BMBF
 role: Partner
 end: 2025-12-31
+status: completed
 ---
 
 Scale4Edge is a joint project funded by the BMBF (Federal Ministry of Education
