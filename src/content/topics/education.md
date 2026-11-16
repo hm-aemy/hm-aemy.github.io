@@ -1,7 +1,7 @@
 ---
 title: Education and Transfer
 label: Education and Transfer
-summary: Teaching and tape-out programmes that take students from their first line of HDL to real silicon, and open chip design know-how for companies.
+summary: Teaching and tape-out programmes that take students from their first line of HDL to designs submitted for fabrication, and open chip design know-how for companies.
 color: red
 order: 4
 ---
@@ -12,12 +12,14 @@ companies in the region.
 
 ## Teaching and tape-outs
 
-- In the course *Design your Chip*, students go through the entire RTL-to-GDS
-  flow with a fully open source toolchain while working on their own projects
-  (see [Design Your Chip 2026](/2026/04/20/design-your-chip-2026.html)).
-- We take part in tape-outs, and teach open source chip design at other
-  universities, for example at the
-  [ChipUSM Summer Camp in Chile](/2026/01/08/chipUSM-summer-camp-2025.html).
+- In *Design your Chip*, students take their own designs through the full open
+  source RTL-to-GDS flow. In 2026, five student designs were submitted for
+  tape-out in IHP's open 130 nm technology (see
+  [Design Your Chip 2026](/2026/04/20/design-your-chip-2026.html)).
+- We tape out our own RISC-V SoC *Hatch* in the same technology (2025, 2026),
+  and we teach open source chip design at other universities, for example at the
+  [ChipUSM Summer Camp in Chile](/2026/01/08/chipUSM-summer-camp-2025.html) and
+  the [POEMS Spring School in Portugal](/2026/04/08/poems-spring-school.html).
 - We lead the work on the Open Chip Design Challenge in
   [DI-OCDCpro](/projects/ocdcpro): learning goals, workshops and the challenge
   website.
@@ -28,5 +30,6 @@ companies in the region.
 
 - In the [Bavarian Chip Design Center (BCDC)](/projects/bcdc), we help small
   and medium-sized enterprises get access to chip design.
-- In our [IoT prototyping lab at TIZIO](/projects/tizio) in Bad Tölz, we work
-  with regional companies on IoT, embedded systems and WebAssembly.
+- In our [IoT prototyping lab at TIZIO](/projects/tizio) in Bad Tölz, we run a
+  transfer lab for companies in the region, working on IoT, embedded systems and
+  WebAssembly.
