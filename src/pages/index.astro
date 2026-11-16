@@ -23,13 +23,15 @@ const latest = [
 
 const news = posts.slice(0, 4);
 ---
-<Base description="AEMY is the research group for safe, secure and smart systems at Hochschule München University of Applied Sciences: RISC-V, open source chip design tools, WebAssembly and formal methods.">
+<Base description="AEMY is the computer architecture group at Hochschule München University of Applied Sciences. We build open source chip design tools, from RISC-V extensions to simulation and formal verification, and train the people who use them.">
   <section class="wrap intro">
-    <h1>We build open, safe and secure computer systems.</h1>
+    <h1>Open source chip design tools that people actually use.</h1>
     <div>
-      <p>We are the research group for <strong>s<u>A</u>fe s<u>E</u>cure and s<u>M</u>art s<u>Y</u>stems (AEMY)</strong>
-      at Hochschule München University of Applied Sciences. Our research ranges from deeply embedded systems to large
-      scale computer systems, and almost everything we build is open source.</p>
+      <p>We are <strong>s<u>A</u>fe s<u>E</u>cure and s<u>M</u>art s<u>Y</u>stems (AEMY)</strong>, the computer architecture
+      group at Hochschule München University of Applied Sciences. We develop open source tools for chip design, from RISC-V
+      instruction set extensions and hardware description languages to simulation and formal verification, and contribute
+      them upstream to projects like Verilator, CIRCT, LibreLane and Surfer, so they stay maintained. In our teaching and
+      tape-out programmes, students take a design from their first line of HDL to real silicon.</p>
       <div class="latest">
         <h2>Latest</h2>
         <ul>
@@ -81,17 +83,14 @@ const news = posts.slice(0, 4);
 
   <section class="band">
     <div class="wrap section">
-      <h2 class="section-title">All open source</h2>
-      <div class="closing">
-        <p class="statement">Our results and code should be available to everyone to extend and build commercial solutions around.</p>
-        <div>
-          <p>Want to work with our group, collaborate on a project or write your thesis with us? Get in touch.</p>
-          <div class="actions">
-            <a class="button" href="mailto:stefan.wallentowitz@hm.edu">Get in touch</a>
-            <a class="button secondary" href="/open-positions/">Open positions</a>
-          </div>
-        </div>
-      </div>
+      <h2 class="section-title">Work with us</h2>
+      <p class="statement">Europe's ability to design its own chips depends on open, reusable tools and on people trained to use them. We work on both.</p>
+      <ul class="audiences">
+        <li><h3>Partners and funders</h3><p>We lead work packages and deliver tools that are used and merged upstream.</p><a href="/projects">Our projects →</a></li>
+        <li><h3>PhD students and researchers</h3><p>Work on open source tools used worldwide, with tape-outs and international partners.</p><a href="/open-positions/">Open positions →</a></li>
+        <li><h3>Industry and SMEs</h3><p>Access to open chip design and RISC-V know-how, and graduates trained on these tools.</p><a href="mailto:stefan.wallentowitz@hm.edu">Get in touch →</a></li>
+        <li><h3>HM students</h3><p>Courses, theses and tape-outs: build your own chip during your studies.</p><a href="/theses">Thesis topics →</a></li>
+      </ul>
     </div>
   </section>
 </Base>

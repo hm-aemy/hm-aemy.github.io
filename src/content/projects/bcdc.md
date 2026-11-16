@@ -1,6 +1,6 @@
 ---
 title: BCDC
-summary: Bavarian Chip Design Center for small and medium sized enterprises
+summary: RISC-V ISA extensions for DSP and crypto, interconnect generators, chip design access for SMEs
 end: 2028-12-31
 funding: State of Bavaria
 ---

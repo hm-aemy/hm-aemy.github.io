@@ -1,6 +1,6 @@
 ---
 title: ODE4EC-PIV
-summary: Productivity, interoperability and verification in open source EDA tools
+summary: "We lead design entry and flow integration: Spade, CIRCT and the Surfer waveform viewer"
 funding: Chips JU / BMFTR
 start: 2026-06-01
 end: 2029-05-31

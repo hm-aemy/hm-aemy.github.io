@@ -1,6 +1,6 @@
 ---
 title: DI-FITS
-summary: Formal IP integration specification and automation
+summary: Adapter-based IP integration and deriving the FITS intermediate representation from existing RTL
 funding: BMFTR
 start: 2026-02-01
 end: 2029-01-31

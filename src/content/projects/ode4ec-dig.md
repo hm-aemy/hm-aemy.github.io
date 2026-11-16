@@ -1,6 +1,6 @@
 ---
 title: ODE4EC-DIG
-summary: Open source tools for digital system-on-chip design
+summary: Faster, more robust LibreLane flows and arithmetic/DSP inference in CIRCT; we also lead community and dissemination
 funding: Chips JU / BMFTR
 start: 2026-06-01
 end: 2029-05-31

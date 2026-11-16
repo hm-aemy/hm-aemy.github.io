@@ -1,6 +1,6 @@
 ---
 title: DI-ININV
-summary: Incremental and interactive formal verification
+summary: "We lead: incremental model checking and interactive formal verification in Surfer"
 funding: BMFTR
 start: 2026-01-01
 end: 2028-12-31

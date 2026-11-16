@@ -1,6 +1,6 @@
 ---
 title: TIZIO – Transfer- und Innovationszentrum im Oberland 
-summary: Transfer and innovation center Oberland, lab for IoT prototyping
+summary: IoT prototyping lab in Bad Tölz, WebAssembly for embedded systems
 funding: State of Bavaria
 end: 2029-12-31
 ---

@@ -1,7 +1,7 @@
 ---
 title: Scale4Edge
-summary: Scalable RISC-V edge computing platform ecosystem
-funding: BMBF
+summary: Methodology for RISC-V instruction set extensions (SIZALIZER)
+funding: BMBF (now BMFTR)
 end: 2025-12-31
 status: completed
 ---

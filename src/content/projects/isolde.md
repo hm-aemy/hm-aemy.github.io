@@ -1,6 +1,6 @@
 ---
 title: ISOLDE
-summary: High performance RISC-V processing systems for European applications
+summary: WebAssembly acceleration on RISC-V and fault injection in Verilator
 funding: Chips JU
 end: 2026-10-31
 status: completed

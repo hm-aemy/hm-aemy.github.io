@@ -1,6 +1,6 @@
 ---
 title: DI-OSVISE
-summary: Open source verification of RISC-V instruction set extensions
+summary: "We lead: verification of RISC-V instruction set extensions, SVA/LTL support in CIRCT"
 funding: BMFTR
 end: 2027-04-30
 ---

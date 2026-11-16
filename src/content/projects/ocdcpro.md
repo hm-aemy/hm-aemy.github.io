@@ -1,6 +1,6 @@
 ---
 title: DI-OCDCpro
-summary: Open Chip Design Challenge prototype
+summary: "We run the Open Chip Design Challenge: learning goals, workshops and the challenge website"
 funding: BMFTR
 end: 2027-04-30
 ---
