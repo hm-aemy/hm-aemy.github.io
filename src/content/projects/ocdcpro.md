@@ -13,5 +13,5 @@ prototype (OCDCpro)* which is funded by the German Federal Ministry of Education
 The project runs from May 2024 to April 2027.
 
 <p class="funders">
-  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
+  <img alt="With funding from the Federal Ministry of Research, Technology and Space" src="/assets/img/bmftr-logo-en.png">
 </p>

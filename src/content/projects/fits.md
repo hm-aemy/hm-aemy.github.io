@@ -32,5 +32,5 @@ HM-AEMY leads three work areas:
 All results of the project will be open source.
 
 <p class="funders">
-  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
+  <img alt="With funding from the Federal Ministry of Research, Technology and Space" src="/assets/img/bmftr-logo-en.png">
 </p>
