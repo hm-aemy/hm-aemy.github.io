@@ -6,10 +6,13 @@ contact: stefan.wallentowitz@hm.edu
 apply: https://stellen.hm.edu/jobposting/54489e444806ce88546f4ee5fbde1cf55373bcef0
 ---
 
-We offer a full-time position (E13 TV-L, fixed-term for two years, PhD possible)
-in our team for current and upcoming European research projects in the area of
-open source chip design tools. Reference number: 07-06-26. Application deadline:
-December 3, 2026.
+We offer a full-time researcher position (potential to pursue a PhD) in our team
+for current and upcoming European research projects in the area of open source
+chip design tools. If you want to be on the forefront of open source chip design
+tools that lower the barrier of entry and democratize chip design, please apply!
+
+The position is in the E13 pay grade, fixed-term for two years in the first,
+Application deadline: December 3, 2026.
 
 Your tasks include:
 
