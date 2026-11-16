@@ -1,6 +1,6 @@
 ---
 title: DI-ININV
-summary: Incremental and interactive formal verification
+summary: "We lead: incremental model checking and interactive formal verification in Surfer"
 funding: BMFTR
 start: 2026-01-01
 end: 2028-12-31
@@ -30,6 +30,6 @@ the [OSS CAD Suite](https://github.com/YosysHQ/oss-cad-suite-build).
 
 ![DI-ININV poster at CDGF 2026](/assets/img/cdgf-2026-ininv-poster.png)
 
-<p>
-  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png" width="250">
+<p class="funders">
+  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
 </p>

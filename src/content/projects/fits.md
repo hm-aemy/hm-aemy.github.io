@@ -1,6 +1,6 @@
 ---
 title: DI-FITS
-summary: Formal IP integration specification and automation
+summary: Adapter-based IP integration and deriving the FITS intermediate representation from existing RTL
 funding: BMFTR
 start: 2026-02-01
 end: 2029-01-31
@@ -31,6 +31,6 @@ HM-AEMY leads three work areas:
 
 All results of the project will be open source.
 
-<p>
-  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png" width="250">
+<p class="funders">
+  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
 </p>

@@ -1,16 +1,18 @@
 ---
 title: ISOLDE
-summary: High performance RISC-V processing systems for European applications
-funding: Chips JU
+summary: WebAssembly acceleration on RISC-V and fault injection in Verilator
+funding: Chips JU / BMBF
+start: 2023-05-01
 end: 2026-10-31
 status: completed
 ---
 
-ISOLDE Project will have high performance RISC-V processing systems and
-platforms at least at TRL 7 for the vast majority of building blocks,
-demonstrated for key European application domains such as automotive, space and
-IoT with the expectation that two years after completion ISOLDE's high
-performance components will be used in industrial quality products.
+Our team was a partner in the European research project *ISOLDE*, which
+developed high performance RISC-V processing systems for European applications
+such as automotive, space and IoT. ISOLDE was funded by the Chips Joint
+Undertaking (grant agreement 101112274). The German share was funded by the
+BMBF (now BMFTR) under grant 16MEE0372. The project ran from May 2023 to
+October 2026.
 
 The AEMY team works on two major topics inside the ISOLDE project:
 
@@ -46,3 +48,9 @@ This performance is crucial, as a large space of different faults needs to be in
 Finally, we aim to adopt the existing user configurations in Verilator to ensure ease of use when creating user-specified fault injections.
 
 ![Project Target (Red represents injections of faults)](/assets/img/project-target-fi.png)
+
+<p class="funders">
+  <img alt="Co-funded by the European Union" src="/assets/img/eu-cofunded-en.png">
+  <img alt="Chips Joint Undertaking" src="/assets/img/chips-ju-logo.png">
+  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
+</p>

@@ -9,5 +9,8 @@ export default defineConfig({
   },
   redirects: {
     '/jobs': '/open-positions/',
+    // Topics merged in the topic restructuring
+    '/topics/formal-embedded': '/topics/verification',
+    '/topics/wasm4iot': '/topics/risc-v-extensions',
   },
 });
