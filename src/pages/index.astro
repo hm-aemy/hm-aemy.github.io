@@ -19,7 +19,6 @@ const postHref = (p: (typeof posts)[number]) =>
 // Latest updates: posts, cross-posts and jobs, by `updated` or date
 const latest = [
   ...posts.map((p) => ({ kind: 'News', title: p.data.title, href: postHref(p), date: p.data.updated ?? entryDate(p) })),
-  ...jobs.map((j) => ({ kind: 'Job', title: j.data.title, href: jobUrl(j), date: j.data.updated ?? entryDate(j) })),
 ].sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 4);
 
 const news = posts.slice(0, 4);
