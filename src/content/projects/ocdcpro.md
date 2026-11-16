@@ -12,6 +12,6 @@ prototype (OCDCpro)* which is funded by the German Federal Ministry of Education
 [open source EDA software program](https://www.elektronikforschung.de/foerderung/bekanntmachungen/design).
 The project runs from May 2024 to April 2027.
 
-<p>
-  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png" width="250">
+<p class="funders">
+  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
 </p>

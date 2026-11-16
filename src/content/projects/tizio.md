@@ -21,3 +21,7 @@ We also investigate concepts such as WebAssembly for embedded systems. As part o
 developing TWEED,  an efficient in-place interpreter that executes WebAssembly bytecode directly, 
 without first converting it into an intermediate representation. The current state can be found in 
 [TWEED](https://github.com/hm-aemy/tweed).
+
+<p class="funders">
+  <img alt="Bavarian State Ministry of Science and the Arts" src="/assets/img/stmwk-logo-en.png">
+</p>

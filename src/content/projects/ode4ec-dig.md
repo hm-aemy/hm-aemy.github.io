@@ -31,6 +31,8 @@ communication and dissemination, and community building.
 Read about the first ODE4EC meeting in our post
 [ODE4EC Meeting September 2026](/2026/10/14/ODE4EC-2026.html).
 
-<p>
-  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png" width="250">
+<p class="funders">
+  <img alt="Co-funded by the European Union" src="/assets/img/eu-cofunded-en.png">
+  <img alt="Chips Joint Undertaking" src="/assets/img/chips-ju-logo.png">
+  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png">
 </p>

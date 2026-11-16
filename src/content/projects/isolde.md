@@ -46,3 +46,8 @@ This performance is crucial, as a large space of different faults needs to be in
 Finally, we aim to adopt the existing user configurations in Verilator to ensure ease of use when creating user-specified fault injections.
 
 ![Project Target (Red represents injections of faults)](/assets/img/project-target-fi.png)
+
+<p class="funders">
+  <img alt="Co-funded by the European Union" src="/assets/img/eu-cofunded-en.png">
+  <img alt="Chips Joint Undertaking" src="/assets/img/chips-ju-logo.png">
+</p>

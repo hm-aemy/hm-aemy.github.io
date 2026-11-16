@@ -19,3 +19,7 @@ We have two projects in the BCDC, running from November 2024 to December 2028:
   DSP and cryptographic applications
 - Generators for hybrid on-chip and off-chip interconnects for
   application-specific workloads and QoS guarantees
+
+<p class="funders">
+  <img alt="Funded by the Bavarian State Ministry of Economic Affairs, Regional Development and Energy" src="/assets/img/stmwi-logo-en.jpg">
+</p>

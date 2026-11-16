@@ -323,3 +323,8 @@ pre.astro-code { background-color: var(--code-bg) !important; }
 .alumni .now { color: var(--text-2); }
 @media (max-width: 960px) { .alumni { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .alumni { grid-template-columns: 1fr; } }
+
+/* Funding logos on project pages */
+.funders { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+.funders img { height: 72px; width: auto; max-width: 100%; }
+.funders img[src*="bmftr"], .funders img[src*="stmwi"] { height: 120px; }
