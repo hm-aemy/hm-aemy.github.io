@@ -2,12 +2,15 @@
 title: DI-OSVISE
 summary: "We lead: verification of RISC-V instruction set extensions, SVA/LTL support in CIRCT"
 funding: BMFTR
+start: 2024-05-01
 end: 2027-04-30
 ---
 
 Our team leads the research project *Open Source Verification of Instruction Set
-Extensions (OSVISE)* which is funded by the German Ministry of Research and
-Education in their [open source EDA software program](https://www.elektronikforschung.de/foerderung/bekanntmachungen/design).
+Extensions (OSVISE)* which is funded by the German Federal Ministry of Education and Research
+(BMBF, now BMFTR) under grant 16ME0953K in its DE:Sign
+[open source EDA software program](https://www.elektronikforschung.de/foerderung/bekanntmachungen/design).
+The project runs from May 2024 to April 2027.
 
 Three work areas are covered by OSVISE:
 
