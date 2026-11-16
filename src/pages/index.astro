@@ -19,7 +19,6 @@ const postHref = (p: (typeof posts)[number]) =>
 // Latest updates: posts, cross-posts and jobs, by `updated` or date
 const latest = [
   ...posts.map((p) => ({ kind: 'News', title: p.data.title, href: postHref(p), date: p.data.updated ?? entryDate(p) })),
-  ...jobs.map((j) => ({ kind: 'Job', title: j.data.title, href: jobUrl(j), date: j.data.updated ?? entryDate(j) })),
 ].sort((a, b) => b.date.getTime() - a.date.getTime()).slice(0, 4);
 
 const news = posts.slice(0, 4);
@@ -76,12 +75,6 @@ const news = posts.slice(0, 4);
     <a class="more" href="/posts">All news →</a>
   </section>
 
-  <section class="wrap section">
-    <h2 class="section-title">Team</h2>
-    <People members={principals} />
-    <a class="more" href="/team">The whole team →</a>
-  </section>
-
   <section class="band">
     <div class="wrap section">
       <h2 class="section-title">Work with us</h2>
@@ -95,4 +88,11 @@ const news = posts.slice(0, 4);
       <PartnerCarousel />
     </div>
   </section>
+
+  <section class="wrap section">
+    <h2 class="section-title">Team</h2>
+    <People members={principals} />
+    <a class="more" href="/team">The whole team →</a>
+  </section>
+
 </Base>

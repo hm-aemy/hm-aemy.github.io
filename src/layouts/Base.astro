@@ -16,7 +16,7 @@ const path = Astro.url.pathname;
 const current = (href: string) => {
   const base = href.replace(/\/$/, '');
   if (base === '/posts') return path.startsWith('/posts') || /^\/\d{4}\//.test(path);
-  return path === href || path.startsWith(base + '/') || path === base + '.html';
+  return path === href || path === base || path.startsWith(base + '/') || path === base + '.html';
 };
 ---
 <!DOCTYPE html>
@@ -60,7 +60,7 @@ const current = (href: string) => {
         <span>{site.name}<small>{site.org}</small></span>
       </a>
       <nav class="site-nav" id="site-nav" aria-label="Main">
-        {navbar.map((l) => <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}
+        {navbar.map((l) => <a href={l.href} class={l.highlight ? 'nav-cta' : undefined} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}
       </nav>
       <div class="header-tools">
         <button class="theme-toggle" type="button" title="Switch light/dark mode">

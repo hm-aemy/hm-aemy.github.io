@@ -86,6 +86,10 @@ h1, h2, h3, h4 { font-weight: 400; letter-spacing: -0.01em; line-height: 1.15; }
 .site-nav { display: flex; gap: 28px; font-size: 16px; }
 .site-nav a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover, .site-nav a[aria-current] { border-color: var(--link); color: var(--ink); }
+.site-nav { align-items: center; }
+/* Highlighted entry (Open Positions): HM blue button */
+.site-nav a.nav-cta { background: var(--blue); color: #fff; padding: 8px 16px; border-bottom: 0; font-weight: 600; }
+.site-nav a.nav-cta:hover, .site-nav a.nav-cta[aria-current] { background: var(--blue-dark); color: #fff; }
 .nav-toggle { display: none; font: inherit; font-size: 15px; color: var(--ink); background: none; border: 1px solid var(--ink); padding: 8px 14px; cursor: pointer; }
 .header-tools { display: flex; align-items: center; gap: 12px; }
 .theme-toggle { font: inherit; font-size: 14px; color: var(--ink); background: none; border: 1px solid var(--line); padding: 6px 10px; cursor: pointer; line-height: 1; }
@@ -345,9 +349,8 @@ pre.astro-code { background-color: var(--code-bg) !important; }
 @media (max-width: 560px) { .alumni { grid-template-columns: 1fr; } }
 
 /* Funding logos on project pages */
-.funders { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+/* All funder logos bundled on one white, rounded panel, so logos with white
+   backgrounds blend in and the block also looks intentional in dark mode */
+.funders { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; width: fit-content; max-width: 100%; box-sizing: border-box; margin-top: 48px; padding: 20px 28px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
 .funders img { height: 72px; width: auto; max-width: 100%; }
-/* White, framed plate behind each logo: logos with white backgrounds look
-   intentional in dark mode and all logos get the same frame */
-.funders img { box-sizing: content-box; background: #fff; padding: 10px 14px; border: 1px solid var(--line); }
 .funders img[src*="bmftr"], .funders img[src*="stmwi"] { height: 120px; }
