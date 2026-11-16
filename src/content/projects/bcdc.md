@@ -6,7 +6,7 @@ end: 2028-12-31
 funding: Bavarian StMWi
 ---
 
-Our team is part of the Bavarian Chip Design Center (BCDC). The goal of the
+Our team is part of the [Bavarian Chip Design Center (BCDC)](https://www.iis.fraunhofer.de/en/ff/sse/bavarian-chip-design-center.html). The goal of the
 BCDC is to support local small and medium sized enterprises with accessing chip
 design. The project is lead by three Fraunhofer institutes, and a few leading
 Bavarian universities support the ambition with their research and technology
