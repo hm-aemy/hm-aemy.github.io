@@ -2,6 +2,6 @@
 name: Andreas Stadler
 position: Senior Researcher
 group: principals
-photo: missing_avatar.svg
+photo: andreas_stadler.jpg
 status: current
 ---
