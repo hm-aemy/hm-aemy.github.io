@@ -26,7 +26,7 @@ So the extension does the insertion of the *fault-site*, while the DPI does the 
 This also means the extension is not tied to one specific use case, even though we primarily use the term *fault*.
 The initial draft pull request for adding this extension to Verilator is
 [here](https://github.com/verilator/verilator/pull/6518).
-The version described in this post is submitted in a new [pull request](https://github.com/verilator/verilator/pull/...). <!--TODO-->
+The version described in this post is submitted in a new [pull request](https://github.com/verilator/verilator/pull/9248).
 
 
 ## Motivation: large-scale fault-injection campaigns
