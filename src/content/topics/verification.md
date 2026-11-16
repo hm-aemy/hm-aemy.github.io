@@ -1,10 +1,27 @@
 ---
-title: Formal Methods for Embedded Systems
-label: Formal Methods for Embedded Systems
-summary: Accessible formal verification of embedded systems that enables developers to develop safe and secure embedded software faster.
+title: Verification
+label: Verification
+summary: Formal, assertion-based and fault injection verification in open source tools, and formal methods that make embedded software safe and secure.
 color: yellow
-order: 4
+order: 3
 ---
+
+Open source chip design needs open source verification. Advanced verification
+methods such as SystemVerilog Assertions or formal model checking have long
+been available mainly in commercial tools. We bring them to the open source
+ecosystem:
+
+- SystemVerilog Assertions and linear temporal logic (SVA/LTL) in
+  [CIRCT](https://circt.llvm.org) ([DI-OSVISE](/projects/osvise))
+- Incremental model checking and interactive formal verification in the
+  waveform viewer [Surfer](https://surfer-project.org/)
+  ([DI-ININV](/projects/ininv))
+- Formal and scenario-based verification in open source EDA flows
+  ([ODE4EC-PIV](/projects/ode4ec-piv))
+- Instrumentation for fault injection in the simulator
+  [Verilator](https://verilator.org) ([ISOLDE](/projects/isolde))
+
+## Formal methods for embedded systems
 
 Formal methods can be key technology to ensure the reliable, correct and safe
 execution of embedded systems with their ever increasing complexity.
@@ -17,7 +34,7 @@ design, the AEMY team currently works on various topics, mostly around:
   systems and their startup code
 - New methods for formal verification of embedded floating point software
 
-## Formal Verification of Embedded Virtualization Technologies
+### Formal Verification of Embedded Virtualization Technologies
 
 [WebAssembly](https://webassembly.org/) (WASM) is a modern high-level virtual
 machine which looks promising for implementation on embedded systems. Due to its
@@ -52,9 +69,9 @@ efficiency. As our goal is the development of a big community of users, we also
 evaluate how optimizations and efficient implementation techniques can be
 realized in a verified interpreter.
 
-## Verification of Floating Point Algorithms on Embedded Systems
+### Verification of Floating Point Algorithms on Embedded Systems
 
-More an more software is used in safety critical domains. For systems like rail,
+More and more software is used in safety critical domains. For systems like rail,
 the necessary calculation involve mainly quadratic equations to compute safe
 braking curves. Such algorithms often use fixed point arithmetic because the
 required number ranges are rather small and uniform.
@@ -63,14 +80,14 @@ In more complex applications, e.g., advanced driver assistance systems (ADAS) in
 the automotive domains, require more complex calculations, often involving
 elementary function like trigonometry.
 
-These algorithms generally assume real numbers which are approximated as IEEE745
+These algorithms generally assume real numbers which are approximated as IEEE 754
 floating point values. Floating point has known challenges due to the finite
 approximation of infinitely many numbers. Many programmers are aware of some of
 the challenges, but it is very difficult to consider all possible
 pitfalls.
 
 Our goal is to develop verification methods which allow for guaranteeing the
-absence of systematic failures in floating point algorithms. IEEE754 is very
+absence of systematic failures in floating point algorithms. IEEE 754 is very
 difficult for some verification methods, e.g., deductive verification and
 abstract interpretation.
 
