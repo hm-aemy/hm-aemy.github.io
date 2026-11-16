@@ -2,7 +2,6 @@
 title: ODE4EC-PIV
 summary: Productivity, interoperability and verification in open source EDA tools
 funding: Chips JU / BMFTR
-role: Partner, work package lead
 start: 2026-06-01
 end: 2029-05-31
 ---
