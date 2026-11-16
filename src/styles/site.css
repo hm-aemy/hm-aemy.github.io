@@ -86,6 +86,10 @@ h1, h2, h3, h4 { font-weight: 400; letter-spacing: -0.01em; line-height: 1.15; }
 .site-nav { display: flex; gap: 28px; font-size: 16px; }
 .site-nav a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
 .site-nav a:hover, .site-nav a[aria-current] { border-color: var(--link); color: var(--ink); }
+.site-nav { align-items: center; }
+/* Highlighted entry (Open Positions): HM blue button */
+.site-nav a.nav-cta { background: var(--blue); color: #fff; padding: 8px 16px; border-bottom: 0; font-weight: 600; }
+.site-nav a.nav-cta:hover, .site-nav a.nav-cta[aria-current] { background: var(--blue-dark); color: #fff; }
 .nav-toggle { display: none; font: inherit; font-size: 15px; color: var(--ink); background: none; border: 1px solid var(--ink); padding: 8px 14px; cursor: pointer; }
 .header-tools { display: flex; align-items: center; gap: 12px; }
 .theme-toggle { font: inherit; font-size: 14px; color: var(--ink); background: none; border: 1px solid var(--line); padding: 6px 10px; cursor: pointer; line-height: 1; }

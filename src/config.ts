@@ -11,14 +11,14 @@ export const site = {
   github: 'https://github.com/hm-aemy',
 };
 
-// Main navigation
-export const navbar = [
+// Main navigation; `highlight` shows the entry as a button (call to action)
+export const navbar: { label: string; href: string; highlight?: boolean }[] = [
   { label: 'Topics', href: '/topics/' },
   { label: 'Projects', href: '/projects' },
   { label: 'Publications', href: '/publications' },
   { label: 'News', href: '/posts' },
-  { label: 'Open Positions', href: '/open-positions/' },
   { label: 'Team', href: '/team' },
+  { label: 'Open Positions', href: '/open-positions/', highlight: true },
 ];
 
 // Key partners, shown in the logo carousel on the home page (logos in public/assets/img/partners/).
