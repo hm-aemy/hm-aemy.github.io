@@ -60,7 +60,7 @@ const projects = defineCollection({
     role: z.string().optional(),
     start: z.coerce.date().optional(),
     end: z.coerce.date().optional(),
-    status: z.enum(['active', 'archived']).default('active'),
+    status: z.enum(['active', 'completed']).default('active'),
     ended: z.coerce.date().optional(),
   }),
 });

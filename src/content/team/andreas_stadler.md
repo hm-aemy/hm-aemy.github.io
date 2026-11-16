@@ -1,7 +1,7 @@
 ---
 name: Andreas Stadler
-position: PostDoc
+position: Senior Researcher
 group: principals
 photo: missing_avatar.svg
+status: current
 ---
-

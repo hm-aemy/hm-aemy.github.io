@@ -11,7 +11,7 @@ Lothstr. 34, 80335 München
 
 The HM Hochschule München University of Applied Sciences is a public
 institution that is legally represented by its President
-Prof. Dr. Martin Leitner, Lothstr. 34, D-80335 Munich.
+Prof. Dr. Sonja Munz, Lothstr. 34, D-80335 Munich.
 
 Value Added Tax Identification Number, in accordance with § 27 of the
 Value Added Tax Act (Umsatzsteuergesetz – UStG): DE 235 059 152

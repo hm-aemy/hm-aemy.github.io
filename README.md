@@ -13,7 +13,7 @@ the build check validates the front matter and Netlify posts a preview link.
 | Cross-post (external blog) | `src/content/posts/YYYY-MM-DD-slug.md` | `layout: cross-post`, `title`, `author`, `date`, `source`, `external_url` |
 | Job / thesis posting | `src/content/jobs/YYYY-MM-DD-slug.md` | `title`, `tag` (`staff`, `master`, `bachelor`, `student-assistant`), `contact`, optional `apply` |
 | Team member | `src/content/team/first_last.md` + photo in `public/assets/img/` | `name`, `position`, `group` (`principals`, `phdstudents`, `students`), `photo`; for former members `status: alumni`, optional `until` (year) and `now` (current position) |
-| Project page | `src/content/projects/name.md` | `title`, `summary` (one line for the project table), optional `funding`, `role`, `start`, `end`, `status: archived`, `ended` |
+| Project page | `src/content/projects/name.md` | `title`, `summary` (one line for the project table), optional `funding`, `role`, `start`, `end`, `status: completed`, `ended` |
 | Topic page | `src/content/topics/name.md` | `title`, `label` (short name), `summary`, `color` (`green`, `blue`, `red`, `yellow`), `order` |
 | Publication | `src/data/publications.bib` | BibTeX entry |
 
