@@ -1,5 +1,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 
+export type Project = CollectionEntry<'projects'>;
+
 export type Post = CollectionEntry<'posts'>;
 export type Job = CollectionEntry<'jobs'>;
 
@@ -77,4 +79,39 @@ export function excerpt(body: string | undefined, words = 50): { text: string; m
     text: truncated ? list.slice(0, words).join(' ') + '...' : text,
     more: truncated || rest.join('').trim().length > 0,
   };
+}
+
+/** Teaser image: front matter `image`, else the first /assets image in the post body. */
+export function postImage(post: Post): string | undefined {
+  if (post.data.image) return post.data.image;
+  const m = (post.body ?? '').match(/(?:\]\(|src=")(\/assets\/[^)"\s]+\.(?:png|jpe?g|webp|gif))/i);
+  return m?.[1];
+}
+
+export async function getTopics() {
+  return (await getCollection('topics')).sort((a, b) => a.data.order - b.data.order);
+}
+
+const endTime = (p: Project) => (p.data.ended ?? p.data.end)?.getTime() ?? Infinity;
+
+/** Projects, running ones first; within each group the latest ending first. */
+export async function getProjects() {
+  const all = (await getCollection('projects')).sort((a, b) => endTime(b) - endTime(a) || a.data.title.localeCompare(b.data.title));
+  return {
+    active: all.filter((p) => p.data.status !== 'archived'),
+    archived: all.filter((p) => p.data.status === 'archived'),
+  };
+}
+
+export function runtime(p: Project): string {
+  const start = p.data.start?.getUTCFullYear();
+  const end = (p.data.ended ?? p.data.end)?.getUTCFullYear();
+  if (start && end) return `${start}–${end}`;
+  if (end) return p.data.status === 'archived' ? `ended ${end}` : `until ${end}`;
+  return '';
+}
+
+/** Short, human date: 15 Nov 2026 */
+export function longDate(d: Date): string {
+  return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
 }

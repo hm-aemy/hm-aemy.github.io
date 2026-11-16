@@ -1,5 +1,9 @@
 ---
 title: Open Source Chip Design
+label: Open Source Chip Design Tools
+summary: Open source chip design tools as an enablement for a resilient sovereign chip design ecosystem and future innovative tools.
+color: blue
+order: 2
 ---
 
 Open Source tools for chip design have seen an incredible boost over the last

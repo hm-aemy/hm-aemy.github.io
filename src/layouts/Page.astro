@@ -3,44 +3,32 @@ import Base from './Base.astro';
 
 interface Props {
   title: string;
-  subtitle?: string;
+  kicker?: string;
+  kickerHref?: string;
+  lead?: string;
   description?: string;
   article?: { author?: string; published?: Date };
+  bodyClass?: string;
+  /** Wrap the slot in .prose (long-form text) */
+  prose?: boolean;
   // Markdown pages in src/pages pass their front matter here
   frontmatter?: { title: string; subtitle?: string; description?: string };
 }
 const fm = Astro.props.frontmatter;
 const title = fm?.title ?? Astro.props.title;
-const subtitle = fm?.subtitle ?? Astro.props.subtitle;
-const description = fm?.description ?? Astro.props.description;
-const { article } = Astro.props;
+const lead = fm?.subtitle ?? Astro.props.lead;
+const description = fm?.description ?? Astro.props.description ?? lead;
+const { kicker, kickerHref, article, bodyClass } = Astro.props;
+const prose = Astro.props.prose ?? !!fm;
 ---
-<Base title={title} description={description} article={article}>
-  <header class="header-section">
-    <div class="intro-header">
-      <div class="container-md">
-        <div class="row">
-          <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-            <div class="page-heading">
-              <h1>{title}</h1>
-              {subtitle && (
-                <>
-                  <hr class="small">
-                  <span class="page-subheading">{subtitle}</span>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="container-md">
-    <div class="row">
-      <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-        <slot />
-      </div>
-    </div>
-  </main>
+<Base title={title} description={description} article={article} bodyClass={bodyClass}>
+  <div class="wrap page-head">
+    {kicker && <p class="kicker">{kickerHref ? <a href={kickerHref}>{kicker}</a> : kicker}</p>}
+    <h1>{title}</h1>
+    {lead && <p class="lead">{lead}</p>}
+    <slot name="head" />
+  </div>
+  <div class="wrap">
+    {prose ? <div class="prose"><slot /></div> : <slot />}
+  </div>
 </Base>

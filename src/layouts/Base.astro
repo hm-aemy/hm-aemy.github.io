@@ -1,41 +1,41 @@
 ---
-import Nav from '../components/Nav.astro';
-import { site } from '../config';
+import '../styles/site.css';
+import { navbar, site } from '../config';
 
 interface Props {
   title?: string;
   description?: string;
   article?: { author?: string; published?: Date };
+  bodyClass?: string;
 }
-const { title, description = '', article } = Astro.props;
-const pageTitle = title || site.title;
+const { title, description = '', article, bodyClass } = Astro.props;
+const pageTitle = title ? `${title} · ${site.title}` : `${site.title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname.replace(/index\.html$/, ''), Astro.site);
-const image = new URL(site.avatar, Astro.site);
-
-const css = [
-  '/assets/css/bootstrap.min.css',
-  '/assets/css/bootstrap-social.css',
-  '/assets/css/beautifuljekyll.css',
-  '/assets/css/google-fonts-open-sans.css',
-  '/assets/css/google-fonts-lora.css',
-  '/assets/css/fontawesome.css',
-  '/assets/css/aemy.css',
-  '/assets/css/hmcolors.css',
-  '/assets/css/job-print.css',
-];
+const image = new URL(site.shareImage, Astro.site);
+const path = Astro.url.pathname;
+const current = (href: string) => {
+  const base = href.replace(/\/$/, '');
+  if (base === '/posts') return path.startsWith('/posts') || /^\/\d{4}\//.test(path);
+  return path === href || path.startsWith(base + '/') || path === base + '.html';
+};
 ---
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="/assets/img/favicon.ico">
   <title>{pageTitle}</title>
   {article?.author && <meta name="author" content={article.author}>}
   <meta name="description" content={description}>
-  {css.map((href) => <link rel="stylesheet" href={href}>)}
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <script is:inline>
+    // Apply a saved theme choice before the first paint (no flash)
+    try { var t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+  </script>
   <meta property="og:site_name" content={site.title}>
-  <meta property="og:title" content={pageTitle}>
+  <meta property="og:title" content={title ?? site.title}>
   <meta property="og:description" content={description}>
   <meta property="og:image" content={image}>
   {article ? (
@@ -50,29 +50,64 @@ const css = [
   <meta property="og:url" content={canonical}>
   <link rel="canonical" href={canonical}>
   <meta name="twitter:card" content="summary">
-  <meta property="twitter:title" content={pageTitle}>
-  <meta property="twitter:description" content={description}>
-  <meta name="twitter:image" content={image}>
 </head>
-<body>
-  <Nav />
-
-  <slot />
-
-  <footer>
-    <div class="container-md beautiful-jekyll-footer">
-      <div class="row">
-        <div class="col-xl-8 offset-xl-2 col-lg-10 offset-lg-1">
-          <p class="theme-by text-muted">
-            <a href="/legal">Legal & Privacy Notice</a>
-          </p>
-        </div>
+<body class={bodyClass}>
+  <a class="skip" href="#content">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">
+        <img src={site.logo} alt="AEMY" width="69" height="44">
+        <span>{site.name}<small>{site.org}</small></span>
+      </a>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        {navbar.map((l) => <a href={l.href} aria-current={current(l.href) ? 'page' : undefined}>{l.label}</a>)}
+      </nav>
+      <div class="header-tools">
+        <button class="theme-toggle" type="button" title="Switch light/dark mode">
+          <span class="t-light" aria-hidden="true">☾</span><span class="t-dark" aria-hidden="true">☀</span>
+          <span class="label"><span class="t-light">Dark</span><span class="t-dark">Light</span></span>
+        </button>
+        <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false">Menu</button>
       </div>
+    </div>
+  </header>
+
+  <main id="content">
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <p><b>AEMY</b> · {site.address}</p>
+      <nav aria-label="Footer">
+        <a href={`mailto:${site.contact}`}>Contact</a>
+        <a href={site.github}>GitHub</a>
+        <a href="/legal">Legal &amp; Privacy</a>
+      </nav>
     </div>
   </footer>
 
-  <script is:inline src="/assets/js/bootstrap.bundle.min.js"></script>
-  <script is:inline src="/assets/js/jquery-3.5.1.slim.min.js"></script>
-  <script is:inline src="/assets/js/beautifuljekyll.js"></script>
+  <script is:inline>
+    (function () {
+      var root = document.documentElement, mq = window.matchMedia('(prefers-color-scheme: dark)');
+      var tt = document.querySelector('.theme-toggle');
+      function isDark() { return root.dataset.theme ? root.dataset.theme === 'dark' : mq.matches; }
+      function label() { tt.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode'); }
+      tt.addEventListener('click', function () {
+        var next = isDark() ? 'light' : 'dark';
+        // Back to "follow the system" when the choice matches the system setting
+        if ((next === 'dark') === mq.matches) { delete root.dataset.theme; try { localStorage.removeItem('theme'); } catch (e) {} }
+        else { root.dataset.theme = next; try { localStorage.setItem('theme', next); } catch (e) {} }
+        label();
+      });
+      mq.addEventListener('change', label);
+      label();
+      var b = document.querySelector('.nav-toggle'), n = document.getElementById('site-nav');
+      b.addEventListener('click', function () {
+        var open = n.classList.toggle('open');
+        b.setAttribute('aria-expanded', open);
+      });
+    })();
+  </script>
 </body>
 </html>

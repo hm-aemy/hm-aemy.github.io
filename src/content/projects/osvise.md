@@ -1,5 +1,9 @@
 ---
 title: DI-OSVISE
+summary: Open source verification of RISC-V instruction set extensions
+funding: BMFTR
+role: Coordinator
+end: 2027-04-30
 ---
 
 Our team leads the research project *Open Source Verification of Instruction Set

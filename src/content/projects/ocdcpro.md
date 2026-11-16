@@ -1,5 +1,9 @@
 ---
 title: DI-OCDCpro
+summary: Open Chip Design Challenge prototype
+funding: BMFTR
+role: Partner
+end: 2027-04-30
 ---
 
 Our team is involved in the research project *Open Chip Design Challenge

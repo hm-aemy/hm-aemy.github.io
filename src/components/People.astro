@@ -1,0 +1,19 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { members: CollectionEntry<'team'>[]; hiring?: boolean }
+const { members, hiring = true } = Astro.props;
+---
+<div class="people">
+  {members.map((m) => (
+    <figure>
+      <img src={`/assets/img/${m.data.photo}`} alt={`Photo of ${m.data.name}`}>
+      <figcaption><b>{m.data.name}</b>{m.data.position}</figcaption>
+    </figure>
+  ))}
+  {hiring && (
+    <figure>
+      <div class="you" aria-hidden="true">?</div>
+      <figcaption><b>You?</b><a href="/open-positions/">We are hiring</a></figcaption>
+    </figure>
+  )}
+</div>

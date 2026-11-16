@@ -1,42 +1,30 @@
 ---
 import Page from '../../layouts/Page.astro';
-import { getJobs, jobUrl } from '../../lib/content';
+import { getJobs, jobUrl, entryDate, longDate, excerpt } from '../../lib/content';
 
 const jobs = await getJobs();
-const byTag = (tag: string) => jobs.filter((j) => j.data.tag === tag);
-const staff = byTag('staff');
-const master = byTag('master');
-const bachelor = byTag('bachelor');
-const assistant = byTag('student-assistant');
+const groups = [
+  { tag: 'staff', title: 'Research staff positions' },
+  { tag: 'master', title: "Master's theses" },
+  { tag: 'bachelor', title: "Bachelor's theses" },
+  { tag: 'student-assistant', title: 'Student assistant jobs' },
+].map((g) => ({ ...g, jobs: jobs.filter((j) => j.data.tag === g.tag) })).filter((g) => g.jobs.length);
 ---
-<Page title="Open Positions">
-  {staff.length > 0 && (
+<Page title="Open Positions" lead="Join us as a researcher, write your thesis with us or work as a student assistant. Questions? Write to the contact listed in each posting.">
+  {groups.map((g) => (
     <>
-      <h2 id="research-staff-positions">Research Staff Positions</h2>
-      <ul>{staff.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
+      <h2 class="group-title" id={g.tag}>{g.title}</h2>
+      <ul class="entries no-thumb">
+        {g.jobs.map((j) => (
+          <li>
+            <time datetime={entryDate(j).toISOString().slice(0, 10)}>{longDate(entryDate(j))}</time>
+            <div>
+              <h3><a href={jobUrl(j)}>{j.data.title}</a></h3>
+              <p>{excerpt(j.body, 30).text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
     </>
-  )}
-
-  {(master.length > 0 || bachelor.length > 0) && <h2 id="theses">Theses</h2>}
-
-  {master.length > 0 && (
-    <>
-      <h3 id="masters-theses">Master's Theses</h3>
-      <ul>{master.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
-    </>
-  )}
-
-  {bachelor.length > 0 && (
-    <>
-      <h3 id="bachelors-theses">Bachelor's Theses</h3>
-      <ul>{bachelor.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
-    </>
-  )}
-
-  {assistant.length > 0 && (
-    <>
-      <h2 id="student-assistant-jobs">Student Assistant Jobs</h2>
-      <ul>{assistant.map((j) => <li><a href={jobUrl(j)}>{j.data.title}</a></li>)}</ul>
-    </>
-  )}
+  ))}
 </Page>

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Page from '../../layouts/Page.astro';
+import { runtime } from '../../lib/content';
 
 export async function getStaticPaths() {
   const projects = await getCollection('projects');
@@ -8,5 +9,19 @@ export async function getStaticPaths() {
 }
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const d = entry.data;
+const time = runtime(entry);
 ---
-<Page title={entry.data.title} subtitle={entry.data.subtitle}><Content /></Page>
+<Page title={d.title} kicker={d.status === 'archived' ? 'Archived project' : 'Project'} kickerHref="/projects" lead={d.summary}>
+  <div class="with-aside">
+    <div class="prose"><Content /></div>
+    <aside class="facts">
+      <dl>
+        {d.role && <><dt>Our role</dt><dd>{d.role}</dd></>}
+        {d.funding && <><dt>Funding</dt><dd>{d.funding}</dd></>}
+        {time && <><dt>Runtime</dt><dd>{time}</dd></>}
+        <dt>Status</dt><dd>{d.status === 'archived' ? 'Completed' : 'Running'}</dd>
+      </dl>
+    </aside>
+  </div>
+</Page>

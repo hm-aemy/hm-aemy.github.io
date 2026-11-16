@@ -1,26 +1,20 @@
 ---
 import { getCollection } from 'astro:content';
 import Page from '../layouts/Page.astro';
-import TeamMember from '../components/TeamMember.astro';
+import People from '../components/People.astro';
 
 const team = (await getCollection('team')).sort((a, b) => a.id.localeCompare(b.id));
 const groups = [
-  { key: 'principals', title: 'Principals, Senior Researchers' },
-  { key: 'phdstudents', title: 'Doctoral Candidates' },
+  { key: 'principals', title: 'Principals and senior researchers' },
+  { key: 'phdstudents', title: 'Doctoral candidates' },
   { key: 'students', title: 'Students' },
 ];
-const hiring = "<a href='/open-positions/'>We are hiring!</a>";
 ---
 <Page title="Team">
   {groups.map((g) => (
-    <>
-      <h2 class="mb-4">{g.title}</h2>
-      <div class="row">
-        {team.filter((m) => m.data.group === g.key).map((m) => (
-          <TeamMember photo={m.data.photo} name={m.data.name} position={m.data.position} />
-        ))}
-        <TeamMember photo="question_mark.svg" name="You?" position={hiring} />
-      </div>
-    </>
+    <section class="section first">
+      <h2 class="section-title">{g.title}</h2>
+      <People members={team.filter((m) => m.data.group === g.key)} />
+    </section>
   ))}
 </Page>

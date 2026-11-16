@@ -1,39 +1,26 @@
 ---
 import Page from '../layouts/Page.astro';
-import { getPosts, entryDate, postUrl, formatDate, excerpt } from '../lib/content';
+import { getPosts, entryDate, postUrl, postImage, excerpt, longDate } from '../lib/content';
 
 const posts = await getPosts();
 ---
-<Page title="Posts">
-  <ul class="posts-list list-unstyled" role="list">
+<Page title="News" lead="Project updates, conference visits, tools and results from the AEMY group.">
+  <ul class="entries">
     {posts.map((post) => {
       const d = post.data;
-      const ex = excerpt(post.body);
       const cross = d.layout === 'cross-post';
+      const href = cross && d.external_url ? d.external_url : postUrl(post);
+      const img = postImage(post);
       return (
-        <li class="post-preview">
-          <article>
-            {cross ? (
-              <a href={d.external_url}>
-                <h2 class="cross-post-title">{d.source}: {d.title}</h2>
-              </a>
-            ) : (
-              <a href={postUrl(post)}>
-                <h2 class="post-title">{d.title}{d.updated && ' [Updated]'}</h2>
-                {d.subtitle && <h3 class="post-subtitle">{d.subtitle}</h3>}
-              </a>
-            )}
-            {d.author && <span>By <strong>{d.author}</strong></span>}
-            <p class="post-meta">Posted on {formatDate(entryDate(post))}</p>
-            <div class="post-entry">
-              {ex.text}
-              {cross ? (
-                <a href={d.external_url} class="post-read-more" set:html={`[View&nbsp;on&nbsp;${d.source}]`} />
-              ) : (
-                ex.more && <a href={postUrl(post)} class="post-read-more" set:html="[Read&nbsp;More]" />
-              )}
-            </div>
-          </article>
+        <li>
+          <time datetime={entryDate(post).toISOString().slice(0, 10)}>{longDate(entryDate(post))}</time>
+          <div>
+            {cross && <span class="tag">{d.source}</span>}
+            <h3><a href={href}>{d.title}</a></h3>
+            {d.author && <span class="by">By {d.author}{d.updated && ` · Updated ${longDate(d.updated)}`}</span>}
+            <p>{excerpt(post.body, 40).text}</p>
+          </div>
+          <div>{img && <img src={img} alt="" loading="lazy">}</div>
         </li>
       );
     })}

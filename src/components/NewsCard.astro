@@ -1,0 +1,13 @@
+---
+import { longDate } from '../lib/content';
+interface Props { href: string; title: string; date: Date; kind: string; image?: string }
+const { href, title, date, kind, image } = Astro.props;
+---
+<a class="card" href={href}>
+  {image
+    ? <img class="thumb" src={image} alt="" loading="lazy">
+    : <span class="thumb thumb-none" aria-hidden="true"><span class="sq"></span></span>}
+  <time datetime={date.toISOString().slice(0, 10)}>{longDate(date)}</time>
+  <h3>{title}</h3>
+  <span class="tag">{kind}</span>
+</a>
