@@ -43,6 +43,10 @@ const team = defineCollection({
     position: z.string(),
     group: z.enum(['principals', 'phdstudents', 'students']),
     photo: z.string(),
+    // Former members: status alumni, optional year they left and where they are now
+    status: z.enum(['current', 'alumni']).default('current'),
+    until: z.number().int().optional(),
+    now: z.string().optional(),
   }),
 });
 
