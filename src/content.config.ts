@@ -57,7 +57,6 @@ const projects = defineCollection({
     // One line for the project table
     summary: z.string(),
     funding: z.string().optional(),
-    role: z.string().optional(),
     start: z.coerce.date().optional(),
     end: z.coerce.date().optional(),
     status: z.enum(['active', 'completed']).default('active'),

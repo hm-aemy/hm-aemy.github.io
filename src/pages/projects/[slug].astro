@@ -17,7 +17,6 @@ const time = runtime(entry);
     <div class="prose"><Content /></div>
     <aside class="facts">
       <dl>
-        {d.role && <><dt>Our role</dt><dd>{d.role}</dd></>}
         {d.funding && <><dt>Funding</dt><dd>{d.funding}</dd></>}
         {time && <><dt>Runtime</dt><dd>{time}</dd></>}
         <dt>Status</dt><dd>{d.status === 'completed' ? 'Completed' : 'Running'}</dd>

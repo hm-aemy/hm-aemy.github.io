@@ -2,7 +2,6 @@
 title: ODE4EC-DIG
 summary: Open source tools for digital system-on-chip design
 funding: Chips JU / BMFTR
-role: Partner
 start: 2026-06-01
 end: 2029-05-31
 ---
