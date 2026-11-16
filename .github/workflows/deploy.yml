@@ -29,6 +29,14 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - name: Check for files in old Jekyll folders
+        # Files there are silently ignored by Astro and never published
+        run: |
+          old=$(ls -d _posts _team _bibliography open-positions/_posts projects topics assets 2>/dev/null || true)
+          if [ -n "$old" ]; then
+            echo "::error::Move these to the Astro folders (see README): $old"
+            exit 1
+          fi
       - name: Install dependencies
         run: npm ci
       - name: Build with Astro
