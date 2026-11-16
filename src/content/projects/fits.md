@@ -2,7 +2,6 @@
 title: DI-FITS
 summary: Formal IP integration specification and automation
 funding: BMFTR
-role: Partner
 start: 2026-02-01
 end: 2029-01-31
 ---

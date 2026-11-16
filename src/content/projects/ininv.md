@@ -2,7 +2,6 @@
 title: DI-ININV
 summary: Incremental and interactive formal verification
 funding: BMFTR
-role: Coordinator
 start: 2026-01-01
 end: 2028-12-31
 ---

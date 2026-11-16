@@ -1,7 +1,6 @@
 ---
 title: BCDC
 summary: Bavarian Chip Design Center for small and medium sized enterprises
-role: Partner
 end: 2028-12-31
 funding: State of Bavaria
 ---
