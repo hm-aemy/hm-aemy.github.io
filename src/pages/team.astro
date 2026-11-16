@@ -4,6 +4,11 @@ import Page from '../layouts/Page.astro';
 import People from '../components/People.astro';
 
 const team = (await getCollection('team')).sort((a, b) => a.id.localeCompare(b.id));
+const current = team.filter((m) => m.data.status === 'current');
+// Alumni: most recently left first
+const alumni = team
+  .filter((m) => m.data.status === 'alumni')
+  .sort((a, b) => (b.data.until ?? 0) - (a.data.until ?? 0) || a.id.localeCompare(b.id));
 const groups = [
   { key: 'principals', title: 'Principals and senior researchers' },
   { key: 'phdstudents', title: 'Doctoral candidates' },
@@ -14,7 +19,22 @@ const groups = [
   {groups.map((g) => (
     <section class="section first">
       <h2 class="section-title">{g.title}</h2>
-      <People members={team.filter((m) => m.data.group === g.key)} />
+      <People members={current.filter((m) => m.data.group === g.key)} />
     </section>
   ))}
+
+  {alumni.length > 0 && (
+    <section class="section first" id="alumni">
+      <h2 class="section-title">Alumni</h2>
+      <ul class="alumni">
+        {alumni.map((m) => (
+          <li>
+            <b>{m.data.name}</b>
+            <span>{m.data.position}{m.data.until && `, until ${m.data.until}`}</span>
+            {m.data.now && <span class="now">Now: {m.data.now}</span>}
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 </Page>

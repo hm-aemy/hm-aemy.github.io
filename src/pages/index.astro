@@ -10,7 +10,7 @@ const posts = await getPosts();
 const jobs = await getJobs();
 const topics = await getTopics();
 const { active } = await getProjects();
-const principals = (await getCollection('team')).filter((m) => m.data.group === 'principals').sort((a, b) => a.id.localeCompare(b.id));
+const principals = (await getCollection('team')).filter((m) => m.data.group === 'principals' && m.data.status === 'current').sort((a, b) => a.id.localeCompare(b.id));
 
 const postHref = (p: (typeof posts)[number]) =>
   p.data.layout === 'cross-post' && p.data.external_url ? p.data.external_url : postUrl(p);
