@@ -58,3 +58,7 @@ Additionally, a link to [yosys](https://github.com/YosysHQ/yosys) and
 [Verilator](https://www.veripool.org/verilator/), two widely used open source
 tools for synthesis and simulation is created to make use of the new
 functionalities.
+
+<p>
+  <img alt="Gefördert durch: Bundesministerium für Forschung, Technologie und Raumfahrt" src="/assets/img/bmftr-logo.png" width="250">
+</p>
