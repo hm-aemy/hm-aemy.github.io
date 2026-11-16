@@ -1,0 +1,73 @@
+---
+import Page from './Page.astro';
+import { site } from '../config';
+import { excerpt, type Job } from '../lib/content';
+
+interface Props { job: Job; url: string }
+const { job, url } = Astro.props;
+const d = job.data;
+const pageUrl = new URL(url, site.url).toString();
+---
+<Page title={d.title} description={excerpt(job.body).text}>
+  <div class="job-print-header">
+    <img src="/assets/img/hm-logo.png" alt="Hochschule München University of Applied Sciences">
+    <img src="/assets/img/aemy.svg" alt="AEMY">
+  </div>
+
+  <h1 class="job-print-title">{d.title}</h1>
+
+  <p class="job-print-intro">
+    Hochschule München is among the largest German universities of applied sciences,
+    located at the heart of Munich, Germany. The working group "AEMY" focuses on
+    safe, secure and smart systems. Our main working areas include RISC-V processor
+    design, WebAssembly runtime development and open source chip design tools.
+  </p>
+
+  <div class="job-content">
+    <slot />
+  </div>
+
+  <div class="container text-center job-links">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-4">
+        <a href={`mailto:${d.contact}`}><i class="fa fa-2x fa-send"></i> Get in touch to learn more</a>
+      </div>
+      {d.apply && (
+        <div class="col col-lg-4">
+          <a href={d.apply}><i class="fa fa-2x fa-user"></i> Apply Now</a>
+        </div>
+      )}
+      <div class="col col-lg-4">
+        <a href="#" onclick="window.print(); return false;"><i class="fa fa-2x fa-print"></i> Print / save as PDF</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="job-print-footer">
+    {d.apply && (
+      <div class="job-print-apply">
+        <strong>Apply now!</strong><br>
+        <code>{d.apply}</code>
+      </div>
+    )}
+    <div class="job-print-contact">
+      <div>
+        If you are interested, please get in touch:<br>
+        {d.contact}<br><br>
+        Find more on our website:<br>
+        {site.url}
+      </div>
+      <div class="job-print-qr" data-url={pageUrl}></div>
+    </div>
+  </div>
+
+  <script is:inline src="/assets/js/qrcode.js"></script>
+  <script is:inline>
+    document.querySelectorAll('.job-print-qr').forEach(function (el) {
+      var qr = qrcode(0, 'M');
+      qr.addData(el.dataset.url);
+      qr.make();
+      el.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true });
+    });
+  </script>
+</Page>

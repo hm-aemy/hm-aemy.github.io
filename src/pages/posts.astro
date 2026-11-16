@@ -1,0 +1,41 @@
+---
+import Page from '../layouts/Page.astro';
+import { getPosts, entryDate, postUrl, formatDate, excerpt } from '../lib/content';
+
+const posts = await getPosts();
+---
+<Page title="Posts">
+  <ul class="posts-list list-unstyled" role="list">
+    {posts.map((post) => {
+      const d = post.data;
+      const ex = excerpt(post.body);
+      const cross = d.layout === 'cross-post';
+      return (
+        <li class="post-preview">
+          <article>
+            {cross ? (
+              <a href={d.external_url}>
+                <h2 class="cross-post-title">{d.source}: {d.title}</h2>
+              </a>
+            ) : (
+              <a href={postUrl(post)}>
+                <h2 class="post-title">{d.title}{d.updated && ' [Updated]'}</h2>
+                {d.subtitle && <h3 class="post-subtitle">{d.subtitle}</h3>}
+              </a>
+            )}
+            {d.author && <span>By <strong>{d.author}</strong></span>}
+            <p class="post-meta">Posted on {formatDate(entryDate(post))}</p>
+            <div class="post-entry">
+              {ex.text}
+              {cross ? (
+                <a href={d.external_url} class="post-read-more" set:html={`[View&nbsp;on&nbsp;${d.source}]`} />
+              ) : (
+                ex.more && <a href={postUrl(post)} class="post-read-more" set:html="[Read&nbsp;More]" />
+              )}
+            </div>
+          </article>
+        </li>
+      );
+    })}
+  </ul>
+</Page>

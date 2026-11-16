@@ -1,5 +1,4 @@
+node_modules/
+dist/
+.astro/
 .history
-vendor/
-_site/
-.bundle
-_config_preview.yml

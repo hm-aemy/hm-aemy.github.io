@@ -1,0 +1,16 @@
+---
+import { render } from 'astro:content';
+import JobLayout from '../../../../../layouts/JobLayout.astro';
+import { getJobs, datePath, jobUrl } from '../../../../../lib/content';
+
+export async function getStaticPaths() {
+  const jobs = await getJobs();
+  return jobs.map((job) => {
+    const p = datePath(job);
+    return { params: { year: p.year, month: p.month, day: p.day, slug: p.slug }, props: { job } };
+  });
+}
+const { job } = Astro.props;
+const { Content } = await render(job);
+---
+<JobLayout job={job} url={jobUrl(job)}><Content /></JobLayout>

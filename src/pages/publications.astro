@@ -1,0 +1,19 @@
+---
+import Page from '../layouts/Page.astro';
+import { publications } from '../lib/bibliography';
+
+const pubs = publications();
+const years = [...new Set(pubs.map((p) => p.year))].filter((y) => y >= 2021).sort((a, b) => b - a);
+---
+<Page title="Publications">
+  {years.map((year) => (
+    <>
+      <h2 id={String(year)}>{year}</h2>
+      <div class="bibliography">
+        {pubs.filter((p) => p.year === year).map((p) => (
+          <p id={p.id} set:html={p.html} />
+        ))}
+      </div>
+    </>
+  ))}
+</Page>
