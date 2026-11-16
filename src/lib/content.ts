@@ -98,8 +98,8 @@ const endTime = (p: Project) => (p.data.ended ?? p.data.end)?.getTime() ?? Infin
 export async function getProjects() {
   const all = (await getCollection('projects')).sort((a, b) => endTime(b) - endTime(a) || a.data.title.localeCompare(b.data.title));
   return {
-    active: all.filter((p) => p.data.status !== 'archived'),
-    archived: all.filter((p) => p.data.status === 'archived'),
+    active: all.filter((p) => p.data.status !== 'completed'),
+    completed: all.filter((p) => p.data.status === 'completed'),
   };
 }
 
@@ -107,7 +107,7 @@ export function runtime(p: Project): string {
   const start = p.data.start?.getUTCFullYear();
   const end = (p.data.ended ?? p.data.end)?.getUTCFullYear();
   if (start && end) return `${start}–${end}`;
-  if (end) return p.data.status === 'archived' ? `ended ${end}` : `until ${end}`;
+  if (end) return p.data.status === 'completed' ? `ended ${end}` : `until ${end}`;
   return '';
 }
 

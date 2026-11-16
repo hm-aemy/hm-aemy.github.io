@@ -12,7 +12,7 @@ const { Content } = await render(entry);
 const d = entry.data;
 const time = runtime(entry);
 ---
-<Page title={d.title} kicker={d.status === 'archived' ? 'Archived project' : 'Project'} kickerHref="/projects" lead={d.summary}>
+<Page title={d.title} kicker={d.status === 'completed' ? 'Completed project' : 'Project'} kickerHref="/projects" lead={d.summary}>
   <div class="with-aside">
     <div class="prose"><Content /></div>
     <aside class="facts">
@@ -20,7 +20,7 @@ const time = runtime(entry);
         {d.role && <><dt>Our role</dt><dd>{d.role}</dd></>}
         {d.funding && <><dt>Funding</dt><dd>{d.funding}</dd></>}
         {time && <><dt>Runtime</dt><dd>{time}</dd></>}
-        <dt>Status</dt><dd>{d.status === 'archived' ? 'Completed' : 'Running'}</dd>
+        <dt>Status</dt><dd>{d.status === 'completed' ? 'Completed' : 'Running'}</dd>
       </dl>
     </aside>
   </div>

@@ -3,14 +3,14 @@ import Page from '../layouts/Page.astro';
 import ProjectTable from '../components/ProjectTable.astro';
 import { getProjects } from '../lib/content';
 
-const { active, archived } = await getProjects();
+const { active, completed } = await getProjects();
 ---
 <Page title="Projects" lead="Our third-party funded research projects, with partners from academia and industry.">
   <ProjectTable projects={active} />
-  {archived.length > 0 && (
+  {completed.length > 0 && (
     <>
-      <h2 class="group-title spaced" id="archived">Archived projects</h2>
-      <ProjectTable projects={archived} />
+      <h2 class="group-title spaced" id="completed">Completed projects</h2>
+      <ProjectTable projects={completed} />
     </>
   )}
 </Page>
