@@ -349,9 +349,8 @@ pre.astro-code { background-color: var(--code-bg) !important; }
 @media (max-width: 560px) { .alumni { grid-template-columns: 1fr; } }
 
 /* Funding logos on project pages */
-.funders { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--line); }
+/* All funder logos bundled on one white, rounded panel, so logos with white
+   backgrounds blend in and the block also looks intentional in dark mode */
+.funders { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px; width: fit-content; max-width: 100%; box-sizing: border-box; margin-top: 48px; padding: 20px 28px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
 .funders img { height: 72px; width: auto; max-width: 100%; }
-/* White, framed plate behind each logo: logos with white backgrounds look
-   intentional in dark mode and all logos get the same frame */
-.funders img { box-sizing: content-box; background: #fff; padding: 10px 14px; border: 1px solid var(--line); }
 .funders img[src*="bmftr"], .funders img[src*="stmwi"] { height: 120px; }
